@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.osall.boom.controller.Controller;
 
 public class Joueur {
 
@@ -9,8 +10,8 @@ public class Joueur {
     private IntegerProperty x , y ;
 
     public Joueur() {
-        this.x = new SimpleIntegerProperty(320);
-        this.y = new SimpleIntegerProperty(240);
+        this.x = new SimpleIntegerProperty(1224/2);
+        this.y = new SimpleIntegerProperty(964/2);
         this.id = 0;
     }
 
