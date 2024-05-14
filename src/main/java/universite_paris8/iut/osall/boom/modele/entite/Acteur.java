@@ -2,22 +2,22 @@ package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.osall.boom.modele.map.Environnement;
+import universite_paris8.iut.osall.boom.modele.Map;
 
 public abstract class Acteur {
 
     private IntegerProperty x,y;
-    private Environnement environnement;
+    private Map map;
     private int moveSpeed;
     private int pointDeVie;
     private int pointAttaque;
     private double atkSpeed;
     public String direction;
 
-    public Acteur(int x, int y, Environnement environnement, int pointDeVie, int pointAttaque, int moveSpeed, double atkSpeed) {
+    public Acteur(int x, int y, Map map, int pointDeVie, int pointAttaque, int moveSpeed, double atkSpeed) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
-        this.environnement = environnement;
+        this.map = map;
         this.pointDeVie = pointDeVie;
         this.pointAttaque = pointAttaque;
         this.moveSpeed = moveSpeed;

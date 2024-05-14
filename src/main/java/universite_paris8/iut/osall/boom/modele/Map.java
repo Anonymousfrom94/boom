@@ -1,10 +1,10 @@
-package universite_paris8.iut.osall.boom.modele.map;
+package universite_paris8.iut.osall.boom.modele;
 
-public class Environnement {
+public class Map {
 
     private int[]tableau;
 
-    public Environnement() {
+    public Map() {
         this.tableau = new int[]{
                 14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,
                 14,14,14,65,14,14,14,14,14,14,14,14,14,14,14,14,65,14,14,14,
