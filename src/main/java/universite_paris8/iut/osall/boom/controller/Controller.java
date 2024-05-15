@@ -33,4 +33,5 @@ public class Controller implements Initializable {
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
     }
+    //blablabla
 }
