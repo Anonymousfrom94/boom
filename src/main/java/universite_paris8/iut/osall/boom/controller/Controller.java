@@ -2,13 +2,10 @@ package universite_paris8.iut.osall.boom.controller;
 
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.shape.Circle;
 import universite_paris8.iut.osall.boom.modele.Map;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
-import javafx.scene.paint.Color;
 import universite_paris8.iut.osall.boom.modele.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.modele.vue.VueMap;
 
