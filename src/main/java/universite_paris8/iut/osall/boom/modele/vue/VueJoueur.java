@@ -13,8 +13,6 @@ public class VueJoueur {
         Circle r = new Circle(10);
         r.setFill(Color.VIOLET);
         r.setId(String.valueOf(joueur.getId()));
-        r.setTranslateX(320);
-        r.setTranslateY(240);
         pane.getChildren().add(r);
         clavier x  = new clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);

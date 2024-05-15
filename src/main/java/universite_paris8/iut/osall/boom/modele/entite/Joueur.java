@@ -10,8 +10,8 @@ public class Joueur {
     private IntegerProperty x , y ;
 
     public Joueur() {
-        this.x = new SimpleIntegerProperty(1224/2);
-        this.y = new SimpleIntegerProperty(964/2);
+        this.x = new SimpleIntegerProperty(800/2);
+        this.y = new SimpleIntegerProperty(800/2);
         this.id = 0;
     }
 

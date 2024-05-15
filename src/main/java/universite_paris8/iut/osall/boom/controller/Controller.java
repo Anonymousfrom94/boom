@@ -26,8 +26,8 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        tilePane.setPrefTileWidth(48);
-        tilePane.setPrefTileHeight(48);
+//        tilePane.setPrefTileWidth(16);
+//        tilePane.setPrefTileHeight(16);
         this.map = new Map();
         this.joueur = new Joueur();
         this.vueMap = new VueMap(tilePane, map);
