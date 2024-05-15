@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.Bloc;
+package universite_paris8.iut.osall.boom.modele.bloc;
 
 public class Bloc {
     private int val;
