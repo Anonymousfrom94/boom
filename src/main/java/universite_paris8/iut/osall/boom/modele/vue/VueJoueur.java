@@ -12,13 +12,13 @@ public class VueJoueur {
     public VueJoueur(Pane pane, Joueur joueur) {
         Circle r = new Circle(10);
         r.setFill(Color.VIOLET);
-        r.setId(String.valueOf(joueur.getId()));
+        r.setId(joueur.getId());
         r.setTranslateX(320);
         r.setTranslateY(240);
         pane.getChildren().add(r);
         clavier x  = new clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
-        r.translateXProperty().bind(joueur.Xproperty());
-        r.translateYProperty().bind(joueur.Yproperty());
+        r.translateXProperty().bind(joueur.getXproperty());
+        r.translateYProperty().bind(joueur.getYproperty());
     }
 }
