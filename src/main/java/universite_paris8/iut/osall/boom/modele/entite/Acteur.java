@@ -6,57 +6,42 @@ import universite_paris8.iut.osall.boom.modele.Map;
 
 public abstract class Acteur {
 
-    private IntegerProperty x,y;
-    private Map map;
-    private int moveSpeed;
-    private int pointDeVie;
-    private int pointAttaque;
-    private double atkSpeed;
-    public String direction;
+    private String id;
+    private static int compteur = 0;
+    private IntegerProperty x , y ;
 
-    public Acteur(int x, int y, Map map, int pointDeVie, int pointAttaque, int moveSpeed, double atkSpeed) {
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
-        this.map = map;
-        this.pointDeVie = pointDeVie;
-        this.pointAttaque = pointAttaque;
-        this.moveSpeed = moveSpeed;
-        this.atkSpeed = atkSpeed;
-        this.direction = "down";
+    public Acteur() {
+        this.x = new SimpleIntegerProperty(1224/2);
+        this.y = new SimpleIntegerProperty(964/2);
+        this.id = "#" + compteur;
+        compteur++;
     }
 
-    public void setPointDeVie(int pointDeVie) {
-        this.pointDeVie = pointDeVie;
+    public int getX(){
+        return this.x.getValue();
     }
 
-    public int getPointDeVie(){
-        return this.pointDeVie;
+    public int getY(){
+        return this.y.getValue();
     }
 
-    public void attaque (Acteur a){
-        if (a.getPointDeVie() - this.pointAttaque <= 0){
-            a.setPointDeVie(0);
-        }
-        else {
-            a.setPointDeVie(a.getPointDeVie() - this.pointAttaque);
-        }
+    public IntegerProperty getXproperty(){
+        return this.x;
     }
 
-    public abstract String getId();
-
-    public IntegerProperty getX(){
-        return x;
+    public IntegerProperty getYproperty(){
+        return this.y;
     }
 
-    public IntegerProperty getY(){
-        return y;
+    public void setX(int x) {
+        this.x.setValue(x);
     }
 
-    public int getMoveSpeed(){
-        return this.moveSpeed;
+    public void setY(int y) {
+        this.y.setValue(y);
     }
 
-    public boolean estVivant(){
-        return this.pointDeVie > 0;
+    public String getId() {
+        return id;
     }
 }
