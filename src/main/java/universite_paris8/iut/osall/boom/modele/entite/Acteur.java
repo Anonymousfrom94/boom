@@ -8,7 +8,7 @@ public abstract class Acteur {
     private String id;
     private int vitesse;
     private static int compteur = 0;
-    private IntegerProperty x , y ;
+    private IntegerProperty x, y ;
 
     public Acteur(int x, int y, int vitesse) {
         this.x = new SimpleIntegerProperty(x);
