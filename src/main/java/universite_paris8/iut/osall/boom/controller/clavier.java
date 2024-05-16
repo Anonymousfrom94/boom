@@ -19,10 +19,10 @@ public class clavier implements EventHandler<KeyEvent> {
 
     private void touche(KeyEvent event){
         switch (event.getCode()){
-            case Z -> joueur.setY(joueur.getY()-5);
-            case Q -> joueur.setX(joueur.getX()-5);
-            case S -> joueur.setY(joueur.getY()+5);
-            case D -> joueur.setX(joueur.getX()+5);
+            case Z -> joueur.setY(joueur.getY()-joueur.getVitesse());
+            case Q -> joueur.setX(joueur.getX()-joueur.getVitesse());
+            case S -> joueur.setY(joueur.getY()+joueur.getVitesse());
+            case D -> joueur.setX(joueur.getX()+joueur.getVitesse());
         }
     }
 

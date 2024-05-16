@@ -7,7 +7,11 @@ import universite_paris8.iut.osall.boom.controller.Controller;
 public class Joueur extends Acteur {
 
     public Joueur() {
-       super(240, 240, 10);
+       super(240, 240, 20);
+    }
+
+    public static void collisionBord(){
+
     }
 
 }

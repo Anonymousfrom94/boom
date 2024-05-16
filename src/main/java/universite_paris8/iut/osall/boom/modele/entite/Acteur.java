@@ -45,4 +45,8 @@ public abstract class Acteur {
     public String getId() {
         return id;
     }
+
+    public int getVitesse() {
+        return vitesse;
+    }
 }
