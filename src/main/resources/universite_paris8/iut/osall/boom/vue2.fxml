@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.osall.boom.controller.Controller">
    <center>
       <Pane fx:id="pane" focusTraversable="true" onMouseClicked="#aff" prefHeight="480.0" prefWidth="480.0">
