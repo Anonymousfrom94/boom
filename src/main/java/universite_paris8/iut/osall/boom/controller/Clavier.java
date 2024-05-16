@@ -4,11 +4,11 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
-public class clavier implements EventHandler<KeyEvent> {
+public class Clavier implements EventHandler<KeyEvent> {
 
     private Joueur joueur;
 
-    public clavier(Joueur joueur) {
+    public Clavier(Joueur joueur) {
         this.joueur = joueur;
     }
 
@@ -24,6 +24,7 @@ public class clavier implements EventHandler<KeyEvent> {
             case S -> joueur.setY(joueur.getY()+joueur.getVitesse());
             case D -> joueur.setX(joueur.getX()+joueur.getVitesse());
         }
+        System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
     }
 
 }
