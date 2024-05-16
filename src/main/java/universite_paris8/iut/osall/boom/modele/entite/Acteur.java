@@ -7,12 +7,14 @@ import universite_paris8.iut.osall.boom.modele.Map;
 public abstract class Acteur {
 
     private String id;
+    private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x , y ;
 
-    public Acteur() {
-        this.x = new SimpleIntegerProperty(1224/2);
-        this.y = new SimpleIntegerProperty(964/2);
+    public Acteur(int x, int y, int vitesse) {
+        this.x = new SimpleIntegerProperty(x);
+        this.y = new SimpleIntegerProperty(y);
+        this.vitesse = vitesse;
         this.id = "#" + compteur;
         compteur++;
     }

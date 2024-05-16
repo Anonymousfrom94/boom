@@ -7,7 +7,7 @@ import universite_paris8.iut.osall.boom.controller.Controller;
 public class Joueur extends Acteur {
 
     public Joueur() {
-       super();
+       super(1224/2, 964/2, 10);
     }
 
 }
