@@ -6,7 +6,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.osall.boom.modele.Map;
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.vue.VueEnnemie;
 import universite_paris8.iut.osall.boom.modele.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.modele.vue.VueMap;
 
@@ -21,6 +23,8 @@ public class Controller implements Initializable {
     private Map map;
     private VueMap vueMap;
     private VueJoueur vueJoueur;
+    private Ennemie ennemie;
+    private VueEnnemie vueEnnemie;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
@@ -30,6 +34,8 @@ public class Controller implements Initializable {
         this.joueur = new Joueur();
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
+        this.ennemie = new Ennemie();
+        this.vueEnnemie = new VueEnnemie(pane, ennemie);
 //        pane.requestFocus();
     }
 
