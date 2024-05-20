@@ -31,7 +31,7 @@ public class Controller implements Initializable {
 //        tilePane.setPrefTileWidth(16);
 //        tilePane.setPrefTileHeight(16);
         this.map = new Map();
-        this.joueur = new Joueur();
+        this.joueur = new Joueur(pane);
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
         this.ennemie = new Ennemie();

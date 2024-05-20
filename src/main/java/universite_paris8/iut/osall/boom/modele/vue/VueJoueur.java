@@ -14,6 +14,9 @@ import java.awt.*;
 
 public class VueJoueur {
 
+    private Pane pane;
+    private boolean image1 = true;
+
     private ImageView imageView;
     private Image z1;
     private Image z2;
@@ -26,6 +29,8 @@ public class VueJoueur {
 
     public VueJoueur(Pane pane, Joueur joueur) {
 
+        this.imageView = new ImageView();
+
         this.z1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_1.png");
         this.z2 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_2.png");
         this.s1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_bas_1.png");
@@ -35,7 +40,16 @@ public class VueJoueur {
         this.d1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_droite_1.png");
         this.d2 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_droite_2.png");
 
-        Circle r = new Circle(10);
+        imageView.setImage(s1);
+        imageView.setTranslateX(joueur.getX());
+        imageView.setTranslateY(joueur.getY());
+        pane.getChildren().add(imageView);
+        Clavier x  = new Clavier(joueur);
+        pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
+        imageView.translateXProperty().bind(joueur.getXproperty());
+        imageView.translateYProperty().bind(joueur.getYproperty());
+
+        /*Circle r = new Circle(10);
         r.setFill(Color.VIOLET);
         r.setId(joueur.getId());
         r.setTranslateX(joueur.getX());
@@ -44,6 +58,6 @@ public class VueJoueur {
         Clavier x  = new Clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
         r.translateXProperty().bind(joueur.getXproperty());
-        r.translateYProperty().bind(joueur.getYproperty());
+        r.translateYProperty().bind(joueur.getYproperty());*/
     }
 }
