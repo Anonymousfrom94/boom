@@ -18,12 +18,30 @@ public class Clavier implements EventHandler<KeyEvent> {
     }
 
     private void touche(KeyEvent event){
+        int newX = joueur.getX();
+        int newY = joueur.getY();
+
         switch (event.getCode()){
-            case Z -> joueur.setY(joueur.getY()-joueur.getVitesse());
-            case Q -> joueur.setX(joueur.getX()-joueur.getVitesse());
-            case S -> joueur.setY(joueur.getY()+joueur.getVitesse());
-            case D -> joueur.setX(joueur.getX()+joueur.getVitesse());
+            case Z -> {
+                newY -= joueur.getVitesse();
+                joueur.setDirection("haut");
+            }
+            case S -> {
+                newY += joueur.getVitesse();
+                joueur.setDirection("bas");
+            }
+            case Q -> {
+                newX -= joueur.getVitesse();
+                joueur.setDirection("gauche");
+            }
+            case D -> {
+                newX += joueur.getVitesse();
+                joueur.setDirection("droite");
+            }
         }
+        joueur.setX(newX);
+        joueur.setY(newY);
+
         System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
     }
 

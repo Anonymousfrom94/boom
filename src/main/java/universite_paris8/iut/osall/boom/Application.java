@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load(), 480, 480);
         Pane root = (Pane) scene.getRoot();
         root.requestFocus();
-        stage.setTitle("DimentionBreaker");
+        stage.setTitle("DimensionBreaker");
         stage.setScene(scene);
         stage.show();
     }
