@@ -2,21 +2,25 @@ package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.osall.boom.modele.Environnement;
 
 public abstract class Acteur {
 
+    private Environnement environnement;
     private String id;
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y ;
 
-    public Acteur(int x, int y, int vitesse) {
+    public Acteur(Environnement environnement, int x, int y, int vitesse) {
+        this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.vitesse = vitesse;
         this.id = "#" + compteur;
         compteur++;
     }
+
 
     public int getX(){
         return this.x.getValue();
@@ -48,5 +52,16 @@ public abstract class Acteur {
 
     public int getVitesse() {
         return vitesse;
+    }
+
+    @Override
+    public String toString() {
+        return "Acteur{" +
+                "environnement=" + environnement +
+                ", id='" + id + '\'' +
+                ", vitesse=" + vitesse +
+                ", x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

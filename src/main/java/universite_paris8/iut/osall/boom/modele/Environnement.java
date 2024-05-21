@@ -1,16 +1,24 @@
 package universite_paris8.iut.osall.boom.modele;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.TilePane;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 
 public class Environnement {
     private Map map;
-    private TilePane tilePane;
+    private int width;
+    private int heigth;
     private ObservableList<Acteur> acteurs;
+    private int largeurTuile;
+    private int hauteurTuile;
 
-    public Environnement(Map map, ObservableList<Acteur> listActeurs) {
+    public Environnement(Map map) {
+        largeurTuile = 16;
+        hauteurTuile = 16;
+        this.width = 30 * 16;
+        this.heigth = 30 * 16;
         this.map = map;
-        this.acteurs = listActeurs;
+        this.acteurs = FXCollections.observableArrayList();
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
+import universite_paris8.iut.osall.boom.modele.Environnement;
 import universite_paris8.iut.osall.boom.modele.Map;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
@@ -22,6 +23,7 @@ public class Controller implements Initializable {
 
     @FXML private Pane pane;
     @FXML private TilePane tilePane;
+    private Environnement environnement;
     private Joueur joueur;
     private Map map;
     private VueMap vueMap;
@@ -36,10 +38,11 @@ public class Controller implements Initializable {
 //        tilePane.setPrefTileWidth(16);
 //        tilePane.setPrefTileHeight(16);
         this.map = new Map();
-        this.joueur = new Joueur(pane);
+        this.environnement = new Environnement(map);
+        this.joueur = new Joueur(environnement);
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
-        this.ennemie = new Ennemie();
+        this.ennemie = new Ennemie(environnement);
         this.vueEnnemie = new VueEnnemie(pane, ennemie);
         initAnimation();
         gameLoop.play();
@@ -64,7 +67,7 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.1),
+                Duration.seconds(0.5 ),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
@@ -76,6 +79,7 @@ public class Controller implements Initializable {
                         ennemie.setX((int) (Math.random() * 470));
                         ennemie.setY((int) (Math.random() * 470));
                     }
+                    joueur.seDeplace();
                     temps++;
                 })
         );

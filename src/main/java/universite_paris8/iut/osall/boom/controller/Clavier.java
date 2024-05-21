@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.controller;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
@@ -18,33 +19,25 @@ public class Clavier implements EventHandler<KeyEvent> {
     }
 
     private void touche(KeyEvent event){
-        int newX = joueur.getX();
-        int newY = joueur.getY();
-
-        switch (event.getCode()){
-            case Z -> {
-                newY -= joueur.getVitesse();
-                joueur.setDirection("haut");
-            }
-            case S -> {
-                newY += joueur.getVitesse();
-                joueur.setDirection("bas");
-            }
-            case Q -> {
-                newX -= joueur.getVitesse();
-                joueur.setDirection("gauche");
-            }
-            case D -> {
-                newX += joueur.getVitesse();
-                joueur.setDirection("droite");
-            }
+//        switch (event.getCode()){
+//            case Z -> joueur.setHaut(true);
+//            case S -> joueur.setBas(true);
+//            case Q -> joueur.setGauche(true);
+//            case D -> joueur.setDroite(true);
+//        }
+        if (event.getCode() == KeyCode.Z){
+            joueur.setHaut(true);
         }
-
-        if (newX >= 0 && newX <= 464 && newY >= 0 && newY <= 464){
-            joueur.setX(newX);
-            joueur.setY(newY);
+        if (event.getCode() == KeyCode.S){
+            joueur.setBas(true);
         }
-        System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
+        if (event.getCode() == KeyCode.Q){
+            joueur.setGauche(true);
+        }
+        if (event.getCode() == KeyCode.D){
+            joueur.setDroite(true);
+        }
+//        System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
     }
 
 }
