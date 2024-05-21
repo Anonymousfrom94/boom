@@ -51,11 +51,22 @@ public class VueJoueur {
     }
 
     public void changementImg(Joueur joueur){
-        switch (joueur.getDirection()){
-            case "haut" -> this.imageView.setImage(z1);
-            case "bas" -> this.imageView.setImage(s1);
-            case "gauche" -> this.imageView.setImage(q1);
-            case "droite" -> this.imageView.setImage(d1);
+        if (image1 == true){
+            switch (joueur.getDirection()){
+                case "haut" -> this.imageView.setImage(z1);
+                case "bas" -> this.imageView.setImage(s1);
+                case "gauche" -> this.imageView.setImage(q1);
+                case "droite" -> this.imageView.setImage(d1);
+            }
         }
+        else {
+            switch (joueur.getDirection()){
+                case "haut" -> this.imageView.setImage(z2);
+                case "bas" -> this.imageView.setImage(s2);
+                case "gauche" -> this.imageView.setImage(q2);
+                case "droite" -> this.imageView.setImage(d2);
+            }
+        }
+        this.image1 = !image1;
     }
 }
