@@ -48,16 +48,14 @@ public class VueJoueur {
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
         imageView.translateXProperty().bind(joueur.getXproperty());
         imageView.translateYProperty().bind(joueur.getYproperty());
+    }
 
-        /*Circle r = new Circle(10);
-        r.setFill(Color.VIOLET);
-        r.setId(joueur.getId());
-        r.setTranslateX(joueur.getX());
-        r.setTranslateY(joueur.getY());
-        pane.getChildren().add(r);
-        Clavier x  = new Clavier(joueur);
-        pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
-        r.translateXProperty().bind(joueur.getXproperty());
-        r.translateYProperty().bind(joueur.getYproperty());*/
+    public void changementImg(Joueur joueur){
+        switch (joueur.getDirection()){
+            case "haut" -> this.imageView.setImage(z1);
+            case "bas" -> this.imageView.setImage(s1);
+            case "gauche" -> this.imageView.setImage(q1);
+            case "droite" -> this.imageView.setImage(d1);
+        }
     }
 }

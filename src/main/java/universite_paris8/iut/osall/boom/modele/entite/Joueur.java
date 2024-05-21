@@ -11,9 +11,13 @@ public class Joueur extends Acteur {
     private Pane pane;
 
     public Joueur(Pane pane) {
-       super(240, 240, 20);
+       super(240, 240, 4);
        this.direction = "bas";
        this.pane = pane;
+    }
+
+    public String getDirection() {
+        return direction;
     }
 
     public void setDirection(String direction) {

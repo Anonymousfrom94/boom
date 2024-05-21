@@ -39,9 +39,11 @@ public class Clavier implements EventHandler<KeyEvent> {
                 joueur.setDirection("droite");
             }
         }
-        joueur.setX(newX);
-        joueur.setY(newY);
 
+        if (newX >= 0 && newX <= 464 && newY >= 0 && newY <= 464){
+            joueur.setX(newX);
+            joueur.setY(newY);
+        }
         System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
     }
 

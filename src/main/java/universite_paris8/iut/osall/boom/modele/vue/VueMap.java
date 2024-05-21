@@ -3,8 +3,6 @@ package universite_paris8.iut.osall.boom.modele.vue;
 import javafx.scene.layout.TilePane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.osall.boom.modele.Map;
 
 public class VueMap {

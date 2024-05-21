@@ -42,5 +42,12 @@ public class Controller implements Initializable {
     public void aff(MouseEvent mouseEvent) {
         pane.requestFocus();
     }
-    //blablabla
+
+    public double getTilePaneHeight(){
+        return tilePane.getPrefHeight();
+    }
+
+    public double getTilePaneWidth(){
+        return tilePane.getTileWidth();
+    }
 }
