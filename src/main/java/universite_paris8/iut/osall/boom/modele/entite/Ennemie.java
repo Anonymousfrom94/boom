@@ -6,4 +6,4 @@ public class Ennemie extends Acteur {
         super((int) (Math.random() * 470), (int) (Math.random() * 470), 4);
     }
 }
-//(int) Math.random() * (480 - 1)
+//(int) Math.random() * (480 - 1)git
