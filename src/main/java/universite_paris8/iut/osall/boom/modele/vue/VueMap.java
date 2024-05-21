@@ -19,9 +19,9 @@ public class VueMap {
         this.tilePane = tilePane;
         this.map = map;
 
-        this.dcMur = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/ImgBloc/DarkCastleMur.png");
-        this.dcHautPorteRond = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/ImgBloc/DarkCastleHautArrondi.png");
-        this.dcBasPorte = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/ImgBloc/DarkCastleBasPorte.png");
+        this.dcMur = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/DarkCastleMur.png");
+        this.dcHautPorteRond = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/DarkCastleHautArrondi.png");
+        this.dcBasPorte = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/DarkCastleBasPorte.png");
 
         for (int i = 0; i < map.getTableau().length;i++){
             imageView = new ImageView();
