@@ -24,7 +24,32 @@ public class Joueur extends Acteur {
     }
 
 //    public boolean peutSeDeplacer(){
-//
+//        /*Regarder la prochaine position du joueur,
+//        * regarder si la prochaine tuile est normale ou non,
+//        * Si oui return true, si non return false.
+//        * */
+//        // A faire : Changer les conditions
+//        // programmer le code
+//        if (this.haut){
+//            if (this.getY() - this.getVitesse() >= 0 ){
+//                /*...code...*/
+//            }
+//        }
+//        if (this.bas){
+//            if (this.getY() + this.getVitesse() <= 464){
+//                /*...code...*/
+//            }
+//        }
+//        if (this.gauche){
+//            if (this.getX() - this.getVitesse() >= 0){
+//                /*...code...*/
+//            }
+//        }
+//        if (this.droite){
+//            if (this.getX() + this.getVitesse() <= 464){
+//                /*...code...*/
+//            }
+//        }
 //    }
 
     public void seDeplace(){
