@@ -42,8 +42,8 @@ public class Controller implements Initializable {
         this.joueur = new Joueur(environnement);
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
-        this.ennemie = new Ennemie(environnement);
-        this.vueEnnemie = new VueEnnemie(pane, ennemie);
+//        this.ennemie = new Ennemie(environnement);
+//        this.vueEnnemie = new VueEnnemie(pane, ennemie);
         initAnimation();
         gameLoop.play();
 //        pane.requestFocus();
@@ -67,18 +67,18 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.5 ),
+                Duration.seconds(0.001 ),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if(temps==100){
-                        System.out.println("fini");
-//                        gameLoop.stop();
-                    }
-                    else if (temps%5==0){
-                        ennemie.setX((int) (Math.random() * 470));
-                        ennemie.setY((int) (Math.random() * 470));
-                    }
+//                    if(temps==100){
+//                        System.out.println("fini");
+////                        gameLoop.stop();
+//                    }
+//                    else if (temps%5==0){
+//                        ennemie.setX((int) (Math.random() * 470));
+//                        ennemie.setY((int) (Math.random() * 470));
+//                    }
                     joueur.seDeplace();
                     temps++;
                 })

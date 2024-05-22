@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private boolean droite;
 
     public Joueur(Environnement environnement) {
-       super(environnement, 240, 240, 4);
+       super(environnement, 240, 240, 1);
        this.haut = false;
        this.bas = false;
        this.droite = false;
@@ -23,62 +23,97 @@ public class Joueur extends Acteur {
        this.direction = "bas";
     }
 
-//    public boolean peutSeDeplacer(){
-//        /*Regarder la prochaine position du joueur,
-//        * regarder si la prochaine tuile est normale ou non,
-//        * Si oui return true, si non return false.
-//        * */
-//        // A faire : Changer les conditions
-//        // programmer le code
-//        if (this.haut){
-//            if (this.getY() - this.getVitesse() >= 0 ){
-//                /*...code...*/
-//            }
-//        }
-//        if (this.bas){
-//            if (this.getY() + this.getVitesse() <= 464){
-//                /*...code...*/
-//            }
-//        }
-//        if (this.gauche){
-//            if (this.getX() - this.getVitesse() >= 0){
-//                /*...code...*/
-//            }
-//        }
-//        if (this.droite){
-//            if (this.getX() + this.getVitesse() <= 464){
-//                /*...code...*/
-//            }
-//        }
-//    }
-
-    public void seDeplace(){
-        System.out.println("Avant" + this.toString());
+    public boolean peutSeDeplacer(){
+        /*Regarder la prochaine position du joueur,
+        * regarder si la prochaine tuile est normale ou non,
+        * Si oui return true, si non return false.
+        * */
+        // A faire : Changer les conditions
+        // programmer le code
+        int ligne, colonne, indice, newX, newY;
         if (this.haut){
             if (this.getY() - this.getVitesse() >= 0 ){
-                this.setY(this.getY() - this.getVitesse());
+                newX = this.getX();
+                newY = this.getY() - this.getVitesse();
+                colonne = (int) newX/16;
+                ligne = (int) newY/16;
+                indice = ligne * 30 + colonne;
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                    System.out.println(this.toString() + "Indice : " + indice);
+                    return false;
+                }
             }
+
         }
         if (this.bas){
             if (this.getY() + this.getVitesse() <= 464){
-                this.setY(this.getY() + this.getVitesse());
+                newX = this.getX();
+                newY = this.getY() + this.getVitesse();
+                colonne = (int) newX/16;
+                ligne = (int) newY/16;
+                indice = ligne * 30 + colonne;
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                    System.out.println(this.toString() + "Indice : " + indice);
+                    return false;
+                }
             }
         }
         if (this.gauche){
             if (this.getX() - this.getVitesse() >= 0){
-                this.setX(this.getX() - this.getVitesse());
+                newX = this.getX() - this.getVitesse();
+                newY = this.getY();
+                colonne = (int) newX/16;
+                ligne = (int) newY/16;
+                indice = ligne * 30 + colonne;
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                    System.out.println(this.toString() + "Indice : " + indice);
+                    return false;
+                }
             }
         }
         if (this.droite){
             if (this.getX() + this.getVitesse() <= 464){
-                this.setX(this.getX() + this.getVitesse());
+                newX = this.getX() - this.getVitesse();
+                newY = this.getY();
+                colonne = (int) newX/16;
+                ligne = (int) newY/16;
+                indice = ligne * 30 + colonne;
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                    System.out.println(this.toString() + "Indice : " + indice);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void seDeplace(){
+        if (peutSeDeplacer()){
+            if (this.haut){
+                if (this.getY() - this.getVitesse() >= 0 ){
+                    this.setY(this.getY() - this.getVitesse());
+                }
+            }
+            if (this.bas){
+                if (this.getY() + this.getVitesse() <= 464){
+                    this.setY(this.getY() + this.getVitesse());
+                }
+            }
+            if (this.gauche){
+                if (this.getX() - this.getVitesse() >= 0){
+                    this.setX(this.getX() - this.getVitesse());
+                }
+            }
+            if (this.droite){
+                if (this.getX() + this.getVitesse() <= 464){
+                    this.setX(this.getX() + this.getVitesse());
+                }
             }
         }
         this.haut = false;
         this.bas = false;
         this.droite = false;
         this.gauche = false;
-        System.out.println("Après" +this.toString());
     }
 
 
@@ -125,7 +160,6 @@ public class Joueur extends Acteur {
     @Override
     public String toString() {
         return super.toString() + "Joueur{" +
-                "direction='" + direction + '\'' +
                 ", haut=" + haut +
                 ", bas=" + bas +
                 ", gauche=" + gauche +

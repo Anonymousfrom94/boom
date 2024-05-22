@@ -62,8 +62,8 @@ public abstract class Acteur {
     @Override
     public String toString() {
         return "Acteur{" +
-                "environnement=" + environnement +
-                ", id='" + id + '\'' +
+//                "environnement=" + environnement +
+//                ", id='" + id + '\'' +
                 ", vitesse=" + vitesse +
                 ", x=" + x +
                 ", y=" + y +
