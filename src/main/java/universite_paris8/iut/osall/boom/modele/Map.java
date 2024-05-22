@@ -42,6 +42,4 @@ public class Map {
         return this.tableau;
     }
 
-
-
 }

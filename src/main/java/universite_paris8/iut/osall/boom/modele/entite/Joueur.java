@@ -23,6 +23,10 @@ public class Joueur extends Acteur {
        this.direction = "bas";
     }
 
+//    public boolean peutSeDeplacer(){
+//
+//    }
+
     public void seDeplace(){
         System.out.println("Avant" + this.toString());
         if (this.haut){
@@ -41,7 +45,7 @@ public class Joueur extends Acteur {
             }
         }
         if (this.droite){
-            if (this.getX() + this.getVitesse() >= 464){
+            if (this.getX() + this.getVitesse() <= 464){
                 this.setX(this.getX() + this.getVitesse());
             }
         }

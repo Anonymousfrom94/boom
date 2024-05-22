@@ -21,4 +21,12 @@ public class Environnement {
         this.map = map;
         this.acteurs = FXCollections.observableArrayList();
     }
+
+    public ObservableList<Acteur> getActeurs() {
+        return acteurs;
+    }
+
+    public Map getMap() {
+        return map;
+    }
 }

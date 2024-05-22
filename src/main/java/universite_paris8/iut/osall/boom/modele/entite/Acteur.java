@@ -19,6 +19,7 @@ public abstract class Acteur {
         this.vitesse = vitesse;
         this.id = "#" + compteur;
         compteur++;
+        this.environnement.getActeurs().add(this);
     }
 
 
@@ -52,6 +53,10 @@ public abstract class Acteur {
 
     public int getVitesse() {
         return vitesse;
+    }
+
+    public Environnement getEnvironnement() {
+        return environnement;
     }
 
     @Override
