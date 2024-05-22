@@ -38,7 +38,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -52,7 +52,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -65,7 +65,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -73,12 +73,12 @@ public class Joueur extends Acteur {
         }
         if (this.droite){
             if (this.getX() + this.getVitesse() <= 464){
-                newX = this.getX() - this.getVitesse();
+                newX = this.getX() + this.getVitesse();
                 newY = this.getY();
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }

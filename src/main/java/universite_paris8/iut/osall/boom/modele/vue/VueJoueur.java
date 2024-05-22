@@ -29,6 +29,14 @@ public class VueJoueur {
 
     public VueJoueur(Pane pane, Joueur joueur) {
 
+        Circle circle = new Circle(8);
+        circle.setFill(Color.RED);
+        circle.setTranslateX(joueur.getX());
+        circle.setTranslateY(joueur.getY());
+        pane.getChildren().add(circle);
+        circle.translateXProperty().bind(joueur.getXproperty());
+        circle.translateYProperty().bind(joueur.getYproperty());
+
         this.imageView = new ImageView();
 
         this.z1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_1.png");
@@ -43,11 +51,18 @@ public class VueJoueur {
         imageView.setImage(s1);
         imageView.setTranslateX(joueur.getX());
         imageView.setTranslateY(joueur.getY());
+
+        imageView.setFitHeight(160);
+        imageView.setFitWidth(160);
+
         pane.getChildren().add(imageView);
         Clavier x  = new Clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
         imageView.translateXProperty().bind(joueur.getXproperty());
         imageView.translateYProperty().bind(joueur.getYproperty());
+
+
+
     }
 
     public void changementImg(Joueur joueur){
