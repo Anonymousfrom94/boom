@@ -29,13 +29,33 @@ public class VueJoueur {
 
     public VueJoueur(Pane pane, Joueur joueur) {
 
-        Circle circle = new Circle(8);
-        circle.setFill(Color.RED);
-        circle.setTranslateX(joueur.getX());
-        circle.setTranslateY(joueur.getY());
-        pane.getChildren().add(circle);
-        circle.translateXProperty().bind(joueur.getXproperty());
-        circle.translateYProperty().bind(joueur.getYproperty());
+        Circle circle1 = new Circle(3);
+        circle1.setFill(Color.RED);
+        circle1.setTranslateX(joueur.getX());
+        circle1.setTranslateY(joueur.getY());
+        pane.getChildren().add(circle1);
+        circle1.translateXProperty().bind(joueur.getXproperty());
+        circle1.translateYProperty().bind(joueur.getYproperty());
+
+        Circle circle2 = new Circle(3);
+        circle2.setFill(Color.RED);
+        circle2.setTranslateX(joueur.getHitBox().getCoinHDX());
+        circle2.setTranslateY(joueur.getHitBox().getCoinHDY());
+        pane.getChildren().add(circle2);
+        circle1.translateXProperty().bind(joueur.getXproperty());
+        circle1.translateYProperty().bind(joueur.getYproperty());
+
+        Circle circle3 = new Circle(3);
+        circle3.setFill(Color.RED);
+        circle3.setTranslateX(joueur.getHitBox().getCoinBGX());
+        circle3.setTranslateY(joueur.getHitBox().getCoinBGY());
+        pane.getChildren().add(circle3);
+
+        Circle circle4 = new Circle(3);
+        circle4.setFill(Color.RED);
+        circle4.setTranslateX(joueur.getHitBox().getCoinBDX());
+        circle4.setTranslateY(joueur.getHitBox().getCoinBDY());
+        pane.getChildren().add(circle4);
 
         this.imageView = new ImageView();
 
@@ -52,8 +72,8 @@ public class VueJoueur {
         imageView.setTranslateX(joueur.getX());
         imageView.setTranslateY(joueur.getY());
 
-        imageView.setFitHeight(160);
-        imageView.setFitWidth(160);
+        imageView.setFitHeight(32);
+        imageView.setFitWidth(32);
 
         pane.getChildren().add(imageView);
         Clavier x  = new Clavier(joueur);

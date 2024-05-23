@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private boolean droite;
 
     public Joueur(Environnement environnement) {
-       super(environnement, 240, 240, 1);
+       super(environnement, 240, 240, 4);
        this.haut = false;
        this.bas = false;
        this.droite = false;
@@ -38,7 +38,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -52,7 +52,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -65,7 +65,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -78,7 +78,7 @@ public class Joueur extends Acteur {
                 colonne = (int) newX/16;
                 ligne = (int) newY/16;
                 indice = ligne * 30 + colonne;
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 19){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
