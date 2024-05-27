@@ -3,8 +3,6 @@ package universite_paris8.iut.osall.boom.modele.vue;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import universite_paris8.iut.osall.boom.controller.Clavier;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import javafx.scene.image.Image;
@@ -29,34 +27,6 @@ public class VueJoueur {
 
     public VueJoueur(Pane pane, Joueur joueur) {
 
-//        Circle circle1 = new Circle(3);
-//        circle1.setFill(Color.RED);
-//        circle1.setTranslateX(joueur.getX());
-//        circle1.setTranslateY(joueur.getY());
-//        pane.getChildren().add(circle1);
-//        circle1.translateXProperty().bind(joueur.getXproperty());
-//        circle1.translateYProperty().bind(joueur.getYproperty());
-//
-//        Circle circle2 = new Circle(3);
-//        circle2.setFill(Color.RED);
-//        circle2.setTranslateX(joueur.getHitBox().getCoinHDX());
-//        circle2.setTranslateY(joueur.getHitBox().getCoinHDY());
-//        pane.getChildren().add(circle2);
-//        circle1.translateXProperty().bind(joueur.getXproperty());
-//        circle1.translateYProperty().bind(joueur.getYproperty());
-//
-//        Circle circle3 = new Circle(3);
-//        circle3.setFill(Color.RED);
-//        circle3.setTranslateX(joueur.getHitBox().getCoinBGX());
-//        circle3.setTranslateY(joueur.getHitBox().getCoinBGY());
-//        pane.getChildren().add(circle3);
-//
-//        Circle circle4 = new Circle(3);
-//        circle4.setFill(Color.RED);
-//        circle4.setTranslateX(joueur.getHitBox().getCoinBDX());
-//        circle4.setTranslateY(joueur.getHitBox().getCoinBDY());
-//        pane.getChildren().add(circle4);
-
         this.imageView = new ImageView();
 
         this.z1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_1.png");
@@ -71,10 +41,6 @@ public class VueJoueur {
         imageView.setImage(s1);
         imageView.setTranslateX(joueur.getX());
         imageView.setTranslateY(joueur.getY());
-
-        imageView.setFitHeight(32);
-        imageView.setFitWidth(32);
-
         pane.getChildren().add(imageView);
         Clavier x  = new Clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);

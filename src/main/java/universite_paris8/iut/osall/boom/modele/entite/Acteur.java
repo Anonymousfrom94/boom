@@ -3,7 +3,6 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement;
-import universite_paris8.iut.osall.boom.modele.HitBox;
 
 public abstract class Acteur {
 
@@ -12,7 +11,6 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y;
-//    private HitBox hitBox;
 
     public Acteur(Environnement environnement, int x, int y, int vitesse) {
         this.environnement = environnement;
@@ -22,7 +20,6 @@ public abstract class Acteur {
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
-//        this.hitBox = new HitBox(this);
     }
 
 
@@ -62,15 +59,10 @@ public abstract class Acteur {
         return environnement;
     }
 
-//    public HitBox getHitBox() {
-//        return hitBox;
-//    }
 
     @Override
     public String toString() {
         return "Acteur{" +
-//                "environnement=" + environnement +
-//                ", id='" + id + '\'' +
                 ", vitesse=" + vitesse +
                 ", x=" + x +
                 ", y=" + y +
