@@ -23,21 +23,18 @@ public class Joueur extends Acteur {
        this.direction = "bas";
     }
 
+    private int indice(int newX, int newY){
+        int ligne, colonne, indice;
+        colonne = (int) newX/16;
+        ligne = (int) newY/16;
+        return ligne * 30 + colonne;
+    }
+
     public boolean peutSeDeplacer(){
-        /*Regarder la prochaine position du joueur,
-        * regarder si la prochaine tuile est normale ou non,
-        * Si oui return true, si non return false.
-        * */
-        // A faire : Changer les conditions
-        // programmer le code
-        int ligne, colonne, indice, newX, newY;
+        int indice;
         if (this.haut){
             if (this.getY() - this.getVitesse() >= 0 ){
-                newX = this.getX();
-                newY = this.getY() - this.getVitesse();
-                colonne = (int) newX/16;
-                ligne = (int) newY/16;
-                indice = ligne * 30 + colonne;
+                indice = indice(this.getX(), this.getY() - this.getVitesse());
                 if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
@@ -47,11 +44,7 @@ public class Joueur extends Acteur {
         }
         if (this.bas){
             if (this.getY() + this.getVitesse() <= 464){
-                newX = this.getX();
-                newY = this.getY() + this.getVitesse();
-                colonne = (int) newX/16;
-                ligne = (int) newY/16;
-                indice = ligne * 30 + colonne;
+                indice = indice(this.getX(), this.getY() + this.getVitesse());
                 if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
@@ -60,11 +53,7 @@ public class Joueur extends Acteur {
         }
         if (this.gauche){
             if (this.getX() - this.getVitesse() >= 0){
-                newX = this.getX() - this.getVitesse();
-                newY = this.getY();
-                colonne = (int) newX/16;
-                ligne = (int) newY/16;
-                indice = ligne * 30 + colonne;
+                indice = indice(this.getX() - this.getVitesse(), this.getY());
                 if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
@@ -73,11 +62,7 @@ public class Joueur extends Acteur {
         }
         if (this.droite){
             if (this.getX() + this.getVitesse() <= 464){
-                newX = this.getX() + this.getVitesse();
-                newY = this.getY();
-                colonne = (int) newX/16;
-                ligne = (int) newY/16;
-                indice = ligne * 30 + colonne;
+                indice = indice(this.getX() + this.getVitesse(), this.getY());
                 if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;

@@ -12,7 +12,7 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y;
-    private HitBox hitBox;
+//    private HitBox hitBox;
 
     public Acteur(Environnement environnement, int x, int y, int vitesse) {
         this.environnement = environnement;
@@ -22,7 +22,7 @@ public abstract class Acteur {
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
-        this.hitBox = new HitBox(this);
+//        this.hitBox = new HitBox(this);
     }
 
 
@@ -62,9 +62,9 @@ public abstract class Acteur {
         return environnement;
     }
 
-    public HitBox getHitBox() {
-        return hitBox;
-    }
+//    public HitBox getHitBox() {
+//        return hitBox;
+//    }
 
     @Override
     public String toString() {
