@@ -72,7 +72,7 @@ public class Controller implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     joueur.seDeplace();
-
+                    vueJoueur.changementImg(joueur);
                     temps++;
                 })
         );
