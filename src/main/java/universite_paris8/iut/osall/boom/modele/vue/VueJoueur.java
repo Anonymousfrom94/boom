@@ -47,8 +47,6 @@ public class VueJoueur {
         imageView.translateXProperty().bind(joueur.getXproperty());
         imageView.translateYProperty().bind(joueur.getYproperty());
 
-
-
     }
 
     public void changementImg(Joueur joueur){

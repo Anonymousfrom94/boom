@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -42,6 +43,10 @@ public class Controller implements Initializable {
         this.vueJoueur = new VueJoueur(pane, joueur);
         initAnimation();
         gameLoop.play();
+//        pane.requestFocus();
+        Clavier keyHandler = new Clavier(joueur);
+        pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
+        pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
     }
 
     public void aff(MouseEvent mouseEvent) {
@@ -62,11 +67,12 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.001 ),
+                Duration.seconds(0.05 ),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     joueur.seDeplace();
+
                     temps++;
                 })
         );
