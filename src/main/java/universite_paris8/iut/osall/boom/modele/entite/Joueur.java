@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.controller.Controller;
 import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.Map;
 
 public class Joueur extends Acteur {
 
@@ -15,55 +16,55 @@ public class Joueur extends Acteur {
     private boolean droite;
 
     public Joueur(Environnement environnement) {
-       super(environnement, 240, 240, 4);
-       this.haut = false;
-       this.bas = false;
-       this.droite = false;
-       this.gauche = false;
-       this.direction = "bas";
+        super(environnement, 240, 240, 4);
+        this.haut = false;
+        this.bas = false;
+        this.droite = false;
+        this.gauche = false;
+        this.direction = "";
     }
 
-    private int indice(int newX, int newY){
+    private int indice(int newX, int newY) {
         int ligne, colonne, indice;
-        colonne = (int) newX/16;
-        ligne = (int) newY/16;
+        colonne = (int) newX / 16;
+        ligne = (int) newY / 16;
         return ligne * 30 + colonne;
     }
 
-    public boolean peutSeDeplacer(){
+    public boolean peutSeDeplacer() {
         int indice;
-        if (this.haut){
-            if (this.getY() - this.getVitesse() >= 0 ){
+        if (this.haut) {
+            if (this.getY() - this.getVitesse() >= 0) {
                 indice = indice(this.getX(), this.getY() - this.getVitesse());
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4) {
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
             }
 
         }
-        if (this.bas){
-            if (this.getY() + this.getVitesse() <= 464){
+        if (this.bas) {
+            if (this.getY() + this.getVitesse() <= 464) {
                 indice = indice(this.getX(), this.getY() + this.getVitesse());
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4) {
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
             }
         }
-        if (this.gauche){
-            if (this.getX() - this.getVitesse() >= 0){
+        if (this.gauche) {
+            if (this.getX() - this.getVitesse() >= 0) {
                 indice = indice(this.getX() - this.getVitesse(), this.getY());
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4) {
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
             }
         }
-        if (this.droite){
-            if (this.getX() + this.getVitesse() <= 464){
+        if (this.droite) {
+            if (this.getX() + this.getVitesse() <= 464) {
                 indice = indice(this.getX() + this.getVitesse(), this.getY());
-                if (this.getEnvironnement().getMap().getTableau()[indice] == 4){
+                if (this.getEnvironnement().getMap().getTableau()[indice] == 4) {
                     System.out.println(this.toString() + "Indice : " + indice);
                     return false;
                 }
@@ -72,83 +73,33 @@ public class Joueur extends Acteur {
         return true;
     }
 
-    public void seDeplace(){
-        if (peutSeDeplacer()){
-            if (this.haut){
-                if (this.getY() - this.getVitesse() >= 0 ){
-                    this.setY(this.getY() - this.getVitesse());
-                }
-            }
-            if (this.bas){
-                if (this.getY() + this.getVitesse() <= 464){
-                    this.setY(this.getY() + this.getVitesse());
-                }
-            }
-            if (this.gauche){
-                if (this.getX() - this.getVitesse() >= 0){
-                    this.setX(this.getX() - this.getVitesse());
-                }
-            }
-            if (this.droite){
-                if (this.getX() + this.getVitesse() <= 464){
-                    this.setX(this.getX() + this.getVitesse());
-                }
-            }
+    public void seDeplace() {
+        if (peutSeDeplacer()) {
+            int dx = 0;
+            int dy = 0;
+            int vitesse = getVitesse();
+
+            if (this.direction.contains("haut"))
+                dy -= vitesse;
+            if (this.direction.contains("bas"))
+                dy += vitesse;
+            if (this.direction.contains("gauche"))
+                dx -= vitesse;
+            if (this.direction.contains("droite"))
+                dx += vitesse;
+
+            setX(getX() + dx);
+            setY(getY() + dy);
         }
-        this.haut = false;
-        this.bas = false;
-        this.droite = false;
-        this.gauche = false;
-    }
 
 
-    public boolean estHaut() {
-        return haut;
-    }
-
-    public void setHaut(boolean haut) {
-        this.haut = haut;
-    }
-
-    public boolean estBas() {
-        return bas;
-    }
-
-    public void setBas(boolean bas) {
-        this.bas = bas;
-    }
-
-    public boolean estGauche() {
-        return gauche;
-    }
-
-    public void setGauche(boolean gauche) {
-        this.gauche = gauche;
-    }
-
-    public boolean estDroite() {
-        return droite;
-    }
-
-    public void setDroite(boolean droite) {
-        this.droite = droite;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
+}
 
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "Joueur{" +
-                ", haut=" + haut +
-                ", bas=" + bas +
-                ", gauche=" + gauche +
-                ", droite=" + droite +
-                '}';
+    public String getDirection() {
+        return this.direction;
     }
 }

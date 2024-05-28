@@ -72,16 +72,11 @@ public class VueJoueur {
         imageView.setTranslateX(joueur.getX());
         imageView.setTranslateY(joueur.getY());
 
-        imageView.setFitHeight(32);
-        imageView.setFitWidth(32);
-
         pane.getChildren().add(imageView);
         Clavier x  = new Clavier(joueur);
         pane.addEventFilter(KeyEvent.KEY_PRESSED, x);
         imageView.translateXProperty().bind(joueur.getXproperty());
         imageView.translateYProperty().bind(joueur.getYproperty());
-
-
 
     }
 
