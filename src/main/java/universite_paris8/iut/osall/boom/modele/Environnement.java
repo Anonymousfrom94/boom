@@ -26,6 +26,22 @@ public class Environnement {
         return acteurs;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeigth() {
+        return heigth;
+    }
+
+    public int getLargeurTuile() {
+        return largeurTuile;
+    }
+
+    public int getHauteurTuile() {
+        return hauteurTuile;
+    }
+
     public Map getMap() {
         return map;
     }

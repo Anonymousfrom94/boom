@@ -26,6 +26,10 @@ public class Joueur extends Acteur {
     }
 
     private boolean obstacle(int indice1, int indice2, int obstacle){
+        if (indice1 > this.getEnvironnement().getMap().getTableau().length ||
+                indice2 > this.getEnvironnement().getMap().getTableau().length){
+            return false;
+        }
         if (this.getEnvironnement().getMap().getTableau()[indice1] == obstacle ||
                 this.getEnvironnement().getMap().getTableau()[indice2] == obstacle){
             System.out.println(this.toString() + "Indice 1: " + indice1);
@@ -70,15 +74,26 @@ public class Joueur extends Acteur {
             int dy = 0;
             int vitesse = getVitesse();
 
-            if (this.direction.contains("haut"))
-                dy -= vitesse;
-            if (this.direction.contains("bas"))
-                dy += vitesse;
-            if (this.direction.contains("gauche"))
-                dx -= vitesse;
-            if (this.direction.contains("droite"))
-                dx += vitesse;
-
+            if (this.direction.contains("haut")){
+                if (this.getY() - getVitesse() > 0){
+                    dy -= vitesse;
+                }
+            }
+            if (this.direction.contains("bas")){
+                if (this.getY() + 16 + getVitesse() < this.getEnvironnement().getHeigth()){
+                    dy += vitesse;
+                }
+            }
+            if (this.direction.contains("gauche")){
+                if (this.getX() - getVitesse() > 0){
+                    dx -= vitesse;
+                }
+            }
+            if (this.direction.contains("droite")){
+                if (this.getX() + 16 + getVitesse() < this.getEnvironnement().getWidth()){
+                    dx += vitesse;
+                }
+            }
             setX(getX() + dx);
             setY(getY() + dy);
         }
