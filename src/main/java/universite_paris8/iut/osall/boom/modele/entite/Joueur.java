@@ -1,21 +1,15 @@
 package universite_paris8.iut.osall.boom.modele.entite;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement;
 
 public class Joueur extends Acteur {
 
-    private String direction;
-    private boolean haut;
-    private boolean bas;
-    private boolean gauche;
-    private boolean droite;
+    private StringProperty direction;
 
     public Joueur(Environnement environnement) {
         super(environnement, 240, 240, 4);
-        this.haut = false;
-        this.bas = false;
-        this.droite = false;
-        this.gauche = false;
-        this.direction = "";
+        this.direction = new SimpleStringProperty("");
     }
 
     private int indice(int newX, int newY) {
@@ -45,22 +39,22 @@ public class Joueur extends Acteur {
         hauteur = 16;
         largeur = 16;
         boolean bloquer = true;
-        if (this.direction.contains("haut")){
+        if (this.direction.get().contains("haut")){
             indice1 = indice(this.getX(), this.getY() - this.getVitesse());
             indice2 = indice(this.getX() + largeur, this.getY() - this.getVitesse());
             bloquer = obstacle(indice1, indice2, obstacle);
         }
-        if (this.direction.contains("bas")){
+        if (this.direction.get().contains("bas")){
             indice1 = indice(this.getX(), this.getY() + hauteur + this.getVitesse());
             indice2 = indice(this.getX() + largeur, this.getY() + hauteur + this.getVitesse());
             bloquer =  obstacle(indice1, indice2, obstacle);
         }
-        if (this.direction.contains("gauche")){
+        if (this.direction.get().contains("gauche")){
             indice1 = indice(this.getX() - this.getVitesse(), this.getY());
             indice2 = indice(this.getX() - this.getVitesse(), this.getY() + hauteur);
             bloquer = obstacle(indice1, indice2, obstacle);
         }
-        if (this.direction.contains("droite")){
+        if (this.direction.get().contains("droite")){
             indice1 = indice(this.getX() + largeur + this.getVitesse(), this.getY());
             indice2 = indice(this.getX() + largeur, this.getY() + hauteur - this.getVitesse());
             bloquer =  obstacle(indice1, indice2, obstacle);
@@ -74,22 +68,22 @@ public class Joueur extends Acteur {
             int dy = 0;
             int vitesse = getVitesse();
 
-            if (this.direction.contains("haut")){
+            if (this.direction.get().contains("haut")){
                 if (this.getY() - getVitesse() > 0){
                     dy -= vitesse;
                 }
             }
-            if (this.direction.contains("bas")){
+            if (this.direction.get().contains("bas")){
                 if (this.getY() + 16 + getVitesse() < this.getEnvironnement().getHeigth()){
                     dy += vitesse;
                 }
             }
-            if (this.direction.contains("gauche")){
+            if (this.direction.get().contains("gauche")){
                 if (this.getX() - getVitesse() > 0){
                     dx -= vitesse;
                 }
             }
-            if (this.direction.contains("droite")){
+            if (this.direction.get().contains("droite")){
                 if (this.getX() + 16 + getVitesse() < this.getEnvironnement().getWidth()){
                     dx += vitesse;
                 }
@@ -100,10 +94,14 @@ public class Joueur extends Acteur {
     }
 
     public void setDirection(String direction) {
-        this.direction = direction;
+        this.direction.set(direction);
     }
 
     public String getDirection() {
+        return this.direction.get();
+    }
+
+    public StringProperty getPropertyDirection(){
         return this.direction;
     }
 }

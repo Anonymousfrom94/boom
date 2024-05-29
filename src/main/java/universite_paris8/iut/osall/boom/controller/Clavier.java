@@ -44,28 +44,8 @@ public class Clavier implements EventHandler<KeyEvent> {
             direction += "droite";
         }
         this.joueur.setDirection(direction);
+        System.out.println(direction);
     }
 
-//    private void touche(KeyEvent event){
-////        switch (event.getCode()){
-////            case Z -> joueur.setHaut(true);
-////            case S -> joueur.setBas(true);
-////            case Q -> joueur.setGauche(true);
-////            case D -> joueur.setDroite(true);
-////        }
-//        if (event.getCode() == KeyCode.Z){
-//            joueur.setHaut(true);
-//        }
-//        if (event.getCode() == KeyCode.S){
-//            joueur.setBas(true);
-//        }
-//        if (event.getCode() == KeyCode.Q){
-//            joueur.setGauche(true);
-//        }
-//        if (event.getCode() == KeyCode.D){
-//            joueur.setDroite(true);
-//        }
-////        System.out.println("x : " + joueur.getX() + ", y : " + joueur.getY());
-//    }
 
 }

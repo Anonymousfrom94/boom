@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.vue;
+package universite_paris8.iut.osall.boom.vue;
 
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.TilePane;

@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.vue;
+package universite_paris8.iut.osall.boom.vue;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -7,13 +7,11 @@ import universite_paris8.iut.osall.boom.controller.Clavier;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import javafx.scene.image.Image;
 
-
-import java.awt.*;
-
 public class VueJoueur {
 
     private Pane pane;
     private boolean image1 = true;
+    private Joueur joueur;
 
     private ImageView imageView;
     private Image z1;
@@ -28,6 +26,7 @@ public class VueJoueur {
     public VueJoueur(Pane pane, Joueur joueur) {
 
         this.imageView = new ImageView();
+        this.joueur = joueur;
 
         this.z1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_1.png");
         this.z2 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_2.png");
@@ -49,7 +48,7 @@ public class VueJoueur {
 
     }
 
-    public void changementImg(Joueur joueur){
+    public void changementImg(){
         if (image1 == true){
             switch (joueur.getDirection()){
                 case "haut" -> this.imageView.setImage(z1);

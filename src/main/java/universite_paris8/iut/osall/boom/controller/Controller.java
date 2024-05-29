@@ -13,9 +13,9 @@ import universite_paris8.iut.osall.boom.modele.Environnement;
 import universite_paris8.iut.osall.boom.modele.Map;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
-import universite_paris8.iut.osall.boom.modele.vue.VueEnnemie;
-import universite_paris8.iut.osall.boom.modele.vue.VueJoueur;
-import universite_paris8.iut.osall.boom.modele.vue.VueMap;
+import universite_paris8.iut.osall.boom.vue.VueEnnemie;
+import universite_paris8.iut.osall.boom.vue.VueJoueur;
+import universite_paris8.iut.osall.boom.vue.VueMap;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,9 +41,10 @@ public class Controller implements Initializable {
         this.joueur = new Joueur(environnement);
         this.vueMap = new VueMap(tilePane, map);
         this.vueJoueur = new VueJoueur(pane, joueur);
+        this.joueur.getPropertyDirection().addListener(
+                (obs,old,nouv) -> this.vueJoueur.changementImg());
         initAnimation();
         gameLoop.play();
-//        pane.requestFocus();
         Clavier keyHandler = new Clavier(joueur);
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
@@ -53,13 +54,6 @@ public class Controller implements Initializable {
         pane.requestFocus();
     }
 
-    public double getTilePaneHeight(){
-        return tilePane.getPrefHeight();
-    }
-
-    public double getTilePaneWidth(){
-        return tilePane.getTileWidth();
-    }
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
@@ -72,7 +66,7 @@ public class Controller implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     joueur.seDeplace();
-                    vueJoueur.changementImg(joueur);
+//                    vueJoueur.changementImg(joueur);
                     temps++;
                 })
         );

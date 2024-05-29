@@ -1,12 +1,9 @@
-package universite_paris8.iut.osall.boom.modele.vue;
+package universite_paris8.iut.osall.boom.vue;
 
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.osall.boom.controller.Clavier;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
-import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class VueEnnemie {
     public VueEnnemie(Pane pane, Ennemie ennemie) {
