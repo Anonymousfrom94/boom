@@ -8,7 +8,7 @@ public class Joueur extends Acteur {
     private StringProperty direction;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 240, 240, 4);
+        super(environnement, 240, 240, 1);
         this.direction = new SimpleStringProperty("");
     }
 
@@ -35,7 +35,7 @@ public class Joueur extends Acteur {
 
     public boolean peutSeDeplacer(){
         int indice1, indice2, hauteur, largeur;
-        int obstacle = 26;
+        int obstacle = 1;
         hauteur = 16;
         largeur = 16;
         boolean bloquer = true;

@@ -4,6 +4,8 @@ module com.example.boom {
 
     requires org.controlsfx.controls;
     requires java.desktop;
+    requires org.json;
+    requires json.simple;
 
     opens universite_paris8.iut.osall.boom to javafx.fxml;
     exports universite_paris8.iut.osall.boom;
