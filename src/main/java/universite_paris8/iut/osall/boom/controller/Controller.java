@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -11,8 +12,10 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import universite_paris8.iut.osall.boom.modele.Environnement;
 import universite_paris8.iut.osall.boom.modele.Map;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.entite.ListObsActeurs;
 import universite_paris8.iut.osall.boom.vue.VueEnnemie;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -45,6 +48,8 @@ public class Controller implements Initializable {
         Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
+        ListChangeListener<Acteur> listen= new ListObsActeurs(pane);
+        environnement.getActeurs().addListener(listen);
     }
 
     public void aff(MouseEvent mouseEvent) {
@@ -65,8 +70,11 @@ public class Controller implements Initializable {
                     environnement.getJoueur().seDeplace();
                     //Test
                     double chance = Math.random();
-                    if (chance <= 0.1){
+                    if (chance <= 0.2){
                         environnement.getActeurs().add(new Ennemie(environnement));
+                    }
+                    if (chance > 0.8){
+                        environnement.getActeurs().remove(0);
                     }
                     //Test
 //                    vueJoueur.changementImg(joueur);
