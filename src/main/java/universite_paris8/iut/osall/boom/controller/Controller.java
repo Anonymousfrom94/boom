@@ -25,27 +25,24 @@ public class Controller implements Initializable {
     @FXML private Pane pane;
     @FXML private TilePane tilePane;
     private Environnement environnement;
-    private Joueur joueur;
-    private Map map;
     private VueMap vueMap;
     private VueJoueur vueJoueur;
-    private Ennemie ennemie;
     private VueEnnemie vueEnnemie;
     private Timeline gameLoop;
     private int temps;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        this.map = new Map();
-        this.environnement = new Environnement(map);
-        this.joueur = new Joueur(environnement);
-        this.vueMap = new VueMap(tilePane, map);
-        this.vueJoueur = new VueJoueur(pane, joueur);
-        this.joueur.getPropertyDirection().addListener(
+        this.environnement = new Environnement();
+        this.vueMap = new VueMap(tilePane, environnement.getMap());
+        this.vueJoueur = new VueJoueur(pane, environnement.getJoueur());
+//        this.ennemie = new Ennemie(environnement);
+//        this.vueEnnemie = new VueEnnemie(pane, ennemie);
+        environnement.getJoueur().getPropertyDirection().addListener(
                 (obs,old,nouv) -> this.vueJoueur.changementImg());
         initAnimation();
         gameLoop.play();
-        Clavier keyHandler = new Clavier(joueur);
+        Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
     }
@@ -65,7 +62,13 @@ public class Controller implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    joueur.seDeplace();
+                    environnement.getJoueur().seDeplace();
+                    //Test
+                    double chance = Math.random();
+                    if (chance <= 0.1){
+                        environnement.getActeurs().add(new Ennemie(environnement));
+                    }
+                    //Test
 //                    vueJoueur.changementImg(joueur);
                     temps++;
                 })

@@ -39,12 +39,10 @@ public class Clavier implements EventHandler<KeyEvent> {
         if (pressedKeys.contains(Q)){
             direction += "gauche";
         }
-
         if (pressedKeys.contains(D)){
             direction += "droite";
         }
         this.joueur.setDirection(direction);
-        System.out.println(direction);
     }
 
 
