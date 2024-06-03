@@ -56,7 +56,6 @@ public class VueJoueur {
                 case "gauche" -> this.imageView.setImage(q1);
                 case "droite" -> this.imageView.setImage(d1);
             }
-            this.image1 = !image1;
         }
         else {
             switch (joueur.getDirection()){
@@ -66,5 +65,6 @@ public class VueJoueur {
                 case "droite" -> this.imageView.setImage(d2);
             }
         }
+        this.image1 = !image1;
     }
 }
