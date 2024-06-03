@@ -90,6 +90,7 @@ public class Joueur extends Acteur {
             }
             setX(getX() + dx);
             setY(getY() + dy);
+            setDirection("");
         }
     }
 
