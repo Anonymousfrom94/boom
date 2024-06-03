@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class Joueur extends Acteur {
 
-    private StringProperty direction;
-    private ArrayList<Item> inventaire;
+    private final StringProperty direction;
+    private final ArrayList<Item> inventaire;
 
     public Joueur(Environnement environnement) {
         super(environnement, 240, 240, 4);
@@ -26,9 +26,9 @@ public class Joueur extends Acteur {
     }
 
     private int indice(int newX, int newY) {
-        int ligne, colonne, indice;
-        colonne = (int) newX / 16;
-        ligne = (int) newY / 16;
+        int ligne, colonne;
+        colonne = newX / 16;
+        ligne = newY / 16;
         return ligne * 30 + colonne;
     }
 
