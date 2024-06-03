@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyEvent;
@@ -10,10 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import universite_paris8.iut.osall.boom.modele.Environnement;
-import universite_paris8.iut.osall.boom.modele.Map;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
-import universite_paris8.iut.osall.boom.modele.entite.Joueur;
-import universite_paris8.iut.osall.boom.vue.VueEnnemie;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.ListObsActeurs;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
 
@@ -25,29 +24,25 @@ public class Controller implements Initializable {
     @FXML private Pane pane;
     @FXML private TilePane tilePane;
     private Environnement environnement;
-    private Joueur joueur;
-    private Map map;
     private VueMap vueMap;
     private VueJoueur vueJoueur;
-    private Ennemie ennemie;
-    private VueEnnemie vueEnnemie;
     private Timeline gameLoop;
     private int temps;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        this.map = new Map();
-        this.environnement = new Environnement(map);
-        this.joueur = new Joueur(environnement);
-        this.vueMap = new VueMap(tilePane, map);
-        this.vueJoueur = new VueJoueur(pane, joueur);
-        this.joueur.getPropertyDirection().addListener(
+        this.environnement = new Environnement();
+        this.vueMap = new VueMap(tilePane, environnement.getMap());
+        this.vueJoueur = new VueJoueur(pane, environnement.getJoueur());
+        environnement.getJoueur().getPropertyDirection().addListener(
                 (obs,old,nouv) -> this.vueJoueur.changementImg());
         initAnimation();
         gameLoop.play();
-        Clavier keyHandler = new Clavier(joueur);
+        Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
+        ListChangeListener<Acteur> listen= new ListObsActeurs(pane);
+        environnement.getActeurs().addListener(listen);
     }
 
     public void aff(MouseEvent mouseEvent) {
@@ -65,7 +60,8 @@ public class Controller implements Initializable {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    joueur.seDeplace();
+                    environnement.getJoueur().seDeplace();
+                    //Test
 //                    vueJoueur.changementImg(joueur);
                     temps++;
                 })

@@ -2,20 +2,33 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Item;
+
+import java.util.ArrayList;
 
 public class Joueur extends Acteur {
 
-    private StringProperty direction;
+    private final StringProperty direction;
+    private final ArrayList<Item> inventaire;
 
     public Joueur(Environnement environnement) {
         super(environnement, 240, 240, 1);
         this.direction = new SimpleStringProperty("");
+        this.inventaire = new ArrayList<Item>();
+    }
+
+    public void ajouterAInventaire(Item item){
+        this.inventaire.add(item);
+    }
+
+    public void retirerDeInventaire(Item item){
+        this.inventaire.remove(item);
     }
 
     private int indice(int newX, int newY) {
-        int ligne, colonne, indice;
-        colonne = (int) newX / 16;
-        ligne = (int) newY / 16;
+        int ligne, colonne;
+        colonne = newX / 16;
+        ligne = newY / 16;
         return ligne * 30 + colonne;
     }
 
