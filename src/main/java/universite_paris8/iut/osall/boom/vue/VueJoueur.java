@@ -65,6 +65,10 @@ public class VueJoueur {
                 case "droite" -> this.imageView.setImage(d2);
             }
         }
+//        this.image1 = !image1;
+    }
+
+    public void changementImg2() {
         this.image1 = !image1;
     }
 }

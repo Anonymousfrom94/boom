@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele;
+package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

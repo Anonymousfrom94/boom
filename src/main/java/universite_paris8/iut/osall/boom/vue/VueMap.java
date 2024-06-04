@@ -7,9 +7,7 @@ import javafx.scene.image.ImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import universite_paris8.iut.osall.boom.modele.Map;
+import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 
 import java.io.FileReader;
 import java.io.IOException;

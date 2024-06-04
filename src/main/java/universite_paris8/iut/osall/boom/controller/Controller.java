@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
-import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.ListObsActeurs;
@@ -35,9 +35,8 @@ public class Controller implements Initializable {
         this.environnement = new Environnement();
         this.vueMap = new VueMap(tilePane, environnement.getMap());
         this.vueJoueur = new VueJoueur(pane, environnement.getJoueur());
-        environnement.getJoueur().getPropertyDirection().addListener(
-                (obs,old,nouv) -> this.vueJoueur.changementImg());
         initAnimation();
+        allListener();
         gameLoop.play();
         Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
@@ -57,7 +56,7 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.005 ),
+                Duration.seconds(0.009 ),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
@@ -74,5 +73,17 @@ public class Controller implements Initializable {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
+    }
+
+    public void allListener(){
+        environnement.getJoueur().getPropertyDirection().addListener(
+                (obs,old,nouv) -> this.vueJoueur.changementImg()
+        );
+        environnement.getJoueur().getXproperty().addListener(
+                (obs, old, nouv) -> this.vueJoueur.changementImg2()
+        );
+        environnement.getJoueur().getYproperty().addListener(
+                (obs, old, nouv) -> this.vueJoueur.changementImg2()
+        );
     }
 }

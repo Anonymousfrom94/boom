@@ -1,6 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 
-import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 
 public class Ennemie extends Acteur {
 

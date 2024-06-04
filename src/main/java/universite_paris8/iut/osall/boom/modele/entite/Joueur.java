@@ -1,8 +1,9 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import universite_paris8.iut.osall.boom.modele.Environnement;
-import universite_paris8.iut.osall.boom.modele.item.Arme;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class Joueur extends Acteur {
         super(environnement, 240, 240, 1, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
-        this.arme = new Arme("Epée de bois", 12);// à remplacer par new EpéeDeBois()
+        this.arme = new EpeEnBois();// à remplacer par new EpéeDeBois()
     }
 
     public void ajouterAInventaire(Item item){
@@ -106,7 +107,7 @@ public class Joueur extends Acteur {
             }
             setX(getX() + dx);
             setY(getY() + dy);
-            setDirection("");
+//            setDirection("");
         }
     }
 
@@ -129,12 +130,6 @@ public class Joueur extends Acteur {
     private Acteur estAttaquable(){
         for(Acteur e : this.getEnvironnement().getActeurs()){
             if(e instanceof Ennemie){
-//                if(		(this.getY()-5<= e.getY() && e.getY()<=this.getY()+5) &&
-//                        (this.getX()-5<= e.getX() && e.getX()<=this.getX()+5)
-//                ){
-//                    return e;
-//                }
-//
                 if (
                         (this.getX() - 10 <= e.getX() && this.getX() + 16 + 10 >= e.getX()) &&
                                 (this.getY() - 10 <= e.getY() && this.getY() + 16 + 10 >= e.getY())
