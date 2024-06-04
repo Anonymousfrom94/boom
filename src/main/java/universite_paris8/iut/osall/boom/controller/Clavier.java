@@ -43,6 +43,11 @@ public class Clavier implements EventHandler<KeyEvent> {
             direction += "droite";
         }
         this.joueur.setDirection(direction);
+        if (pressedKeys.contains(J)){
+            pressedKeys.clear();
+            this.joueur.attaque();
+            System.out.println("joueur attaque ennemie");
+        }
     }
 
 

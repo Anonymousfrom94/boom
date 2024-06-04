@@ -12,6 +12,7 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import universite_paris8.iut.osall.boom.modele.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.ListObsActeurs;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -64,6 +65,12 @@ public class Controller implements Initializable {
                     //Test
 //                    vueJoueur.changementImg(joueur);
                     temps++;
+                    if (temps == 300){
+                        for (int i = 0; i < 3; i++){
+                            environnement.getActeurs().add(new Ennemie(environnement));
+                        }
+                    }
+                    environnement.unTour();
                 })
         );
         gameLoop.getKeyFrames().add(kf);

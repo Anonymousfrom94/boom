@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.ArrayList;
@@ -10,11 +11,13 @@ public class Joueur extends Acteur {
 
     private final StringProperty direction;
     private final ArrayList<Item> inventaire;
+    private Arme arme;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 240, 240, 1);
+        super(environnement, 240, 240, 1, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
+        this.arme = new Arme("Epée de bois", 12);// à remplacer par new EpéeDeBois()
     }
 
     public void ajouterAInventaire(Item item){
@@ -118,4 +121,39 @@ public class Joueur extends Acteur {
     public StringProperty getPropertyDirection(){
         return this.direction;
     }
+
+    public Arme getArme(){
+        return this.arme;
+    }
+
+    private Acteur estAttaquable(){
+        for(Acteur e : this.getEnvironnement().getActeurs()){
+            if(e instanceof Ennemie){
+//                if(		(this.getY()-5<= e.getY() && e.getY()<=this.getY()+5) &&
+//                        (this.getX()-5<= e.getX() && e.getX()<=this.getX()+5)
+//                ){
+//                    return e;
+//                }
+//
+                if (
+                        (this.getX() - 10 <= e.getX() && this.getX() + 16 + 10 >= e.getX()) &&
+                                (this.getY() - 10 <= e.getY() && this.getY() + 16 + 10 >= e.getY())
+                ){
+                    System.out.println("ennemie proche");
+                    return e;
+                }
+
+            }
+        }
+        System.out.println("Pas d'ennemie");
+        return null;
+    }
+
+    public void attaque(){
+        Acteur e = estAttaquable();
+        if (e != null){
+            e.setPv(e.getPv() - this.getArme().getDegat());
+        }
+    }
+
 }

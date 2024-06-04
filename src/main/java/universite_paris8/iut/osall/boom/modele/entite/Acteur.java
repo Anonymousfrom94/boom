@@ -11,12 +11,14 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y;
+    private int pv;
 
-    public Acteur(Environnement environnement, int x, int y, int vitesse) {
+    public Acteur(Environnement environnement, int x, int y, int vitesse, int pv) {
         this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.vitesse = vitesse;
+        this.pv = pv;
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
@@ -59,6 +61,21 @@ public abstract class Acteur {
         return environnement;
     }
 
+    public void meurt(){
+        this.pv = 0;
+    }
+
+    public boolean estVivant(){
+        return this.getPv() > 0;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
 
     @Override
     public String toString() {
