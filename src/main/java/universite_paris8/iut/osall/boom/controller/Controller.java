@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
-import universite_paris8.iut.osall.boom.modele.Environnement;
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.ListObsActeurs;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
