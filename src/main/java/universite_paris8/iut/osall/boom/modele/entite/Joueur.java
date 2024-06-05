@@ -147,7 +147,7 @@ public class Joueur extends Acteur {
     public void attaque(){
         Acteur e = estAttaquable();
         if (e != null){
-            e.setPv(e.getPv() - this.getArme().getDegat());
+            this.getArme().utilise((Ennemie) e);
         }
     }
 
