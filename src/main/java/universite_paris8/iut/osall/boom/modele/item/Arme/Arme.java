@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public abstract class Arme extends Item {
@@ -24,4 +25,6 @@ public abstract class Arme extends Item {
     public int getRange() {
         return range;
     }
+
+    public abstract void utilise(Ennemie e);
 }

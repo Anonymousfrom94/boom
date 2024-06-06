@@ -52,7 +52,7 @@ public class Controller implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
-        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        gameLoop.setCycleCount(Timeline.INDEFINITE);     
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)

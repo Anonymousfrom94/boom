@@ -129,8 +129,8 @@ public class Joueur extends Acteur {
         for(Acteur e : this.getEnvironnement().getActeurs()){
             if(e instanceof Ennemie){
                 if (
-                        (this.getX() - 10 <= e.getX() && this.getX() + 16 + 10 >= e.getX()) &&
-                                (this.getY() - 10 <= e.getY() && this.getY() + 16 + 10 >= e.getY())
+                        (this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
+                                (this.getY() - getArme().getRange() <= e.getY() && this.getY() + 16 + getArme().getRange() >= e.getY())
                 ){
                     System.out.println("ennemie proche");
                     return e;
@@ -145,7 +145,7 @@ public class Joueur extends Acteur {
     public void attaque(){
         Acteur e = estAttaquable();
         if (e != null){
-            e.setPv(e.getPv() - this.getArme().getDegat());
+            this.getArme().utilise((Ennemie) e);
         }
     }
 

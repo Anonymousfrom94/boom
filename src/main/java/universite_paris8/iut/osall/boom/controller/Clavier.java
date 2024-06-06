@@ -49,6 +49,4 @@ public class Clavier implements EventHandler<KeyEvent> {
             System.out.println("joueur attaque ennemie");
         }
     }
-
-
 }
