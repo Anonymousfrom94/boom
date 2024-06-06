@@ -11,9 +11,9 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y;
-    private int pv;
+    private int pv, largeur, hauteur;
 
-    public Acteur(Environnement environnement, int x, int y, int vitesse, int pv) {
+    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pv) {
         this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
@@ -22,6 +22,8 @@ public abstract class Acteur {
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
+        this.largeur = largeur;
+        this.hauteur = hauteur;
     }
 
 
@@ -71,6 +73,14 @@ public abstract class Acteur {
 
     public int getPv() {
         return pv;
+    }
+
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public int getHauteur() {
+        return hauteur;
     }
 
     public void setPv(int pv) {

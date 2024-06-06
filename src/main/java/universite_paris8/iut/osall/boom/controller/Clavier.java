@@ -44,8 +44,8 @@ public class Clavier implements EventHandler<KeyEvent> {
         }
         this.joueur.setDirection(direction);
         if (pressedKeys.contains(J)){
-            pressedKeys.clear();
             this.joueur.attaque();
+            pressedKeys.clear();
             System.out.println("joueur attaque ennemie");
         }
     }

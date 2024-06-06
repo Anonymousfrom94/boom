@@ -15,10 +15,10 @@ public class Joueur extends Acteur {
     private Arme arme;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 240, 240, 1, 100);
+        super(environnement, 240, 240,16, 16, 1, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
-        this.arme = new EpeEnBois();// à remplacer par new EpéeDeBois()
+        this.arme = new EpeEnBois();
     }
 
     public void ajouterAInventaire(Item item){
@@ -51,29 +51,27 @@ public class Joueur extends Acteur {
     }
 
     public boolean peutSeDeplacer(){
-        int indice1, indice2, hauteur, largeur;
+        int indice1, indice2;
         int obstacle = 1;
-        hauteur = 16;
-        largeur = 16;
         boolean bloquer = true;
         if (this.direction.get().contains("haut")){
             indice1 = indice(this.getX(), this.getY() - this.getVitesse());
-            indice2 = indice(this.getX() + largeur, this.getY() - this.getVitesse());
+            indice2 = indice(this.getX() + getLargeur(), this.getY() - this.getVitesse());
             bloquer = obstacle(indice1, indice2, obstacle);
         }
         if (this.direction.get().contains("bas")){
-            indice1 = indice(this.getX(), this.getY() + hauteur + this.getVitesse());
-            indice2 = indice(this.getX() + largeur, this.getY() + hauteur + this.getVitesse());
+            indice1 = indice(this.getX(), this.getY() + getHauteur() + this.getVitesse());
+            indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() + this.getVitesse());
             bloquer =  obstacle(indice1, indice2, obstacle);
         }
         if (this.direction.get().contains("gauche")){
             indice1 = indice(this.getX() - this.getVitesse(), this.getY());
-            indice2 = indice(this.getX() - this.getVitesse(), this.getY() + hauteur);
+            indice2 = indice(this.getX() - this.getVitesse(), this.getY() + getHauteur());
             bloquer = obstacle(indice1, indice2, obstacle);
         }
         if (this.direction.get().contains("droite")){
-            indice1 = indice(this.getX() + largeur + this.getVitesse(), this.getY());
-            indice2 = indice(this.getX() + largeur, this.getY() + hauteur - this.getVitesse());
+            indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());
+            indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() - this.getVitesse());
             bloquer =  obstacle(indice1, indice2, obstacle);
         }
         return bloquer;

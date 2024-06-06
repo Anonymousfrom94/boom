@@ -24,7 +24,7 @@ public class Ennemie extends Acteur {
     }
 
     public Ennemie(Environnement environnement){
-        super(environnement, 0, 0, 4, 1);
+        super(environnement, 0, 0, 16, 16, 4, 1);
         random();
     }
 }
