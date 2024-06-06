@@ -14,6 +14,9 @@ import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsActeurs;
+import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemEnv;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
+import universite_paris8.iut.osall.boom.modele.item.Item;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
 
@@ -41,8 +44,12 @@ public class Controller implements Initializable {
         Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
+
         ListChangeListener<Acteur> listen= new ListObsActeurs(pane);
         environnement.getActeurs().addListener(listen);
+
+        ListChangeListener<Item> listenItem = new ListObsItemEnv(pane);
+        environnement.getInventaireEnvironnement().addListener(listenItem);
     }
 
     public void aff(MouseEvent mouseEvent) {
@@ -67,6 +74,7 @@ public class Controller implements Initializable {
                     if (temps == 300){
                         for (int i = 0; i < 3; i++){
                             environnement.getActeurs().add(new Ennemie(environnement));
+                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
                     }
                     environnement.unTour();

@@ -7,7 +7,7 @@ public class TotemResurrection extends Consommable{
     private Joueur joueur;
 
     public TotemResurrection(Joueur joueur) {
-        super("Totem de résurection");
+        super("Totem de résurection", 0, 0);
         this.joueur = joueur;
     }
 

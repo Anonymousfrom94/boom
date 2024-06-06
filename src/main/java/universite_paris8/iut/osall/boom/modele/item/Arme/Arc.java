@@ -5,7 +5,7 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 
 public class Arc extends Arme {
     public Arc() {
-        super("Arc", 10, 48);
+        super("Arc", 0, 0, 10, 48);
     }
 
     public void utilise(Ennemie e){

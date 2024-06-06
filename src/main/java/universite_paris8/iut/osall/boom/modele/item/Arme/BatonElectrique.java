@@ -4,7 +4,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class BatonElectrique extends Arme{
     public BatonElectrique() {
-        super("Baton Electrique", 8, 32);
+        super("Baton Electrique", 0, 0,8, 32);
     }
 
     @Override

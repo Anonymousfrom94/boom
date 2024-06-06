@@ -48,5 +48,10 @@ public class Clavier implements EventHandler<KeyEvent> {
             pressedKeys.clear();
             System.out.println("joueur attaque ennemie");
         }
+        if (pressedKeys.contains(F)){
+            pressedKeys.clear();
+            this.joueur.ramasse();
+            System.out.println("joueur ramasse item");
+        }
     }
 }

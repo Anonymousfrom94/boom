@@ -4,7 +4,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class Dague extends Arme{
     public Dague() {
-        super("Dague", 15, 10);
+        super("Dague", 0, 0, 15, 10);
     }
 
     @Override

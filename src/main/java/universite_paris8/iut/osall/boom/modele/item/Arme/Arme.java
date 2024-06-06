@@ -1,5 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -8,8 +9,8 @@ public abstract class Arme extends Item {
     private int degat;
     private int range;
 
-    public Arme(String nom, int degat, int range) {
-        super(nom);
+    public Arme(Environnement environnement, String nom, int x, int y, int degat, int range) {
+        super(environnement, nom, x, y);
         this.degat = degat;
         this.range = range;
     }

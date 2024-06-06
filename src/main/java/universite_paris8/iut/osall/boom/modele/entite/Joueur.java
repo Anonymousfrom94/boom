@@ -149,4 +149,17 @@ public class Joueur extends Acteur {
         }
     }
 
+    public Item peutRamasse(){
+        System.out.println("pas d'item proche");
+        return null;
+    }
+
+    public void ramasse(){
+        Item item = peutRamasse();
+        if (item != null){
+//            this.inventaire.add(this.getEnvironnement().getActeurs().get());
+            System.out.println("à coder");
+        }
+    }
+
 }
