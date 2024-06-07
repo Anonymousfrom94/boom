@@ -15,8 +15,7 @@ public class Map {
     private int[]tableau;
 
     public Map() {
-
-        this.tableau = new int[900];
+        this.tableau = new int[10000];
     }
 
 

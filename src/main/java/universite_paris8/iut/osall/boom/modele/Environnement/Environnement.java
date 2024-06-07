@@ -17,8 +17,8 @@ public class Environnement {
     public Environnement() {
         largeurTuile = 16;
         hauteurTuile = 16;
-        this.width = 30 * largeurTuile;
-        this.heigth = 30 * hauteurTuile;
+        this.width = 100 * largeurTuile;
+        this.heigth = 100 * hauteurTuile;
         this.acteurs = FXCollections.observableArrayList();
         init();
     }

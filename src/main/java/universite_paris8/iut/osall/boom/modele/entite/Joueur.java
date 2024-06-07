@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Arme arme;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 240, 240,16, 16, 1, 100);
+        super(environnement, 780, 485,16, 16, 1, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
         this.arme = new EpeEnBois();

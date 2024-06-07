@@ -70,6 +70,14 @@ public class Controller implements Initializable {
                         }
                     }
                     environnement.unTour();
+                    this.environnement.getJoueur().getXproperty().addListener((observable, oldValue, newValue) -> {
+                        this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
+                    });
+                    this.environnement.getJoueur().getYproperty().addListener((observable, oldValue, newValue) -> {
+                        this.pane.setTranslateY( pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
+                    });
+                    this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
+                    this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
                 })
         );
         gameLoop.getKeyFrames().add(kf);

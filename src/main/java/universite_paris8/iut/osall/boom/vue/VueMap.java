@@ -24,7 +24,7 @@ public class VueMap {
         this.tilePane = tilePane;
         this.map = map;
 
-        this.tileset = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/maison2.png");
+        this.tileset = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/All.png");
 
         int tileWidth = 16;
         int tileHeight = 16;
@@ -42,7 +42,7 @@ public class VueMap {
     }
 
     public void afficherMap() {
-        int[] m = loadMap("src/main/resources/universite_paris8/iut/osall/boom/mapSpawn.json");
+        int[] m = loadMap("src/main/resources/universite_paris8/iut/osall/boom/map.json");
         this.map.setTableau(m);
 
         for (int i = 0; i < m.length; i++) {
