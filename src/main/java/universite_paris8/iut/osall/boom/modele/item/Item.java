@@ -11,14 +11,16 @@ public class Item {
     private Environnement environnement;
     private String id;
     private static int compteur;
+    private boolean ramasser;
 
     public Item(Environnement environnement, String nom, int x, int y) {
         this.environnement = environnement;
         this.nom = nom;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
-        this.id = "#" + compteur;
+        this.id = "I" + compteur ;
         compteur++;
+        ramasser = false;
     }
 
     private int indice(int newX, int newY) {
@@ -58,5 +60,28 @@ public class Item {
 
     public String getId() {
         return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public boolean estramassé(){
+        return ramasser;
+    }
+
+    public void setRamasser(boolean ramasser){
+        this.ramasser = ramasser;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "nom='" + nom + '\'' +
+                ", x=" + x +
+                ", y=" + y +
+                ", id='" + id + '\'' +
+                ", ramasser=" + ramasser +
+                '}';
     }
 }

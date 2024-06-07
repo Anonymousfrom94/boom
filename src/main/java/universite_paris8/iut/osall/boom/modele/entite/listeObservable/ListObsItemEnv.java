@@ -21,17 +21,18 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
             System.out.println("est-ce des ajouts ? " + change.wasAdded());
             System.out.println("est-ce des suppressions ? " + change.wasRemoved());
             System.out.println("les ajouts : " + change.getAddedSubList());
+            System.out.println("Les suppressions : " + change.getRemoved());
             for (Item i : change.getAddedSubList()) {
                 creerSpriteItem(pane, i);
             }
             for (Item i : change.getRemoved()) {
-                pane.getChildren().remove(pane.lookup("#" + i.getId()));
+                pane.getChildren().remove(pane.lookup("#"+i.getId()));
             }
         }
     }
 
     public void creerSpriteItem(Pane pane, Item item) {
-        Circle r = new Circle(10);
+        Circle r = new Circle(8);
         r.setFill(Color.GREEN);
         r.setId(item.getId());
         r.setTranslateX(item.getX());

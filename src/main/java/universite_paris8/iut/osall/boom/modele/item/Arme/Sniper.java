@@ -8,7 +8,7 @@ public class Sniper extends Arme{
     private Joueur joueur;
 
     public Sniper(Joueur joueur) {
-        super("Sniper", 0, 0, 999999, 64);
+        super(joueur.getEnvironnement(), "Sniper", 0, 0, 999999, 64);
         this.joueur = joueur;
     }
 

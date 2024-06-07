@@ -1,7 +1,9 @@
 package universite_paris8.iut.osall.boom.modele.item.Equipement;
 
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+
 public class GantDestructeur extends Equipement{
-    public GantDestructeur() {
-        super("Gant Destructeur");
+    public GantDestructeur(Environnement environnement) {
+        super(environnement, "Gant Destructeur");
     }
 }

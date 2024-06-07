@@ -58,13 +58,14 @@ public class Environnement {
         return joueur;
     }
 
-    public void unTour(){
+    public void unTour() {
         // cela ne peut etre un foreach a cause des naissances
         // modification de acteurs.
-        //System.out.println("tour " + this.nbTours);
-        for(int i=acteurs.size()-1; i>=0;i--){
+        //System.out.println("tour " + this.nbTours);&
+        joueur.ramasse();
+        for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur a = acteurs.get(i);
-            if(!a.estVivant()){
+            if (!a.estVivant()) {
                 System.out.println("mort de : " + a);
                 acteurs.remove(i);
             }
