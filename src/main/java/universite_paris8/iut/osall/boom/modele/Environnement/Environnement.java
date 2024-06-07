@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class Environnement {
@@ -60,6 +61,7 @@ public class Environnement {
             if(!a.estVivant()){
                 System.out.println("mort de : " + a);
                 acteurs.remove(i);
+                new Ennemie(this);
             }
         }
     }

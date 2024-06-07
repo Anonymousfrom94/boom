@@ -8,7 +8,7 @@ public class Ennemie extends Acteur {
         int ligne, colonne;
         colonne = newX / 16;
         ligne = newY / 16;
-        return ligne * 30 + colonne;
+        return ligne * 100 + colonne;
     }
 
     private void random(){
