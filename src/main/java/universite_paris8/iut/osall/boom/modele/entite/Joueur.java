@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Arme arme;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,16, 16, 1, 100);
+        super(environnement, 780, 485,16, 16, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
         this.arme = new EpeEnBois();
@@ -33,7 +33,7 @@ public class Joueur extends Acteur {
         int ligne, colonne;
         colonne = newX / 16;
         ligne = newY / 16;
-        return ligne * 30 + colonne;
+        return ligne * 100 + colonne;
     }
 
     private boolean obstacle(int indice1, int indice2, int obstacle){
@@ -52,7 +52,7 @@ public class Joueur extends Acteur {
 
     public boolean peutSeDeplacer(){
         int indice1, indice2;
-        int obstacle = 1;
+        int obstacle = 316;
         boolean bloquer = true;
         if (this.direction.get().contains("haut")){
             indice1 = indice(this.getX(), this.getY() - this.getVitesse());
