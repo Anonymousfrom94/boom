@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -15,6 +16,7 @@ public class Environnement {
     private ObservableList<Item> inventaireEnvironnement;
     private int largeurTuile;
     private int hauteurTuile;
+    private int compteurKill;
 
     public Environnement() {
         largeurTuile = 16;
@@ -23,6 +25,7 @@ public class Environnement {
         this.heigth = 100 * hauteurTuile;
         this.acteurs = FXCollections.observableArrayList();
         this.inventaireEnvironnement = FXCollections.observableArrayList();
+        this.compteurKill = 0;
         init();
     }
 
@@ -68,8 +71,11 @@ public class Environnement {
             if (!a.estVivant()) {
                 System.out.println("mort de : " + a);
                 acteurs.remove(i);
+                compteurKill++;
+                new Ennemie(this);
             }
         }
+        System.out.println(compteurKill);
     }
 
     public void init(){

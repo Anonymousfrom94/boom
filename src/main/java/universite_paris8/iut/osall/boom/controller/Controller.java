@@ -71,9 +71,9 @@ public class Controller implements Initializable {
                     //Test
 //                    vueJoueur.changementImg(joueur);
                     temps++;
-                    if (temps == 300){
+                    if (temps == 10){
                         for (int i = 0; i < 3; i++){
-                            environnement.getActeurs().add(new Ennemie(environnement));
+                            new Ennemie(environnement);
                             environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
                     }

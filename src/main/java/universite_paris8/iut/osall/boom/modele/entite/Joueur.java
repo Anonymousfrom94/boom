@@ -48,7 +48,7 @@ public class Joueur extends Acteur {
 
     public boolean peutSeDeplacer(){
         int indice1, indice2;
-        int obstacle = 316;
+        int obstacle = 0;
         boolean bloquer = true;
         if (this.direction.get().contains("haut")){
             indice1 = indice(this.getX(), this.getY() - this.getVitesse());
