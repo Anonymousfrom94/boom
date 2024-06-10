@@ -24,7 +24,7 @@ public class VueMap {
         this.tilePane = tilePane;
         this.map = map;
 
-        this.tileset = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgBloc/All.png");
+        this.tileset = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/All.png");
 
         int tileWidth = 16;
         int tileHeight = 16;
