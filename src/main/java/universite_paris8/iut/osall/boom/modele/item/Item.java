@@ -21,6 +21,7 @@ public class Item {
         this.id = "I" + compteur ;
         compteur++;
         ramasser = false;
+        random();
     }
 
     private int indice(int newX, int newY) {

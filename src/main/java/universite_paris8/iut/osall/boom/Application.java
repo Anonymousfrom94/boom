@@ -10,7 +10,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("vue2.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 480, 480);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 480);
         Pane root = (Pane) scene.getRoot();
         root.requestFocus();
         stage.setTitle("DimensionBreaker");

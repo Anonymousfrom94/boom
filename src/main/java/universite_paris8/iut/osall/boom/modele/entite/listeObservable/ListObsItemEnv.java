@@ -4,6 +4,8 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class ListObsItemEnv implements ListChangeListener<Item> {
@@ -33,10 +35,13 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
 
     public void creerSpriteItem(Pane pane, Item item) {
         Circle r = new Circle(8);
-        r.setFill(Color.GREEN);
+        if (item instanceof PotionHeal){
+            r.setFill(Color.GREEN);
+        }
+        if (item instanceof TotemResurrection){
+            r.setFill(Color.YELLOW);
+        }
         r.setId(item.getId());
-        r.setTranslateX(item.getX());
-        r.setTranslateY(item.getY());
         pane.getChildren().add(r);
         r.translateXProperty().bind(item.getXProperty());
         r.translateYProperty().bind(item.getYProperty());
