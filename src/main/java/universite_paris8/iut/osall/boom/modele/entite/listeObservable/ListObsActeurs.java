@@ -35,8 +35,6 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         Circle r = new Circle(10);
         r.setFill(Color.RED);
         r.setId(ennemie.getId());
-        r.setTranslateX(ennemie.getX());
-        r.setTranslateY(ennemie.getY());
         pane.getChildren().add(r);
         r.translateXProperty().bind(ennemie.getXproperty());
         r.translateYProperty().bind(ennemie.getYproperty());

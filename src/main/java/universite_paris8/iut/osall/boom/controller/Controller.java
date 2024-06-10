@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,7 +16,9 @@ import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsActeurs;
 import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemEnv;
+import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemJoueur;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -27,6 +30,35 @@ public class Controller implements Initializable {
 
     @FXML private Pane pane;
     @FXML private TilePane tilePane;
+    @FXML
+    private Pane equipementJoueur;
+    @FXML
+    private Pane inventaireJoueur;
+    @FXML
+    private Label nbrePotionHeal;
+    @FXML
+    private Label nbreTotem;
+    @FXML
+    private Label etatCouronne;
+    @FXML
+    private Label etatCollier;
+    @FXML
+    private Label etatCeinture;
+    @FXML
+    private Label etatBottes;
+    @FXML
+    private Label etatGant;
+    @FXML
+    private Label etatEpee;
+    @FXML
+    private Label etatArc;
+    @FXML
+    private Label etatDague;
+    @FXML
+    private Label etatSniper;
+    @FXML
+    private Label etatBaton;
+
     private Environnement environnement;
     private VueMap vueMap;
     private VueJoueur vueJoueur;
@@ -44,12 +76,7 @@ public class Controller implements Initializable {
         Clavier keyHandler = new Clavier(environnement.getJoueur());
         pane.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
         pane.addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
-
-        ListChangeListener<Acteur> listen= new ListObsActeurs(pane);
-        environnement.getActeurs().addListener(listen);
-
-        ListChangeListener<Item> listenItem = new ListObsItemEnv(pane);
-        environnement.getInventaireEnvironnement().addListener(listenItem);
+        allListObsListen();
     }
 
     public void aff(MouseEvent mouseEvent) {
@@ -75,6 +102,7 @@ public class Controller implements Initializable {
                         for (int i = 0; i < 3; i++){
                             new Ennemie(environnement);
                             environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
+                            environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         }
                     }
                     environnement.unTour();
@@ -101,5 +129,16 @@ public class Controller implements Initializable {
         environnement.getJoueur().getYproperty().addListener(
                 (obs, old, nouv) -> this.vueJoueur.changementImg2()
         );
+    }
+
+    public void allListObsListen(){
+        ListChangeListener<Acteur> listen= new ListObsActeurs(pane);
+        environnement.getActeurs().addListener(listen);
+
+        ListChangeListener<Item> listenItemInventaire = new ListObsItemEnv(pane);
+        environnement.getInventaireEnvironnement().addListener(listenItemInventaire);
+
+        ListChangeListener<Item> listenItemJoueur = new ListObsItemJoueur(equipementJoueur, inventaireJoueur, nbrePotionHeal, nbreTotem);
+        environnement.getJoueur().getInventaire().addListener(listenItemJoueur);
     }
 }

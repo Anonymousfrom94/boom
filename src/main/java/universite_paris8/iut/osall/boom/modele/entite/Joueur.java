@@ -1,6 +1,8 @@
 package universite_paris8.iut.osall.boom.modele.entite;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
@@ -11,17 +13,17 @@ import java.util.ArrayList;
 public class Joueur extends Acteur {
 
     private final StringProperty direction;
-    private final ArrayList<Item> inventaire;
+    private final ObservableList<Item> inventaire;
     private Arme arme;
 
     public Joueur(Environnement environnement) {
         super(environnement, 780, 485,16, 16, 5, 100);
         this.direction = new SimpleStringProperty("");
-        this.inventaire = new ArrayList<Item>();
+        this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
     }
 
-    public ArrayList<Item> getInventaire() {
+    public ObservableList<Item> getInventaire() {
         return inventaire;
     }
 
@@ -163,6 +165,7 @@ public class Joueur extends Acteur {
         if (item != null){
             item.setRamasser(true);
             this.inventaire.add(item);
+            System.out.println(this.inventaire);
             getEnvironnement().getInventaireEnvironnement().remove(item);
         }
 
