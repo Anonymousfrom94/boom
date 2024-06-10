@@ -4,6 +4,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class ListObsItemEnv implements ListChangeListener<Item> {
@@ -35,10 +36,15 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
         Circle r = new Circle(8);
         r.setFill(Color.GREEN);
         r.setId(item.getId());
-        r.setTranslateX(item.getX());
-        r.setTranslateY(item.getY());
         pane.getChildren().add(r);
         r.translateXProperty().bind(item.getXProperty());
         r.translateYProperty().bind(item.getYProperty());
+        if (item instanceof BotteLevitation){
+            r.setFill(Color.PURPLE);
+            r.setId(item.getId());
+            pane.getChildren().add(r);
+            r.translateXProperty().bind(item.getXProperty());
+            r.translateYProperty().bind(item.getYProperty());
+        }
     }
 }
