@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class ListObsItemEnv implements ListChangeListener<Item> {
@@ -45,5 +46,12 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
         pane.getChildren().add(r);
         r.translateXProperty().bind(item.getXProperty());
         r.translateYProperty().bind(item.getYProperty());
+        if (item instanceof BotteLevitation){
+            r.setFill(Color.PURPLE);
+            r.setId(item.getId());
+            pane.getChildren().add(r);
+            r.translateXProperty().bind(item.getXProperty());
+            r.translateYProperty().bind(item.getYProperty());
+        }
     }
 }
