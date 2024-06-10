@@ -28,6 +28,7 @@ public class Clavier implements EventHandler<KeyEvent> {
         else if (keyEvent.getEventType() == KeyEvent.KEY_RELEASED)
             this.pressedKeys.remove(keyEvent.getCode());
 
+
         String direction = "";
 
         if (pressedKeys.contains(Z)){
@@ -48,5 +49,12 @@ public class Clavier implements EventHandler<KeyEvent> {
             pressedKeys.clear();
             System.out.println("joueur attaque ennemie");
         }
+//        if (pressedKeys.contains(F)){
+//            this.joueur.ramasse();
+//            System.out.println("joueur essaie de ramasser item");
+////            System.out.println("keys "+pressedKeys);
+//            pressedKeys.clear();
+////            System.out.println("keys "+pressedKeys);
+//        }
     }
 }

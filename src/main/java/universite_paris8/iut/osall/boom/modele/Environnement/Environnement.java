@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class Environnement {
     private Map map;
@@ -11,6 +12,7 @@ public class Environnement {
     private int heigth;
     private Joueur joueur;
     private ObservableList<Acteur> acteurs;
+    private ObservableList<Item> inventaireEnvironnement;
     private int largeurTuile;
     private int hauteurTuile;
 
@@ -20,11 +22,16 @@ public class Environnement {
         this.width = 100 * largeurTuile;
         this.heigth = 100 * hauteurTuile;
         this.acteurs = FXCollections.observableArrayList();
+        this.inventaireEnvironnement = FXCollections.observableArrayList();
         init();
     }
 
     public ObservableList<Acteur> getActeurs() {
         return acteurs;
+    }
+
+    public ObservableList<Item> getInventaireEnvironnement() {
+        return inventaireEnvironnement;
     }
 
     public int getWidth() {
@@ -51,13 +58,14 @@ public class Environnement {
         return joueur;
     }
 
-    public void unTour(){
+    public void unTour() {
         // cela ne peut etre un foreach a cause des naissances
         // modification de acteurs.
-        //System.out.println("tour " + this.nbTours);
-        for(int i=acteurs.size()-1; i>=0;i--){
+        //System.out.println("tour " + this.nbTours);&
+        joueur.ramasse();
+        for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur a = acteurs.get(i);
-            if(!a.estVivant()){
+            if (!a.estVivant()) {
                 System.out.println("mort de : " + a);
                 acteurs.remove(i);
             }

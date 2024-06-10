@@ -1,10 +1,11 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class Dague extends Arme{
-    public Dague() {
-        super("Dague", 15, 10);
+    public Dague(Environnement environnement) {
+        super(environnement, "Dague", 0, 0, 15, 10);
     }
 
     @Override

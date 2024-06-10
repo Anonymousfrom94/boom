@@ -1,10 +1,11 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
+import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class EpeEnBois extends Arme{
-    public EpeEnBois() {
-        super("Epée en Bois", 10, 15);
+    public EpeEnBois(Environnement environnement) {
+        super(environnement,"Epée en Bois",0 , 0, 10, 15);
     }
 
     public void utilise(Ennemie e) {

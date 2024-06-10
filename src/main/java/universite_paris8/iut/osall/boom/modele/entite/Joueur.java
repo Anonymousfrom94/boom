@@ -18,15 +18,11 @@ public class Joueur extends Acteur {
         super(environnement, 780, 485,16, 16, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = new ArrayList<Item>();
-        this.arme = new EpeEnBois();
+        this.arme = new EpeEnBois(environnement);
     }
 
-    public void ajouterAInventaire(Item item){
-        this.inventaire.add(item);
-    }
-
-    public void retirerDeInventaire(Item item){
-        this.inventaire.remove(item);
+    public ArrayList<Item> getInventaire() {
+        return inventaire;
     }
 
     private int indice(int newX, int newY) {
@@ -147,6 +143,29 @@ public class Joueur extends Acteur {
         if (e != null){
             this.getArme().utilise((Ennemie) e);
         }
+    }
+
+    public Item peutRamasse(){
+        for (Item item : this.getEnvironnement().getInventaireEnvironnement()){
+            if (
+                    (this.getX() - 10 <= item.getX() && this.getX() + 16 + 10 >= item.getX()) &&
+                            (this.getY() - 10 <= item.getY() && this.getY() + 16 + 10 >= item.getY())
+            ){
+                return item;
+            }
+
+        }
+        return null;
+    }
+
+    public void ramasse(){
+        Item item = peutRamasse();
+        if (item != null){
+            item.setRamasser(true);
+            this.inventaire.add(item);
+            getEnvironnement().getInventaireEnvironnement().remove(item);
+        }
+
     }
 
 }
