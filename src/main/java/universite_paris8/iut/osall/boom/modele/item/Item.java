@@ -75,6 +75,10 @@ public class Item {
         this.ramasser = ramasser;
     }
 
+    public Environnement getEnvironnement() {
+        return environnement;
+    }
+
     @Override
     public String toString() {
         return "Item{" +

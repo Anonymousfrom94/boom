@@ -5,7 +5,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class Arc extends Arme {
     public Arc(Environnement environnement) {
-        super(environnement, "Arc", 0, 0, 10, 48);
+        super(environnement, "Arc", 0, 0, 15, 48);
     }
 
     public void utilise(Ennemie e){

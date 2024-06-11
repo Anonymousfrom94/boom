@@ -76,8 +76,6 @@ public class Environnement {
             }
         }
         System.out.println(compteurKill);
-        System.out.println(this.getJoueur().getInventaire());
-        System.out.println("X : " + joueur.getX() + " Y : " + joueur.getY());
     }
 
     public void init(){
