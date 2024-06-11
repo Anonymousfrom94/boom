@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Joueur extends Acteur {
 
-    private final StringProperty direction;
+    public final StringProperty direction;
     private final ObservableList<Item> inventaire;
     private Arme arme;
 

@@ -10,6 +10,7 @@ import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrectio
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Arme.*;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.Consommable;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 
@@ -55,6 +56,9 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
         if (item instanceof Equipement){
             if (item instanceof CouronneTemporel){
                 imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEquipement/couronne.png"));
+            }
+            if (item instanceof CeintureTP){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEquipement/ceinture.png"));
             }
             if (item instanceof BotteLevitation){
                 imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEquipement/bottesLevitation.png"));
