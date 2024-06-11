@@ -103,8 +103,8 @@ public class Controller implements Initializable {
                         for (int i = 0; i < 3; i++){
                             new Ennemie(environnement);
                             environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
-                            environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         }
+                        environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));
                     }
                     environnement.unTour();

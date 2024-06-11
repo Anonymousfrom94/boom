@@ -1,12 +1,18 @@
 package universite_paris8.iut.osall.boom.modele.entite.listeObservable;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
+import universite_paris8.iut.osall.boom.modele.item.Arme.*;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.Consommable;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
+
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public class ListObsItemEnv implements ListChangeListener<Item> {
@@ -35,23 +41,47 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
     }
 
     public void creerSpriteItem(Pane pane, Item item) {
-        Circle r = new Circle(8);
-        if (item instanceof PotionHeal){
-            r.setFill(Color.GREEN);
+        ImageView imageView = new ImageView();
+
+        if (item instanceof Consommable){
+            if (item instanceof PotionHeal){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgConsommable/potionHeal.png"));
+            }
+            if (item instanceof TotemResurrection){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgConsommable/totemResurection.png"));
+            }
         }
-        if (item instanceof TotemResurrection){
-            r.setFill(Color.YELLOW);
+
+        if (item instanceof Equipement){
+            if (item instanceof CouronneTemporel){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEquipement/couronne.png"));
+            }
+            if (item instanceof BotteLevitation){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEquipement/bottesLevitation.png"));
+            }
         }
-        r.setId(item.getId());
-        pane.getChildren().add(r);
-        r.translateXProperty().bind(item.getXProperty());
-        r.translateYProperty().bind(item.getYProperty());
-        if (item instanceof BotteLevitation){
-            r.setFill(Color.PURPLE);
-            r.setId(item.getId());
-            pane.getChildren().add(r);
-            r.translateXProperty().bind(item.getXProperty());
-            r.translateYProperty().bind(item.getYProperty());
+
+        if (item instanceof Arme){
+            if (item instanceof EpeEnBois){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/epeeBois.png"));
+            }
+            if (item instanceof Dague){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/dague.png"));
+            }
+            if (item instanceof Arc){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/arc.png"));
+            }
+            if (item instanceof BatonElectrique){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/batonMagique.png"));
+            }
+            if (item instanceof Sniper){
+                imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgArme/sniper.png"));
+            }
         }
+
+        imageView.setId(item.getId());
+        pane.getChildren().add(imageView);
+        imageView.translateXProperty().bind(item.getXProperty());
+        imageView.translateYProperty().bind(item.getYProperty());
     }
 }

@@ -50,7 +50,7 @@ public class Joueur extends Acteur {
 
     public boolean peutSeDeplacer(){
         int indice1, indice2;
-        int obstacle = 316;
+        int obstacle = 0;
 
         boolean botte = false;
         for (int i = 0; i < inventaire.size(); i++){
