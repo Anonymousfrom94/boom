@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.osall.boom.controller.Controller">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.osall.boom.controller.Controller">
    <center>
       <Pane fx:id="pane" focusTraversable="true" onMouseClicked="#aff" prefHeight="1600.0" prefWidth="1600.0">
           <TilePane fx:id="tilePane" alignment="CENTER" prefColumns="30" prefHeight="1600.0" prefRows="30" prefTileHeight="16" prefTileWidth="16" prefWidth="1600.0" />
@@ -34,7 +33,7 @@
             <Label fx:id="etatCollier" layoutX="82.0" layoutY="183.0" text="Lock" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imgBloc/DarkCastleHautArrondi.png" />
+                  <Image url="@imgEquipement/ceinture.png" />
                </image>
             </ImageView>
             <Label layoutX="62.0" layoutY="280.0" text="Ceinture TP" />

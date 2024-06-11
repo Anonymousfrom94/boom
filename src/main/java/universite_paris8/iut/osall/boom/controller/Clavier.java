@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.HashSet;
@@ -65,6 +66,21 @@ public class Clavier implements EventHandler<KeyEvent> {
             if (ceinture){
                 pressedKeys.clear();
                 ceintureTP.utilise();
+            }
+        }
+
+        if (pressedKeys.contains(K)){
+            boolean couronne = false;
+            CouronneTemporel couronneTemporel = null;
+            for (int i = 0; i < joueur.getInventaire().size(); i++){
+                if (joueur.getInventaire().get(i).getNom() == "Couronne Temporel"){
+                    couronne = true;
+                    couronneTemporel = (CouronneTemporel) joueur.getInventaire().get(i);
+                }
+            }
+            if (couronne){
+                pressedKeys.clear();
+                couronneTemporel.utilise();
             }
         }
     }
