@@ -39,7 +39,6 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
             for (Item i : change.getAddedSubList()) {
                 if (i instanceof PotionHeal){
                     compteurPotionHeal++;
-                    System.out.println("PotionHeal ++ euhhhhhhhhhhhh");
                 }
                 if (i instanceof TotemResurrection){
                     compteurTotem++;

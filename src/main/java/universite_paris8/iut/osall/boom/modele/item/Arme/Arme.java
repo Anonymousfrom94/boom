@@ -28,4 +28,6 @@ public abstract class Arme extends Item {
     }
 
     public abstract void utilise(Ennemie e);
+
+
 }

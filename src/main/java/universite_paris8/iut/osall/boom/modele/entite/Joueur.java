@@ -4,6 +4,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arc;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Item;
@@ -20,7 +21,8 @@ public class Joueur extends Acteur {
         super(environnement, 780, 485,16, 16, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
-        this.arme = new EpeEnBois(environnement);
+//        this.arme = new EpeEnBois(environnement);
+        this.arme = new Arc(environnement);
     }
 
     public ObservableList<Item> getInventaire() {
@@ -80,7 +82,7 @@ public class Joueur extends Acteur {
         }
         if (this.direction.get().contains("droite")){
             indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());
-            indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() - this.getVitesse());
+            indice2 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY() + getHauteur());
             bloquer =  obstacle(indice1, indice2, obstacle);
         }
         return bloquer;
@@ -174,7 +176,6 @@ public class Joueur extends Acteur {
     public void ramasse(){
         Item item = peutRamasse();
         if (item != null){
-            item.setRamasser(true);
             this.inventaire.add(item);
             System.out.println(this.inventaire);
             getEnvironnement().getInventaireEnvironnement().remove(item);

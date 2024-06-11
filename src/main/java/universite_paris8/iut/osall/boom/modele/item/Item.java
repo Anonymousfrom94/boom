@@ -11,7 +11,6 @@ public class Item {
     private Environnement environnement;
     private String id;
     private static int compteur;
-    private boolean ramasser;
 
     public Item(Environnement environnement, String nom, int x, int y) {
         this.environnement = environnement;
@@ -20,7 +19,6 @@ public class Item {
         this.y = new SimpleIntegerProperty(y);
         this.id = "I" + compteur ;
         compteur++;
-        ramasser = false;
         random();
     }
 
@@ -67,12 +65,8 @@ public class Item {
         return nom;
     }
 
-    public boolean estramassé(){
-        return ramasser;
-    }
-
-    public void setRamasser(boolean ramasser){
-        this.ramasser = ramasser;
+    public Environnement getEnvironnement() {
+        return environnement;
     }
 
     @Override
@@ -82,7 +76,6 @@ public class Item {
                 ", x=" + x +
                 ", y=" + y +
                 ", id='" + id + '\'' +
-                ", ramasser=" + ramasser +
                 '}';
     }
 }

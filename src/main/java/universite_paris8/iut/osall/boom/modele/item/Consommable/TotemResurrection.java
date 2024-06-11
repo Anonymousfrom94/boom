@@ -13,5 +13,6 @@ public class TotemResurrection extends Consommable{
 
     public void utilise(){
         this.joueur.setPv(100);
+        this.joueur.getInventaire().remove(this);
     }
 }

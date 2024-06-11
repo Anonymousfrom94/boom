@@ -75,9 +75,9 @@ public class Environnement {
                 new Ennemie(this);
             }
         }
-        System.out.println(compteurKill);
-        System.out.println(this.getJoueur().getInventaire());
-        System.out.println("X : " + joueur.getX() + " Y : " + joueur.getY());
+//        System.out.println(compteurKill);
+//        System.out.println(this.getJoueur().getInventaire());
+//        System.out.println("X : " + joueur.getX() + " Y : " + joueur.getY());
     }
 
     public void init(){
