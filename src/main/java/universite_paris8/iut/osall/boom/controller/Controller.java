@@ -16,6 +16,8 @@ import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsActeurs;
 import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemEnv;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -76,6 +78,8 @@ public class Controller implements Initializable {
                             new Ennemie(environnement);
                             environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
+                        environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
+                        environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));
                     }
                     environnement.unTour();
                     this.environnement.getJoueur().getXproperty().addListener((observable, oldValue, newValue) -> {
