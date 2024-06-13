@@ -10,4 +10,6 @@ public abstract class Equipement extends Item {
     }
 
     public abstract void utilise();
+
+    public abstract void equip();
 }

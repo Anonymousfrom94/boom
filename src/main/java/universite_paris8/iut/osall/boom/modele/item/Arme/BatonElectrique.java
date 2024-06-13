@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.item.Arme;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class BatonElectrique extends Arme{
     public BatonElectrique(Environnement environnement) {
@@ -12,6 +13,11 @@ public class BatonElectrique extends Arme{
     @Override
     public void utilise(Ennemie e) {
         attackDeZone(e);
+    }
+
+    @Override
+    public void equip(Joueur joueur) {
+        joueur.setArme(this);
     }
 
     public void attackDeZone(Ennemie e){

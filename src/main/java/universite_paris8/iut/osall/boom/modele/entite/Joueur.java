@@ -143,8 +143,20 @@ public class Joueur extends Acteur {
         return this.direction;
     }
 
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
     public Arme getArme(){
         return this.arme;
+    }
+
+    public void setEquipement(Equipement equipement) {
+        this.equipement = equipement;
+    }
+
+    public Equipement getEquipement() {
+        return equipement;
     }
 
     private Acteur estAttaquable(){
