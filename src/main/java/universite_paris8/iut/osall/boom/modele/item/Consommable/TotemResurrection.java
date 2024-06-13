@@ -12,6 +12,10 @@ public class TotemResurrection extends Consommable{
     }
 
     public void utilise(){
+        seSoigne();
+    }
+
+    public void seSoigne(){
         this.joueur.setPv(100);
         this.joueur.getInventaire().remove(this);
     }

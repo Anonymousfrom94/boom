@@ -8,6 +8,7 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.Arc;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.ArrayList;
@@ -17,12 +18,14 @@ public class Joueur extends Acteur {
     public final StringProperty direction;
     private final ObservableList<Item> inventaire;
     private Arme arme;
+    private Equipement equipement;
 
     public Joueur(Environnement environnement) {
         super(environnement, 780, 485,14, 14, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
+        this.equipement = null;
     }
 
     public ObservableList<Item> getInventaire() {

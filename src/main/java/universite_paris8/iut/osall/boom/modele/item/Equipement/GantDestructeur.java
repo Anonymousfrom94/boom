@@ -6,4 +6,9 @@ public class GantDestructeur extends Equipement{
     public GantDestructeur(Environnement environnement) {
         super(environnement, "Gant Destructeur");
     }
+
+    @Override
+    public void utilise() {
+
+    }
 }

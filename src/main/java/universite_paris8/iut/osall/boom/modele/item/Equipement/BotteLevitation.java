@@ -6,4 +6,9 @@ public class BotteLevitation extends Equipement{
     public BotteLevitation(Environnement environnement) {
         super(environnement, "Botte de Lévitation");
     }
+
+    @Override
+    public void utilise() {
+
+    }
 }

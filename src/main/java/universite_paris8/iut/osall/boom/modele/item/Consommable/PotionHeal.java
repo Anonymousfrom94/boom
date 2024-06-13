@@ -11,6 +11,10 @@ public class PotionHeal extends Consommable{
         this.joueur = joueur;
     }
     public void utilise(){
+        seSoigne();
+    }
+
+    public void seSoigne(){
         joueur.setPv(joueur.getPv() + 30);
         this.joueur.getInventaire().remove(this);
     }

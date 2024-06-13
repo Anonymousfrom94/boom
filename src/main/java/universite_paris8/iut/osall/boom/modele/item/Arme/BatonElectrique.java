@@ -11,14 +11,18 @@ public class BatonElectrique extends Arme{
 
     @Override
     public void utilise(Ennemie e) {
+        attackDeZone(e);
+    }
+
+    public void attackDeZone(Ennemie e){
         e.setPv(e.getPv() - this.getDegat());
         int rangeConnexion = 80;
 
         for(Acteur a : this.getEnvironnement().getActeurs()){
             if(((a.getX() <= e.getX() && a.getX() >= e.getX()-rangeConnexion)
-            || (a.getX() >= e.getX() && a.getX() <= e.getX()+rangeConnexion))
-            && ((a.getY() <= e.getY() && a.getY() >= e.getY()-rangeConnexion)
-            || (a.getY() >= e.getY() && a.getY() <= e.getY()+rangeConnexion))){
+                    || (a.getX() >= e.getX() && a.getX() <= e.getX()+rangeConnexion))
+                    && ((a.getY() <= e.getY() && a.getY() >= e.getY()-rangeConnexion)
+                    || (a.getY() >= e.getY() && a.getY() <= e.getY()+rangeConnexion))){
                 a.setPv(a.getPv() - this.getDegat());
             }
         }

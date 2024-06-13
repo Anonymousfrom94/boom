@@ -10,6 +10,10 @@ public class CeintureTP extends Equipement{
     }
 
     public void utilise(){
+        seTeleporte();
+    }
+
+    public void seTeleporte(){
         int rangeTP = 80;
         int dx = 0;
         int dy = 0;

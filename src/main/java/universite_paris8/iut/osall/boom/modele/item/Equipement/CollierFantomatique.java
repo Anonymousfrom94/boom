@@ -6,4 +6,9 @@ public class CollierFantomatique extends Equipement{
     public CollierFantomatique(Environnement environnement) {
         super(environnement, "Collier Fantomatique");
     }
+
+    @Override
+    public void utilise() {
+
+    }
 }

@@ -10,6 +10,10 @@ public class CouronneTemporel extends Equipement{
     }
 
     public void utilise(){
+        ralentirEnnemies();
+    }
+
+    public void ralentirEnnemies(){
         int x = getEnvironnement().getJoueur().getX();
         int y = getEnvironnement().getJoueur().getY();
         int rangeConnexion = 64;
