@@ -66,18 +66,18 @@ public class Ennemie extends Acteur {
 
         if (Math.abs(deltaX) > Math.abs(deltaY)) {
             if (deltaX > 0) {
-                setUneDirection("right");
+                setUneDirection("droite");
             }
             else {
-                setUneDirection("left");
+                setUneDirection("gauche");
             }
         }
         else {
             if (deltaY > 0) {
-                setUneDirection("down");
+                setUneDirection("bas");
             }
             else {
-                setUneDirection("up");
+                setUneDirection("haut");
             }
         }
     }
@@ -181,7 +181,7 @@ public class Ennemie extends Acteur {
 
     public void setUneDirection(String direction){
         this.setDirection(direction);
-        this.setDirection(this.getDirection());
+//        this.setDirection(this.getDirection());
     }
 
     public void deplacement(int i) {
