@@ -10,17 +10,13 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
-import java.util.ArrayList;
-
 public class Joueur extends Acteur {
 
-    public final StringProperty direction;
     private final ObservableList<Item> inventaire;
     private Arme arme;
 
     public Joueur(Environnement environnement) {
         super(environnement, 780, 485,14, 14, 5, 100);
-        this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
     }
@@ -28,75 +24,8 @@ public class Joueur extends Acteur {
     public ObservableList<Item> getInventaire() {
         return inventaire;
     }
-
-    private int indice(int newX, int newY) {
-        int ligne, colonne;
-        colonne = newX / 16;
-        ligne = newY / 16;
-        return ligne * 100 + colonne;
-    }
-
-    private boolean obstacle(int indice1, int indice2, int obstacle){
-        if (indice1 > this.getEnvironnement().getMap().getTableau().length ||
-                indice2 > this.getEnvironnement().getMap().getTableau().length){
-            return false;
-        }
-        if (this.getEnvironnement().getMap().getTableau()[indice1] == obstacle ||
-                this.getEnvironnement().getMap().getTableau()[indice2] == obstacle){
-            System.out.println(this.toString() + "Indice 1: " + indice1);
-            System.out.println(this.toString() + "Indice 2: " + indice2);
-            return false;
-        }
-        return true;
-    }
-
-    public boolean peutSeDeplacer(){
-        int indice1, indice2;
-        int obstacle;
-//
-//        boolean botte = false;
-//        for (int i = 0; i < inventaire.size(); i++){
-//            if (inventaire.get(i).getNom() == "Botte de Lévitation"){
-//                botte = true;
-//            }
-//        }
-//        if (botte){
-//            obstacle = 319;
-//        }
-
-        boolean bloquer = true;
-        for(int i = 0; i < getEnvironnement().getObstacles().size() && bloquer; i++){
-            obstacle = getEnvironnement().getObstacles().get(i);
-            System.out.println("mrgfvb<losifvcb<seivg" + obstacle);
-            if (this.direction.get().contains("haut")){
-                indice1 = indice(this.getX(), this.getY() - this.getVitesse());
-                indice2 = indice(this.getX() + getLargeur(), this.getY() - this.getVitesse());
-                bloquer = obstacle(indice1, indice2, obstacle);
-            }
-            if (this.direction.get().contains("bas")){
-                indice1 = indice(this.getX(), this.getY() + getHauteur() + this.getVitesse());
-                indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() + this.getVitesse());
-                bloquer =  obstacle(indice1, indice2, obstacle);
-            }
-            if (this.direction.get().contains("gauche")){
-                indice1 = indice(this.getX() - this.getVitesse(), this.getY());
-                indice2 = indice(this.getX() - this.getVitesse(), this.getY() + getHauteur());
-                bloquer = obstacle(indice1, indice2, obstacle);
-                System.out.println("obstaclejfhgvbrisgbnv " + obstacle);
-            }
-            if (this.direction.get().contains("droite")){
-                indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());
-                indice2 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY() + getHauteur());
-                bloquer =  obstacle(indice1, indice2, obstacle);
-            }
-//            return bloquer;
-        }
-        System.out.println("Ce que renvoie bloquer : " + bloquer);
-        return bloquer;
-    }
-
     public void seDeplace() {
-        if (peutSeDeplacer()) {
+        if (getEnvironnement().getMap().peutSeDeplacer(this)) {
             int dx = 0;
             int dy = 0;
             int vitesse = getVitesse();
@@ -126,18 +55,6 @@ public class Joueur extends Acteur {
 //            setDirection("");
         }
         System.out.println("X : " + getX() + " Y : " + getY());
-    }
-
-    public void setDirection(String direction) {
-        this.direction.set(direction);
-    }
-
-    public String getDirection() {
-        return this.direction.get();
-    }
-
-    public StringProperty getPropertyDirection(){
-        return this.direction;
     }
 
     public Arme getArme(){

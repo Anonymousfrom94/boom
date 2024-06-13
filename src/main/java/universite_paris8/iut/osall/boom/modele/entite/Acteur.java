@@ -2,10 +2,13 @@ package universite_paris8.iut.osall.boom.modele.entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 
 public abstract class Acteur {
 
+    public final StringProperty direction;
     private Environnement environnement;
     private String id;
     private int vitesse;
@@ -17,6 +20,7 @@ public abstract class Acteur {
         this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
         this.pv = pv;
         this.id = "#" + compteur;
@@ -89,6 +93,18 @@ public abstract class Acteur {
 
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
+    }
+
+    public void setDirection(String direction) {
+        this.direction.set(direction);
+    }
+
+    public String getDirection() {
+        return this.direction.get();
+    }
+
+    public StringProperty getPropertyDirection(){
+        return this.direction;
     }
 
     @Override

@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.osall.boom.modele.BFS;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
@@ -20,6 +21,9 @@ public class Environnement {
     private int hauteurTuile;
     private ArrayList<Integer> obstacles;
     private int compteurKill;
+    private BFS bfs;
+    private int[] infoTuile;
+
 
     public Environnement() {
         largeurTuile = 16;
@@ -30,6 +34,11 @@ public class Environnement {
         this.inventaireEnvironnement = FXCollections.observableArrayList();
         this.obstacles = new ArrayList<>();
         this.compteurKill = 0;
+        this.infoTuile = new int[3];
+        this.infoTuile[0] = 16;
+        this.infoTuile[1] = 100; //nombre de colonnes
+        this.infoTuile[2] = 100; //nombre de lignes
+        this.bfs = null;
         init();
     }
 
@@ -93,6 +102,18 @@ public class Environnement {
             }
         }
         return false;
+    }
+
+    public int[] getInfoTuile(){
+        return this.infoTuile;
+    }
+
+    public void setBfs(BFS bfs) {
+        this.bfs = bfs;
+    }
+
+    public BFS getBfs() {
+        return bfs;
     }
 
     public ArrayList<Integer> getObstacles() {
