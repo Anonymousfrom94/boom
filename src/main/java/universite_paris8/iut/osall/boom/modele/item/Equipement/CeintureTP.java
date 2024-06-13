@@ -41,4 +41,9 @@ public class CeintureTP extends Equipement{
         getEnvironnement().getJoueur().setX(getEnvironnement().getJoueur().getX() + dx);
         getEnvironnement().getJoueur().setY(getEnvironnement().getJoueur().getY() + dy);
     }
+
+    @Override
+    public void equip(Joueur joueur) {
+        joueur.setEquipement(this);
+    }
 }
