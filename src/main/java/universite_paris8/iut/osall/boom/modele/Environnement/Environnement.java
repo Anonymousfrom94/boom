@@ -136,6 +136,12 @@ public class Environnement {
         ajouterObstacle(827);
         ajouterObstacle(828);
         ajouterObstacle(829);
-        ajouterObstacle(316);
+//        ajouterObstacle(316);
+        ajouterObstacle(380);
+        ajouterObstacle(455);
+        ajouterObstacle(529);
+        ajouterObstacle(530);
+        ajouterObstacle(454);
+        ajouterObstacle(379);
     }
 }
