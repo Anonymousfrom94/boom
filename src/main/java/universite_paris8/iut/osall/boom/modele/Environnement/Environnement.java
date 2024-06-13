@@ -121,7 +121,7 @@ public class Environnement {
     }
 
     public void init(){
-        this.map = new Map();
+        this.map = new Map(this);
         this.joueur = new Joueur(this);
         ajouterObstacle(319);
         ajouterObstacle(676);

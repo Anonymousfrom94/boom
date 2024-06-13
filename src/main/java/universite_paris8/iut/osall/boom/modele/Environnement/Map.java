@@ -7,8 +7,9 @@ public class Map {
     private int[]tableau;
     private Environnement environnement;
 
-    public Map() {
+    public Map(Environnement environnement) {
         this.tableau = new int[10000];
+        this.environnement = environnement;
     }
 
     private int indice(int newX, int newY) {
