@@ -62,7 +62,9 @@ public class VueMap {
             JSONObject jsonObject = new JSONObject(new JSONTokener(reader));
             JSONArray layersArray = jsonObject.getJSONArray("layers");
             JSONObject firstLayer = layersArray.getJSONObject(0);
+            JSONObject firstLayer2 = layersArray.getJSONObject(1);
             JSONArray dataArray = firstLayer.getJSONArray("data");
+            JSONArray dataArray2 = firstLayer2.getJSONArray("data");
 
             mapArray = new int[dataArray.length()];
             for (int i = 0; i < dataArray.length(); i++) {
