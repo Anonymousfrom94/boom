@@ -18,7 +18,7 @@ public class Joueur extends Acteur {
     private Arme arme;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,16, 16, 5, 100);
+        super(environnement, 780, 485,14, 14, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
 //        this.arme = new EpeEnBois(environnement);
@@ -52,39 +52,46 @@ public class Joueur extends Acteur {
 
     public boolean peutSeDeplacer(){
         int indice1, indice2;
-        int obstacle = 0;
-
-        boolean botte = false;
-        for (int i = 0; i < inventaire.size(); i++){
-            if (inventaire.get(i).getNom() == "Botte de Lévitation"){
-                botte = true;
-            }
-        }
-        if (botte){
-            obstacle = 319;
-        }
+        int obstacle;
+//
+//        boolean botte = false;
+//        for (int i = 0; i < inventaire.size(); i++){
+//            if (inventaire.get(i).getNom() == "Botte de Lévitation"){
+//                botte = true;
+//            }
+//        }
+//        if (botte){
+//            obstacle = 319;
+//        }
 
         boolean bloquer = true;
-        if (this.direction.get().contains("haut")){
-            indice1 = indice(this.getX(), this.getY() - this.getVitesse());
-            indice2 = indice(this.getX() + getLargeur(), this.getY() - this.getVitesse());
-            bloquer = obstacle(indice1, indice2, obstacle);
+        for(int i = 0; i < getEnvironnement().getObstacles().size() && bloquer; i++){
+            obstacle = getEnvironnement().getObstacles().get(i);
+            System.out.println("mrgfvb<losifvcb<seivg" + obstacle);
+            if (this.direction.get().contains("haut")){
+                indice1 = indice(this.getX(), this.getY() - this.getVitesse());
+                indice2 = indice(this.getX() + getLargeur(), this.getY() - this.getVitesse());
+                bloquer = obstacle(indice1, indice2, obstacle);
+            }
+            if (this.direction.get().contains("bas")){
+                indice1 = indice(this.getX(), this.getY() + getHauteur() + this.getVitesse());
+                indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() + this.getVitesse());
+                bloquer =  obstacle(indice1, indice2, obstacle);
+            }
+            if (this.direction.get().contains("gauche")){
+                indice1 = indice(this.getX() - this.getVitesse(), this.getY());
+                indice2 = indice(this.getX() - this.getVitesse(), this.getY() + getHauteur());
+                bloquer = obstacle(indice1, indice2, obstacle);
+                System.out.println("obstaclejfhgvbrisgbnv " + obstacle);
+            }
+            if (this.direction.get().contains("droite")){
+                indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());
+                indice2 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY() + getHauteur());
+                bloquer =  obstacle(indice1, indice2, obstacle);
+            }
+//            return bloquer;
         }
-        if (this.direction.get().contains("bas")){
-            indice1 = indice(this.getX(), this.getY() + getHauteur() + this.getVitesse());
-            indice2 = indice(this.getX() + getLargeur(), this.getY() + getHauteur() + this.getVitesse());
-            bloquer =  obstacle(indice1, indice2, obstacle);
-        }
-        if (this.direction.get().contains("gauche")){
-            indice1 = indice(this.getX() - this.getVitesse(), this.getY());
-            indice2 = indice(this.getX() - this.getVitesse(), this.getY() + getHauteur());
-            bloquer = obstacle(indice1, indice2, obstacle);
-        }
-        if (this.direction.get().contains("droite")){
-            indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());
-            indice2 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY() + getHauteur());
-            bloquer =  obstacle(indice1, indice2, obstacle);
-        }
+        System.out.println("Ce que renvoie bloquer : " + bloquer);
         return bloquer;
     }
 
