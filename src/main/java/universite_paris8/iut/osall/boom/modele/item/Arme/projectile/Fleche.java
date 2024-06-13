@@ -23,11 +23,13 @@ public class Fleche {
         init();
     }
 
-
-
     public void init(){
         for (int i = 0; i < 500000; i++){
             arc.getFleches().add(new Fleche(arc, environnement));
         }
+    }
+
+    public void tire(Ennemie e) {
+        System.out.println("à coder fleche pas fait");
     }
 }

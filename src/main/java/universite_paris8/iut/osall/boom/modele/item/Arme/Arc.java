@@ -16,9 +16,9 @@ public class Arc extends Arme {
     }
 
     public void utilise(Ennemie e){
-//        for (Fleche fleche : fleches){
-////            fleche.tire(e);
-//        }
+        for (Fleche fleche : fleches){
+            fleche.tire(e);
+        }
     }
 
     public ArrayList<Fleche> getFleches() {
