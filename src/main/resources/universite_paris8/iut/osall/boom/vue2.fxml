@@ -25,7 +25,7 @@
             <Label layoutX="28.0" layoutY="45.0" text="Couronne temporelle" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="78.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imgBloc/DarkCastleHautArrondi.png" />
+                  <Image url="@imgArme/bouleAura.png" />
                </image>
             </ImageView>
             <Label layoutX="39.0" layoutY="127.0" text="Collier Fantomique" />
@@ -47,12 +47,12 @@
             <Label fx:id="etatBottes" layoutX="82.0" layoutY="424.0" text="Lock" />
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imgBloc/DarkCastleHautArrondi.png" />
+                  <Image url="@imgArme/bouleAura.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="140.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imgEquipement/bottesLevitation.png" />
+                  <Image url="@imgArme/bouleAura.png" />
                </image>
             </ImageView>
             <Label layoutX="38.0" layoutY="207.0" text="Gants destructeurs" />
