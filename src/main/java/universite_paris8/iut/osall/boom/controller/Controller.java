@@ -20,6 +20,8 @@ import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsIte
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -106,6 +108,8 @@ public class Controller implements Initializable {
                         }
                         environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));
+                        environnement.getInventaireEnvironnement().add(new CeintureTP(environnement));
+                        environnement.getInventaireEnvironnement().add(new CouronneTemporel(environnement));
                     }
                     environnement.unTour();
                     this.environnement.getJoueur().getXproperty().addListener((observable, oldValue, newValue) -> {

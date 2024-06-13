@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arc;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class Joueur extends Acteur {
 
-    private final StringProperty direction;
+    public final StringProperty direction;
     private final ObservableList<Item> inventaire;
     private Arme arme;
 
@@ -21,8 +22,7 @@ public class Joueur extends Acteur {
         super(environnement, 780, 485,14, 14, 5, 100);
         this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
-//        this.arme = new EpeEnBois(environnement);
-        this.arme = new Arc(environnement);
+        this.arme = new EpeEnBois(environnement);
     }
 
     public ObservableList<Item> getInventaire() {
@@ -125,6 +125,7 @@ public class Joueur extends Acteur {
             setY(getY() + dy);
 //            setDirection("");
         }
+        System.out.println("X : " + getX() + " Y : " + getY());
     }
 
     public void setDirection(String direction) {

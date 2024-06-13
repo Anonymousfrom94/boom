@@ -87,6 +87,10 @@ public abstract class Acteur {
         this.pv = pv;
     }
 
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+
     @Override
     public String toString() {
         return "Acteur{" +
