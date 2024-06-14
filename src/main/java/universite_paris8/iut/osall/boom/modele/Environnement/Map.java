@@ -13,25 +13,12 @@ public class Map {
         this.tableau = new int[environnement.getInfoTuile()[1] * environnement.getInfoTuile()[2]];
     }
 
-    /**
-     * Convertit les coordonnées (newX, newY) en un indice dans le tableau.
-     *
-     * @param newX Nouvelle position X
-     * @param newY Nouvelle position Y
-     * @return L'indice calculé dans le tableau
-     */
     public int indice(int newX, int newY) {
         int colonne = newX / environnement.getLargeurTuile();
         int ligne = newY / environnement.getHauteurTuile();
         return ligne * environnement.getInfoTuile()[1] + colonne;
     }
 
-    /**
-     * Vérifie si un acteur peut se déplacer à une nouvelle position.
-     *
-     * @param acteur Acteur à vérifier
-     * @return true si l'acteur peut se déplacer, false sinon
-     */
     public boolean peutSeDeplacer(Acteur acteur) {
         int indice1, indice2;
         int obstacle;
@@ -70,22 +57,6 @@ public class Map {
         return true;
     }
 
-    /**
-     * Vérifie si un obstacle est présent aux indices donnés dans le tableau.
-     *
-     * @param indice1 Premier indice à vérifier
-     * @param indice2 Deuxième indice à vérifier
-     * @param obstacle Valeur de l'obstacle à comparer
-     * @return true si aucun obstacle n'est présent aux indices, false sinon
-     */
-
-
-    /**
-     * Vérifie si la valeur donnée est un obstacle dans le tableau.
-     *
-     * @param val Valeur à vérifier
-     * @return true si la valeur est un obstacle, false sinon
-     */
     public boolean estObstacle(int val) {
         for (int obstacle : environnement.getObstacles()) {
             if (tableau[val] == obstacle) {
@@ -127,5 +98,4 @@ public class Map {
         }
         return false;
     }
-
 }
