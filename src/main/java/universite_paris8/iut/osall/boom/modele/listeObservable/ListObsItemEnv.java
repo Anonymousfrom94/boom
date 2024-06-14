@@ -1,4 +1,4 @@
-package universite_paris8.iut.osall.boom.modele.entite.listeObservable;
+package universite_paris8.iut.osall.boom.modele.listeObservable;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;

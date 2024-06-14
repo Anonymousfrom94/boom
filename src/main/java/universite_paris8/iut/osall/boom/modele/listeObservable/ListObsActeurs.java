@@ -1,15 +1,11 @@
-package universite_paris8.iut.osall.boom.modele.entite.listeObservable;
+package universite_paris8.iut.osall.boom.modele.listeObservable;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
-import universite_paris8.iut.osall.boom.modele.item.Consommable.Consommable;
-import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 
 public class ListObsActeurs implements ListChangeListener<Acteur> {
 

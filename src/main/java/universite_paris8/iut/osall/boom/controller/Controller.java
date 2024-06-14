@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,14 +15,13 @@ import javafx.util.Duration;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
-import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsActeurs;
-import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemEnv;
-import universite_paris8.iut.osall.boom.modele.entite.listeObservable.ListObsItemJoueur;
+import universite_paris8.iut.osall.boom.modele.item.Arme.*;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.*;
+import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsActeurs;
+import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsItemEnv;
+import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsItemJoueur;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
 import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
-import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
-import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
-import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
@@ -144,7 +144,156 @@ public class Controller implements Initializable {
         ListChangeListener<Item> listenItemInventaire = new ListObsItemEnv(pane);
         environnement.getInventaireEnvironnement().addListener(listenItemInventaire);
 
-        ListChangeListener<Item> listenItemJoueur = new ListObsItemJoueur(equipementJoueur, inventaireJoueur, nbrePotionHeal, nbreTotem);
+        ListChangeListener<Item> listenItemJoueur = new ListObsItemJoueur(equipementJoueur, inventaireJoueur, nbrePotionHeal, nbreTotem
+        , etatBaton, etatSniper, etatEpee, etatDague, etatCouronne, etatCeinture, etatBottes, etatArc, etatCollier, etatGant);
         environnement.getJoueur().getInventaire().addListener(listenItemJoueur);
+    }
+
+    private void unlockArme(){
+        Arme arme = environnement.getJoueur().getArme();
+        if (arme instanceof BatonElectrique){
+            etatBaton.setText("Unlock");
+        }
+        if (arme instanceof Arc){
+            etatArc.setText("Unlock");
+        }
+        if (arme instanceof Dague){
+            etatDague.setText("Unlock");
+        }
+        if (arme instanceof EpeEnBois){
+            etatEpee.setText("Unlock");
+        }
+        if (arme instanceof Sniper){
+            etatSniper.setText("Unlock");
+        }
+    }
+
+    private void unlockEquip(){
+        Equipement equipement = environnement.getJoueur().getEquipement();
+        if(equipement instanceof BotteLevitation){
+            etatBottes.setText("Unlock");
+        }
+        if (equipement instanceof CeintureTP){
+            etatCeinture.setText("Unlock");
+        }
+        if (equipement instanceof CollierFantomatique){
+            etatCollier.setText("Unlock");
+        }
+        if (equipement instanceof CouronneTemporel){
+            etatCouronne.setText("Unlock");
+        }
+        if (equipement instanceof GantDestructeur){
+            etatGant.setText("Unlock");
+        }
+    }
+
+    @FXML
+    void clickOnArc(ActionEvent event) {
+        System.out.println("les fleches sont à finir");
+    }
+
+    @FXML
+    void clickOnBaton(ActionEvent event) {
+        unlockArme();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof BatonElectrique){
+                ((BatonElectrique) i).equip(environnement.getJoueur());
+                etatBaton.setText("équipé");
+            }
+        }
+        System.out.println(" \n\narme du joueur : "+environnement.getJoueur().getArme());
+    }
+
+    @FXML
+    void clickOnBottes(ActionEvent event) {
+        unlockEquip();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof BotteLevitation){
+                ((BotteLevitation) i).equip(environnement.getJoueur());
+                etatBottes.setText("équipé");
+            }
+        }
+        System.out.println(" \n\nEquipement du joueur : "+environnement.getJoueur().getEquipement());
+    }
+
+    @FXML
+    void clickOnCeinture(ActionEvent event) {
+        unlockEquip();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof CeintureTP){
+                ((CeintureTP) i).equip(environnement.getJoueur());
+                etatCeinture.setText("équipé");
+            }
+        }
+        System.out.println(" \n\nEquipement du joueur : "+environnement.getJoueur().getEquipement());
+    }
+
+    @FXML
+    void clickOnCouronne(ActionEvent event) {
+        unlockEquip();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof CouronneTemporel){
+                ((CouronneTemporel) i).equip(environnement.getJoueur());
+                etatCouronne.setText("équipé");
+            }
+        }
+        System.out.println(" \n\nEquipement du joueur : "+environnement.getJoueur().getEquipement());
+    }
+
+    @FXML
+    void clickOnDague(ActionEvent event) {
+        unlockArme();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof Dague){
+                ((Dague) i).equip(environnement.getJoueur());
+                etatDague.setText("équipé");
+            }
+        }
+        System.out.println(" \n\narme du joueur : "+environnement.getJoueur().getArme());
+    }
+
+    @FXML
+    void clickOnEpee(ActionEvent event) {
+        unlockArme();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof EpeEnBois){
+                ((EpeEnBois) i).equip(environnement.getJoueur());
+                etatEpee.setText("équipé");
+            }
+        }
+        System.out.println(" \n\narme du joueur : "+environnement.getJoueur().getArme());
+    }
+
+    @FXML
+    void clickOnPotionHeal(ActionEvent event) {
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof PotionHeal){
+                ((PotionHeal) i).utilise();
+            }
+        }
+        System.out.println(" \n\npv du joueur : "+environnement.getJoueur().getPv());
+    }
+
+    @FXML
+    void clickOnSniper(ActionEvent event) {
+        unlockArme();
+        for (Item i : environnement.getJoueur().getInventaire()){
+            System.out.println("bds<livgbvmo<ivbofib vterc_qtgibufdyubfogqvbiusssssssfqinfqgdhhghhqdhtqht");
+            if (i instanceof Sniper){
+                ((Sniper) i).equip(environnement.getJoueur());
+                etatSniper.setText("équipé");
+            }
+            System.out.println(" \n\narme du joueur : "+environnement.getJoueur().getArme());
+        }
+    }
+
+    @FXML
+    void clickOnTotem(ActionEvent event) {
+        for (Item i : environnement.getJoueur().getInventaire()){
+            if (i instanceof TotemResurrection){
+                ((TotemResurrection) i).utilise();
+            }
+        }
+        System.out.println(" \n\npv du joueur : "+environnement.getJoueur().getPv());
     }
 }

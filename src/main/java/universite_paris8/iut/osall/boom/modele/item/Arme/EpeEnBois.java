@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class EpeEnBois extends Arme{
     public EpeEnBois(Environnement environnement) {
@@ -10,5 +11,10 @@ public class EpeEnBois extends Arme{
 
     public void utilise(Ennemie e) {
         e.setPv(e.getPv() - this.getDegat());
+    }
+
+    @Override
+    public void equip(Joueur joueur) {
+        joueur.setArme(this);
     }
 }

@@ -17,4 +17,11 @@ public class Sniper extends Arme{
         e.setPv(e.getPv() - this.getDegat());
         this.joueur.setPv(joueur.getPv() - 10);
     }
+
+    @Override
+    public void equip(Joueur joueur) {
+        joueur.setArme(this);
+    }
+
+
 }

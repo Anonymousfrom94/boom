@@ -10,6 +10,10 @@ public class CeintureTP extends Equipement{
     }
 
     public void utilise(){
+        seTeleporte();
+    }
+
+    public void seTeleporte(){
         int rangeTP = 80;
         int dx = 0;
         int dy = 0;
@@ -36,5 +40,10 @@ public class CeintureTP extends Equipement{
         }
         getEnvironnement().getJoueur().setX(getEnvironnement().getJoueur().getX() + dx);
         getEnvironnement().getJoueur().setY(getEnvironnement().getJoueur().getY() + dy);
+    }
+
+    @Override
+    public void equip(Joueur joueur) {
+        joueur.setEquipement(this);
     }
 }
