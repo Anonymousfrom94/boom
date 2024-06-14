@@ -9,10 +9,10 @@ public class Ennemie extends Acteur {
 
     private int nombreDeDegat;
     private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
-    private static final int DISTANCE_DETECTION = 128;
+    private static final int DISTANCE_DETECTION = 999;
 
     public Ennemie(Environnement environnement) {
-        super(environnement, 0, 0, 16, 16, 2, 1);
+        super(environnement, 0, 0, 16, 16, 3, 1);
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
         random();
     }

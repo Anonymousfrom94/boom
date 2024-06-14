@@ -22,7 +22,7 @@ public class CouronneTemporel extends Equipement{
     public void ralentirEnnemies(){
         int x = getEnvironnement().getJoueur().getX();
         int y = getEnvironnement().getJoueur().getY();
-        int rangeConnexion = 64;
+        int rangeConnexion = 128;
 
         for(Acteur a : this.getEnvironnement().getActeurs()){
             if (a instanceof Ennemie){
@@ -30,7 +30,7 @@ public class CouronneTemporel extends Equipement{
                         || (a.getX() >= x && a.getX() <= x+rangeConnexion))
                         && ((a.getY() <= y && a.getY() >= y-rangeConnexion)
                         || (a.getY() >= y && a.getY() <= y+rangeConnexion))){
-                    if (a.getVitesse()-2 > 0){
+                    if (a.getVitesse()-2 >= 0){
                         a.setVitesse(a.getVitesse()-2);
                     }
                 }
