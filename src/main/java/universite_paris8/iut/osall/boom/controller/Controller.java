@@ -112,6 +112,7 @@ public class Controller implements Initializable {
                         environnement.getInventaireEnvironnement().add(new CouronneTemporel(environnement));
                     }
                     environnement.unTour();
+
                     this.environnement.getJoueur().getXproperty().addListener((observable, oldValue, newValue) -> {
                         this.pane.setTranslateX( pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
                     });

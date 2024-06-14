@@ -79,8 +79,12 @@ public class Environnement {
         // modification de acteurs.
         //System.out.println("tour " + this.nbTours);&
         joueur.ramasse();
+
         for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur a = acteurs.get(i);
+            if (a instanceof Ennemie){
+                ((Ennemie) a).seDeplace();
+            }
             if (!a.estVivant()) {
                 System.out.println("mort de : " + a);
                 acteurs.remove(i);
