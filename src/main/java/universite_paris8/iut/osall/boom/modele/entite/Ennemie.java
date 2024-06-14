@@ -80,10 +80,17 @@ public class Ennemie extends Acteur {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
 
-        // Vérifier si les nouvelles positions sont valides (i.e., pas d'obstacle)
-        int indice1 = map.indice(newX, newY);
-        int indice2 = map.indice(newX + getLargeur() - 1, newY + getHauteur() - 1);
-        return map.peutSeDeplacer(indice1, indice2);
+        // Vérifier chaque pixel de l'ennemi
+        for (int i = 0; i < getLargeur(); i++) {
+            for (int j = 0; j < getHauteur(); j++) {
+                int indice = map.indice(newX + i, newY + j);
+                if (map.estObstacle(indice)) {
+                    return false; // Il y a un obstacle à cette position
+                }
+            }
+        }
+
+        return true; // Aucun obstacle trouvé, mouvement possible
     }
 
     private void attaque(Joueur joueur) {
