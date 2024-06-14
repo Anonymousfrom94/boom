@@ -1,6 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class Map {
 
@@ -8,8 +9,8 @@ public class Map {
     private Environnement environnement;
 
     public Map(Environnement environnement) {
-        this.tableau = new int[10000]; // Exemple de taille du tableau, ajuster selon vos besoins
         this.environnement = environnement;
+        this.tableau = new int[environnement.getInfoTuile()[1] * environnement.getInfoTuile()[2]];
     }
 
     /**
@@ -77,17 +78,7 @@ public class Map {
      * @param obstacle Valeur de l'obstacle à comparer
      * @return true si aucun obstacle n'est présent aux indices, false sinon
      */
-    private boolean obstacle(int indice1, int indice2, int obstacle) {
-        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
-            if (tableau[indice1] == obstacle || tableau[indice2] == obstacle) {
-                System.out.println("Indice 1 : " + indice1);
-                System.out.println("Indice 2 : " + indice2);
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
+
 
     /**
      * Vérifie si la valeur donnée est un obstacle dans le tableau.
@@ -115,4 +106,26 @@ public class Map {
     public Environnement getEnvironnement() {
         return environnement;
     }
+
+    public boolean peutSeDeplacer(int indice1, int indice2) {
+        for (int obstacle : environnement.getObstacles()) {
+            if (!obstacle(indice1, indice2, obstacle)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean obstacle(int indice1, int indice2, int obstacle) {
+        int[] tableau = getTableau();
+
+        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
+            if (tableau[indice1] == obstacle || tableau[indice2] == obstacle) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
 }

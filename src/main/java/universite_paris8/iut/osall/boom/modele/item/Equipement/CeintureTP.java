@@ -20,7 +20,7 @@ public class CeintureTP extends Equipement{
             }
         }
         if (getEnvironnement().getJoueur().direction.get().contains("bas")){
-            if (getEnvironnement().getJoueur().getY() + 16 + rangeTP < this.getEnvironnement().getHeigth()){
+            if (getEnvironnement().getJoueur().getY() + 16 + rangeTP < this.getEnvironnement().getHeight()){
                 dy += rangeTP;
             }
         }
