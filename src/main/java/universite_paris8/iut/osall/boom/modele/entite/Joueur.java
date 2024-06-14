@@ -4,14 +4,10 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.item.Arme.Arc;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
-import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
-
-import java.util.ArrayList;
 
 public class Joueur extends Acteur {
 
@@ -25,6 +21,7 @@ public class Joueur extends Acteur {
         this.direction = new SimpleStringProperty("");
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
+        inventaire.add(this.arme);
         this.equipement = null;
     }
 
@@ -70,7 +67,6 @@ public class Joueur extends Acteur {
         boolean bloquer = true;
         for(int i = 0; i < getEnvironnement().getObstacles().size() && bloquer; i++){
             obstacle = getEnvironnement().getObstacles().get(i);
-            System.out.println("mrgfvb<losifvcb<seivg" + obstacle);
             if (this.direction.get().contains("haut")){
                 indice1 = indice(this.getX(), this.getY() - this.getVitesse());
                 indice2 = indice(this.getX() + getLargeur(), this.getY() - this.getVitesse());
@@ -85,7 +81,6 @@ public class Joueur extends Acteur {
                 indice1 = indice(this.getX() - this.getVitesse(), this.getY());
                 indice2 = indice(this.getX() - this.getVitesse(), this.getY() + getHauteur());
                 bloquer = obstacle(indice1, indice2, obstacle);
-                System.out.println("obstaclejfhgvbrisgbnv " + obstacle);
             }
             if (this.direction.get().contains("droite")){
                 indice1 = indice(this.getX() + getLargeur() + this.getVitesse(), this.getY());

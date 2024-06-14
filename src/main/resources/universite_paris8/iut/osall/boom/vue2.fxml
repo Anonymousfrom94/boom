@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.osall.boom.controller.Controller">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.osall.boom.controller.Controller">
    <center>
       <Pane fx:id="pane" focusTraversable="true" onMouseClicked="#aff" prefHeight="1600.0" prefWidth="1600.0">
           <TilePane fx:id="tilePane" alignment="CENTER" prefColumns="30" prefHeight="1600.0" prefRows="30" prefTileHeight="16" prefTileWidth="16" prefWidth="1600.0" />
@@ -31,7 +35,7 @@
             <Label layoutX="39.0" layoutY="127.0" text="Collier Fantomique" />
             <Label fx:id="etatCouronne" layoutX="82.0" layoutY="101.0" text="Lock" />
             <Label fx:id="etatCollier" layoutX="82.0" layoutY="183.0" text="Lock" />
-            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="79.0" layoutY="296.0" onMouseClicked="#clickOnCeinture" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imgEquipement/ceinture.png" />
                </image>
@@ -61,6 +65,9 @@
             <Label layoutX="59.0" layoutY="109.0" text="-----------------" />
             <Label layoutX="58.0" layoutY="263.0" text="-----------------" />
             <Label layoutX="58.0" layoutY="352.0" text="-----------------" />
+            <Button layoutX="125.0" layoutY="404.0" mnemonicParsing="false" onAction="#clickOnBottes" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="125.0" layoutY="303.0" mnemonicParsing="false" onAction="#clickOnCeinture" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="140.0" layoutY="68.0" mnemonicParsing="false" onAction="#clickOnCouronne" prefHeight="11.0" prefWidth="30.0" text="Button" />
          </children></Pane>
    </left>
    <right>
@@ -124,6 +131,13 @@
             <Label layoutX="83.0" layoutY="334.0" rotate="90.0" text="-------" />
             <Label layoutX="58.0" layoutY="116.0" text="-----------------" />
             <Label layoutX="82.0" layoutY="100.0" rotate="90.0" text="-------" />
+            <Button layoutX="154.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickOnTotem" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="19.0" layoutY="103.0" mnemonicParsing="false" onAction="#clickOnPotionHeal" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="163.0" layoutY="195.0" mnemonicParsing="false" onAction="#clickOnArc" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="12.0" layoutY="195.0" mnemonicParsing="false" onAction="#clickOnEpee" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="163.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickOnSniper" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="4.0" layoutY="293.0" mnemonicParsing="false" onAction="#clickOnDague" prefHeight="11.0" prefWidth="30.0" text="Button" />
+            <Button layoutX="132.0" layoutY="393.0" mnemonicParsing="false" onAction="#clickOnBaton" prefHeight="11.0" prefWidth="30.0" text="Button" />
          </children></Pane>
    </right>
 </BorderPane>

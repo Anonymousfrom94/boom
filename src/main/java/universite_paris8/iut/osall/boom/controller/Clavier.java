@@ -53,35 +53,7 @@ public class Clavier implements EventHandler<KeyEvent> {
             pressedKeys.clear();
             System.out.println("joueur attaque ennemie");
         }
-        
-        if (pressedKeys.contains(T)){
-            boolean ceinture = false;
-            CeintureTP ceintureTP = null;
-            for (int i = 0; i < joueur.getInventaire().size(); i++){
-                if (joueur.getInventaire().get(i).getNom() == "Ceinture de Téléportation"){
-                    ceinture = true;
-                    ceintureTP = (CeintureTP) joueur.getInventaire().get(i);
-                }
-            }
-            if (ceinture){
-                pressedKeys.clear();
-                ceintureTP.utilise();
-            }
-        }
 
-        if (pressedKeys.contains(K)){
-            boolean couronne = false;
-            CouronneTemporel couronneTemporel = null;
-            for (int i = 0; i < joueur.getInventaire().size(); i++){
-                if (joueur.getInventaire().get(i).getNom() == "Couronne Temporel"){
-                    couronne = true;
-                    couronneTemporel = (CouronneTemporel) joueur.getInventaire().get(i);
-                }
-            }
-            if (couronne){
-                pressedKeys.clear();
-                couronneTemporel.utilise();
-            }
-        }
-    }
+        if (pressedKeys.contains(K) && joueur.getEquipement() != null){
+            joueur.getEquipement().utilise();}}
 }

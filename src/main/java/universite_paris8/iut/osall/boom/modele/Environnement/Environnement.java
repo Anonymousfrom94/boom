@@ -79,7 +79,11 @@ public class Environnement {
                 new Ennemie(this);
             }
         }
-        System.out.println(compteurKill);
+
+//        for (Item i : this.inventaireEnvironnement){
+//            if
+//        }
+//        System.out.println(compteurKill);
     }
 
     public void ajouterObstacle(int obstacle){
