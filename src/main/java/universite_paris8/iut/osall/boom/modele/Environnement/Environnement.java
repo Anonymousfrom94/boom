@@ -85,10 +85,15 @@ public class Environnement {
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
-                compteurKill++;
+                if (acteur instanceof Ennemie){
+                    compteurKill++;
+                }
                 // Génération d'un nouvel ennemi après la mort
                 new Ennemie(this);
             }
+        }
+        if (!joueur.estVivant()){
+            System.out.println("MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT MORT");
         }
         System.out.println("Nombre d'ennemis tués : " + compteurKill);
     }

@@ -2,6 +2,8 @@ package universite_paris8.iut.osall.boom.modele.entite;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
 
@@ -11,9 +13,12 @@ public class Ennemie extends Acteur {
     private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
     private static final int DISTANCE_DETECTION = 999;
 
+    private Arme arme;
+
     public Ennemie(Environnement environnement) {
         super(environnement, 0, 0, 16, 16, 3, 1);
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
+        this.arme = new EpeEnBois(environnement);
         random();
     }
 
@@ -65,6 +70,9 @@ public class Ennemie extends Acteur {
                     }
                 }
             }
+            if (arme != null && distance <= arme.getRange()) {
+                attaque(joueur);
+            }
         }
     }
 
@@ -76,5 +84,13 @@ public class Ennemie extends Acteur {
         int indice1 = map.indice(newX, newY);
         int indice2 = map.indice(newX + getLargeur() - 1, newY + getHauteur() - 1);
         return map.peutSeDeplacer(indice1, indice2);
+    }
+
+    private void attaque(Joueur joueur) {
+        joueur.setPv(joueur.getPv() - arme.getDegat());
+    }
+
+    public void setArme(Arme arme) {
+        this.arme = arme;
     }
 }
