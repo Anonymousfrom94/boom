@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Environnement {
     private Map map;
     private int width;
-    private int heigth;
+    private int height;
     private Joueur joueur;
     private ObservableList<Acteur> acteurs;
     private ObservableList<Item> inventaireEnvironnement;
@@ -24,20 +24,19 @@ public class Environnement {
     private BFS bfs;
     private int[] infoTuile;
 
-
     public Environnement() {
         largeurTuile = 16;
         hauteurTuile = 16;
         this.width = 100 * largeurTuile;
-        this.heigth = 100 * hauteurTuile;
+        this.height = 100 * hauteurTuile;
         this.acteurs = FXCollections.observableArrayList();
         this.inventaireEnvironnement = FXCollections.observableArrayList();
         this.obstacles = new ArrayList<>();
         this.compteurKill = 0;
         this.infoTuile = new int[3];
-        this.infoTuile[0] = 16;
-        this.infoTuile[1] = 100; //nombre de colonnes
-        this.infoTuile[2] = 100; //nombre de lignes
+        this.infoTuile[0] = 16;  // Taille d'une tuile
+        this.infoTuile[1] = 100; // Nombre de colonnes
+        this.infoTuile[2] = 100; // Nombre de lignes
         this.bfs = null;
         init();
     }
@@ -54,8 +53,8 @@ public class Environnement {
         return width;
     }
 
-    public int getHeigth() {
-        return heigth;
+    public int getHeight() {
+        return height;
     }
 
     public int getLargeurTuile() {
@@ -75,40 +74,38 @@ public class Environnement {
     }
 
     public void unTour() {
-        // cela ne peut etre un foreach a cause des naissances
-        // modification de acteurs.
-        //System.out.println("tour " + this.nbTours);&
         joueur.ramasse();
+
+        // Déplacement des acteurs (ennemis)
         for (int i = acteurs.size() - 1; i >= 0; i--) {
-            Acteur a = acteurs.get(i);
-            if (!a.estVivant()) {
-                System.out.println("mort de : " + a);
+            Acteur acteur = acteurs.get(i);
+            if (acteur instanceof Ennemie) {
+                ((Ennemie) acteur).seDeplace();
+            }
+            if (!acteur.estVivant()) {
+                System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
                 compteurKill++;
+                // Génération d'un nouvel ennemi après la mort
                 new Ennemie(this);
             }
         }
-
-//        for (Item i : this.inventaireEnvironnement){
-//            if
-//        }
-//        System.out.println(compteurKill);
+        System.out.println("Nombre d'ennemis tués : " + compteurKill);
     }
 
-    public void ajouterObstacle(int obstacle){
+    public void ajouterActeur(Acteur acteur) {
+        acteurs.add(acteur);
+    }
+
+    public void ajouterObstacle(int obstacle) {
         obstacles.add(obstacle);
     }
 
-    public boolean estObstacle(int obstacle){
-        for (int i : obstacles){
-            if (i == obstacle){
-                return true;
-            }
-        }
-        return false;
+    public boolean estObstacle(int obstacle) {
+        return obstacles.contains(obstacle);
     }
 
-    public int[] getInfoTuile(){
+    public int[] getInfoTuile() {
         return this.infoTuile;
     }
 
@@ -124,9 +121,11 @@ public class Environnement {
         return obstacles;
     }
 
-    public void init(){
+    public void init() {
         this.map = new Map(this);
         this.joueur = new Joueur(this);
+
+        // Ajout des obstacles
         ajouterObstacle(319);
         ajouterObstacle(676);
         ajouterObstacle(677);
@@ -140,25 +139,28 @@ public class Environnement {
         ajouterObstacle(827);
         ajouterObstacle(828);
         ajouterObstacle(829);
-//        ajouterObstacle(316);
         ajouterObstacle(380);
         ajouterObstacle(455);
         ajouterObstacle(529);
         ajouterObstacle(530);
         ajouterObstacle(454);
         ajouterObstacle(379);
-        ajouterObstacle(976);
-        ajouterObstacle(977);
-        ajouterObstacle(978);
-        ajouterObstacle(1051);
-        ajouterObstacle(1053);
-        ajouterObstacle(1126);
-        ajouterObstacle(1127);
-        ajouterObstacle(1128);
-        ajouterObstacle(465);
-        ajouterObstacle(396);
-        ajouterObstacle(546);
-        ajouterObstacle(471);
 
+//        ajouterObstacle(976);
+//        ajouterObstacle(977);
+//        ajouterObstacle(978);
+//        ajouterObstacle(1051);
+//        ajouterObstacle(1053);
+//        ajouterObstacle(1126);
+//        ajouterObstacle(1127);
+//        ajouterObstacle(1128);
+//        ajouterObstacle(465);
+//        ajouterObstacle(396);
+//        ajouterObstacle(546);
+//        ajouterObstacle(471);
+
+        // Exemple d'ajout d'acteurs (ennemis)
+        ajouterActeur(new Ennemie(this));
+        ajouterActeur(new Ennemie(this));
     }
 }

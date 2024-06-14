@@ -2,6 +2,9 @@ package universite_paris8.iut.osall.boom.modele;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class BFS {
     private Environnement environnement;
     private int[][] tableauDesDistances;
@@ -10,108 +13,63 @@ public class BFS {
 
     public BFS(Environnement environnement) {
         this.environnement = environnement;
-        this.tableauDesDistances = new int[19][33];
+        this.tableauDesDistances = new int[environnement.getInfoTuile()[2]][environnement.getInfoTuile()[1]];
         lancementBFS();
     }
 
-    public void lancementBFS(){
-
-        int valTuile;
-        int tuileJcolonne = environnement.getJoueur().getX()/environnement.getInfoTuile()[0];
-        int tuileJligne = environnement.getJoueur().getY()/environnement.getInfoTuile()[0];
-        int tuileJcolonneDansNvTab;
-        int tuileJligneDansNvTab;
-
-        if (tuileJcolonne<=16){
-            xDebutTab = 0;
-            if (tuileJligne <=9){
-                yDebutTab = 0;
-            }
-            else if ((environnement.getInfoTuile()[2]-tuileJligne) <=9) {
-                yDebutTab = environnement.getInfoTuile()[2]-19;
-            }
-            else {
-                yDebutTab = tuileJligne - 9;
+    public void lancementBFS() {
+        // Initialiser toutes les distances à une valeur très grande (non accessible)
+        for (int i = 0; i < environnement.getInfoTuile()[2]; i++) {
+            for (int j = 0; j < environnement.getInfoTuile()[1]; j++) {
+                tableauDesDistances[i][j] = Integer.MAX_VALUE;
             }
         }
-        else if (environnement.getInfoTuile()[1]-tuileJcolonne <=16) {
-            xDebutTab = environnement.getInfoTuile()[1]-33;
 
-            if (tuileJligne <=9){
-                yDebutTab = 0;
-            }
-            else if (environnement.getInfoTuile()[2]-tuileJligne <=9) {
-                yDebutTab = environnement.getInfoTuile()[2]-19;
-            }
-            else {
-                yDebutTab = tuileJligne - 9;
-            }
-        }
-        else{
-            xDebutTab = tuileJcolonne - 16;
-            if (tuileJligne <=9){
-                yDebutTab = 0;
-            }
-            else if (environnement.getInfoTuile()[2]-tuileJligne <=9) {
-                yDebutTab = environnement.getInfoTuile()[2]-19;
-            }
-            else {
-                yDebutTab = tuileJligne - 9;
-            }
+        // File pour le BFS
+        Queue<int[]> file = new ArrayDeque<>();
 
-        }
+        // Position de départ du joueur
+        int joueurX = environnement.getJoueur().getX() / environnement.getLargeurTuile();
+        int joueurY = environnement.getJoueur().getY() / environnement.getHauteurTuile();
 
-        valTuile = yDebutTab*environnement.getInfoTuile()[1]+xDebutTab; //Ici la valeur de la premiere tuile du tableau
+        // Initialisation du BFS à partir de la position du joueur
+        file.add(new int[]{joueurY, joueurX});
+        tableauDesDistances[joueurY][joueurX] = 0;
 
-        for (int ligne=0;ligne<19;ligne++){
-            for (int colonne=0;colonne<33;colonne++){
-                if (!environnement.getMap().estObstacle(valTuile))
-                    this.tableauDesDistances[ligne][colonne] = -1; //case où il peut aller
+        // Directions possibles (haut, bas, gauche, droite)
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
-                else {this.tableauDesDistances[ligne][colonne] = -2; } //les murs
+        // Parcourir la file BFS
+        while (!file.isEmpty()) {
+            int[] position = file.poll();
+            int currentDistance = tableauDesDistances[position[0]][position[1]];
 
-                valTuile++;
-            }
-            valTuile = valTuile + environnement.getInfoTuile()[1]-33;
-        }
+            // Explorer les voisins dans toutes les directions
+            for (int[] direction : directions) {
+                int newX = position[0] + direction[0];
+                int newY = position[1] + direction[1];
 
-        tuileJcolonneDansNvTab = tuileJcolonne-xDebutTab;
-        tuileJligneDansNvTab = tuileJligne-yDebutTab;
-        algoBFS(tuileJligneDansNvTab, tuileJcolonneDansNvTab, 0);
+                // Vérifier les limites de la grille
+                if (newX >= 0 && newX < environnement.getInfoTuile()[2] &&
+                        newY >= 0 && newY < environnement.getInfoTuile()[1]) {
 
-    }
+                    // Vérifier si la case est accessible et pas encore visitée
+                    if (tableauDesDistances[newX][newY] == Integer.MAX_VALUE &&
+                            !environnement.getMap().estObstacle(environnement.getMap().indice(newY * environnement.getLargeurTuile(), newX * environnement.getHauteurTuile()))) {
 
-    public void algoBFS(int ligne, int colonne, int value) {
-
-        int newLigne;
-        int newColonne;
-
-        // Vérifier les limites de la grille
-        if (ligne >= 0 && ligne < this.tableauDesDistances.length && colonne >= 0 && colonne < this.tableauDesDistances[0].length) {
-
-            // Vérifier si la case est -1 et inférieur ou égal à value
-            if (this.tableauDesDistances[ligne][colonne] == -1 || this.tableauDesDistances[ligne][colonne] > value) {
-
-                // Mettre à jour la valeur de la case courante
-                this.tableauDesDistances[ligne][colonne] = value;
-
-                // Définir les directions (droite, gauche, bas, haut)
-                int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-
-                // Parcourir toutes les directions
-                for (int[] direction : directions) {
-
-                    newLigne = ligne + direction[0];
-                    newColonne = colonne + direction[1];
-                    algoBFS(newLigne, newColonne, value + 1);
+                        // Mettre à jour la distance et ajouter à la file
+                        tableauDesDistances[newX][newY] = currentDistance + 1;
+                        file.add(new int[]{newX, newY});
+                    }
                 }
             }
         }
+
+        // Déterminer les limites du tableau de distances
+        xDebutTab = Math.max(0, joueurX - 16);
+        yDebutTab = Math.max(0, joueurY - 9);
     }
 
-    /**
-     * Retourne le tableau des distances
-     * */
     public int[][] getTableauDesDistances() {
         return tableauDesDistances;
     }

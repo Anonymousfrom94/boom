@@ -38,7 +38,7 @@ public class Joueur extends Acteur {
                 }
             }
             if (this.direction.get().contains("bas")){
-                if (this.getY() + 16 + getVitesse() < this.getEnvironnement().getHeigth()){
+                if (this.getY() + 16 + getVitesse() < this.getEnvironnement().getHeight()){
                     dy += vitesse;
                 }
             }
