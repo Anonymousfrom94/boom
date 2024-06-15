@@ -8,5 +8,9 @@ public abstract class Consommable extends Item {
         super(environnement, nom, x, y);
     }
 
+    public Consommable(Environnement environnement, String nom) {
+        super(environnement, nom);
+    }
+
     public abstract void utilise();
 }

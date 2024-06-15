@@ -6,6 +6,10 @@ import universite_paris8.iut.osall.boom.modele.item.Item;
 
 public abstract class Equipement extends Item {
 
+    public Equipement(Environnement environnement, String nom, int x, int y) {
+        super(environnement, nom, x, y);
+    }
+
     public Equipement(Environnement environnement, String nom) {
         super(environnement, nom, 595, 670);
     }

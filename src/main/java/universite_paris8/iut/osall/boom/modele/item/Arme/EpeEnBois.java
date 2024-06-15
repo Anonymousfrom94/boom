@@ -6,7 +6,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class EpeEnBois extends Arme{
     public EpeEnBois(Environnement environnement) {
-        super(environnement,"Epée en Bois",0 , 0, 10, 15);
+        super(environnement,"Epée en Bois", 10, 15);
     }
 
     public void utilise(Ennemie e) {

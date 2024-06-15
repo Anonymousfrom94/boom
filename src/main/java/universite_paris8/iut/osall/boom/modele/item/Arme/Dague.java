@@ -6,7 +6,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class Dague extends Arme{
     public Dague(Environnement environnement) {
-        super(environnement, "Dague", 0, 0, 20, 10);
+        super(environnement, "Dague", 20, 10);
     }
 
     @Override

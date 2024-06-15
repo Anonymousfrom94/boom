@@ -19,6 +19,15 @@ public class Item {
         this.y = new SimpleIntegerProperty(y);
         this.id = "I" + compteur ;
         compteur++;
+    }
+
+    public Item(Environnement environnement, String nom) {
+        this.environnement = environnement;
+        this.nom = nom;
+        this.x = new SimpleIntegerProperty(0);
+        this.y = new SimpleIntegerProperty(0);
+        this.id = "I" + compteur ;
+        compteur++;
         random();
     }
 
