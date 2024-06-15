@@ -104,9 +104,9 @@ public class Controller implements Initializable {
 //                    vueJoueur.changementImg(joueur);
                     temps++;
                     if (temps == 10){
-                        for (int i = 0; i < 3; i++){
+                        for (int i = 0; i < 30; i++){
                             new Ennemie(environnement, pane);
-                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
+//                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
                         environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));

@@ -66,6 +66,15 @@ public class Map {
         return false;
     }
 
+    public boolean estNoSpawn(int val) {
+        for (int obstacle : environnement.getBlocNoSpawn()) {
+            if (tableau[val] == obstacle) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int[] getTableau() {
         return tableau;
     }

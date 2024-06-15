@@ -7,8 +7,7 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
 public class Ennemie extends Acteur {
-    private int nombreDeDegat;
-    private int nombreDePixelDeplacer = 1;
+
     private static final int rangeEnnemmi = 999;
     private Arme arme;
     private long derniereAttaque;
@@ -16,10 +15,8 @@ public class Ennemie extends Acteur {
 
     public Ennemie(Environnement environnement, Pane pane) {
         super(environnement, 0, 0, 16, 16, 3);
-        this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
         this.arme = new EpeEnBois(environnement);
         random();
-         // Commence avec les points de vie max
     }
     private void random() {
         Random rand = new Random();
@@ -27,7 +24,7 @@ public class Ennemie extends Acteur {
         do {
             x = rand.nextInt(getEnvironnement().getWidth());
             y = rand.nextInt(getEnvironnement().getHeight());
-        } while (getEnvironnement().getMap().estObstacle(getEnvironnement().getMap().indice(x, y)));
+        } while (getEnvironnement().getMap().estObstacle(getEnvironnement().getMap().indice(x, y)) || getEnvironnement().getMap().estNoSpawn(getEnvironnement().getMap().indice(x,y)));
         this.setX(x);
         this.setY(y);
     }
