@@ -27,6 +27,8 @@ import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -89,7 +91,7 @@ public class Controller implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         temps=0;
-        gameLoop.setCycleCount(Timeline.INDEFINITE);     
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
@@ -139,7 +141,7 @@ public class Controller implements Initializable {
         this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
         // Ajout du listener au pv du joueur
         environnement.getJoueur().pvProperty().addListener(
-                    (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)
+                (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)
         );
     }
 
@@ -151,7 +153,7 @@ public class Controller implements Initializable {
         environnement.getInventaireEnvironnement().addListener(listenItemInventaire);
 
         ListChangeListener<Item> listenItemJoueur = new ListObsItemJoueur(equipementJoueur, inventaireJoueur, nbrePotionHeal, nbreTotem
-        , etatBaton, etatSniper, etatEpee, etatDague, etatCouronne, etatCeinture, etatBottes, etatArc, etatCollier, etatGant);
+                , etatBaton, etatSniper, etatEpee, etatDague, etatCouronne, etatCeinture, etatBottes, etatArc, etatCollier, etatGant);
         environnement.getJoueur().getInventaire().addListener(listenItemJoueur);
     }
 
@@ -272,13 +274,15 @@ public class Controller implements Initializable {
 
     @FXML
     void clickOnPotionHeal(ActionEvent event) {
-        for (Item i : environnement.getJoueur().getInventaire()){
-            if (i instanceof PotionHeal){
+        for (Item i : environnement.getJoueur().getInventaire()) {
+            if (i instanceof PotionHeal) {
                 ((PotionHeal) i).utilise();
+                break;  // Sortir de la boucle après avoir utilisé la première potion
             }
         }
-        System.out.println(" \n\npv du joueur : "+environnement.getJoueur().getPv());
+        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
     }
+
 
     @FXML
     void clickOnSniper(ActionEvent event) {
@@ -295,11 +299,23 @@ public class Controller implements Initializable {
 
     @FXML
     void clickOnTotem(ActionEvent event) {
-        for (Item i : environnement.getJoueur().getInventaire()){
-            if (i instanceof TotemResurrection){
-                ((TotemResurrection) i).utilise();
+        // Créer une liste temporaire pour stocker les totems de résurrection
+        List<TotemResurrection> totemsToUse = new ArrayList<>();
+
+        // Parcourir l'inventaire pour trouver les totems de résurrection et les ajouter à la liste temporaire
+        for (Item i : environnement.getJoueur().getInventaire()) {
+            if (i instanceof TotemResurrection) {
+                totemsToUse.add((TotemResurrection) i);
             }
         }
-        System.out.println(" \n\npv du joueur : "+environnement.getJoueur().getPv());
+
+        // Utiliser les totems après avoir parcouru l'inventaire
+        for (TotemResurrection totem : totemsToUse) {
+            totem.utilise();
+        }
+
+        // Afficher les points de vie du joueur après l'utilisation des totems
+        System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
     }
+
 }
