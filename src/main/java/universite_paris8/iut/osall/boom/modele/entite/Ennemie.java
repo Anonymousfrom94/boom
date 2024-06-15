@@ -81,12 +81,19 @@ public class Ennemie extends Acteur {
         // Vérifier chaque pixel de l'ennemi
         for (int i = 0; i < getLargeur(); i++) {
             for (int j = 0; j < getHauteur(); j++) {
-                int indice = map.indice(newX + i, newY + j);
-                if (map.estObstacle(indice)) {
-                    return false; // Il y a un obstacle à cette position
+                int x = newX + i;
+                int y = newY + j;
+                if (x >= 0 && x < environnement.getWidth() && y >= 0 && y < environnement.getHeight()) {
+                    int indice = map.indice(x, y);
+                    if (map.estObstacle(indice)) {
+                        return false; // Il y a un obstacle à cette position
+                    }
+                } else {
+                    return false; // Les coordonnées sont hors limites de la carte
                 }
             }
         }
+
 
         return true; // Aucun obstacle trouvé, mouvement possible
     }
