@@ -72,7 +72,7 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resource) {
         this.environnement = new Environnement();
         this.vueMap = new VueMap(tilePane, environnement.getMap());
-        this.vueJoueur = new VueJoueur(pane, environnement.getJoueur());
+        this.vueJoueur = new VueJoueur(pane, environnement.getJoueur(), equipementJoueur);
         initAnimation();
         allListener();
         gameLoop.play();
@@ -137,6 +137,10 @@ public class Controller implements Initializable {
         });
         this.pane.setTranslateX(pane.getPrefWidth() / 4 - environnement.getJoueur().getX()-(environnement.getJoueur().getLargeur()/2));
         this.pane.setTranslateY(pane.getPrefHeight() / 4 - environnement.getJoueur().getY()-(environnement.getJoueur().getHauteur()/2));
+        // Ajout du listener au pv du joueur
+        environnement.getJoueur().pvProperty().addListener(
+                    (obs, old, nouv) -> VueJoueur.updateBarreDeVie(environnement.getJoueur(), equipementJoueur)
+        );
     }
 
     public void allListObsListen(){

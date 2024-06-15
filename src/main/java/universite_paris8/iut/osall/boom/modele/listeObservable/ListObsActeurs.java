@@ -26,6 +26,10 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             System.out.println("les ajouts : " + change.getAddedSubList());
             for (Acteur a : change.getAddedSubList()) {
                 creerSpriteEnnemie(pane, (Ennemie) a);
+                //Ajout des listener à chaque ennemi après qu'ils soient créer
+                a.pvProperty().addListener(
+                        (obs, old, nouv) -> ListObsActeurs.updateBarreDeVie(a, pane)
+                );
             }
             for (Acteur a : change.getRemoved()) {
                 pane.getChildren().remove(pane.lookup("#" + a.getId()));
@@ -51,11 +55,14 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         vieBarre.translateYProperty().bind(ennemie.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
     }
 
-    public static void updateBarreDeVie(Ennemie ennemie, Pane pane) {
-        double pourcentageVieRestante = (double) ennemie.getPv() / ennemie.getPvMax();
-        Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + ennemie.getId());
+    public static void updateBarreDeVie(Acteur acteur, Pane pane) {
+        int largeurBarre = 16;
+        double pourcentageVieRestante = (double) acteur.getPv() / acteur.getPvMax();
+        Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + acteur.getId());
+        System.out.println("Pourcentage de vie " + pourcentageVieRestante);
 
         if (vieBarre != null) {
+
             // Déterminer la couleur en fonction du pourcentage de vie restante
             if (pourcentageVieRestante > 0.75) {
                 vieBarre.setFill(Color.GREEN);
@@ -65,7 +72,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
                 vieBarre.setFill(Color.RED);
             }
 
-            vieBarre.setWidth(16 * pourcentageVieRestante); // Ajuster la largeur en fonction du pourcentage de vie
+            vieBarre.setWidth(largeurBarre * pourcentageVieRestante); // Ajuster la largeur en fonction du pourcentage de vie
         }
     }
 

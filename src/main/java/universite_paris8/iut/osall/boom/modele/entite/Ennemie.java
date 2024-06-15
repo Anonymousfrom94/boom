@@ -4,7 +4,6 @@ import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
-import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsActeurs;
 
 import java.util.Random;
 public class Ennemie extends Acteur {
@@ -12,18 +11,13 @@ public class Ennemie extends Acteur {
     private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
     private static final int DISTANCE_DETECTION = 999;
     private Arme arme;
-    private int pv;
-    private int pvMax;
-    private Pane pane;
 
     public Ennemie(Environnement environnement, Pane pane) {
-        super(environnement, 0, 0, 16, 16, 3, 1);
+        super(environnement, 0, 0, 16, 16, 3);
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
         this.arme = new EpeEnBois(environnement);
         random();
-        this.pvMax = 100; // Exemple de points de vie max
-        this.pv = pvMax; // Commence avec les points de vie max
-        this.pane = pane;
+         // Commence avec les points de vie max
     }
     private void random() {
         Random rand = new Random();
@@ -97,25 +91,14 @@ public class Ennemie extends Acteur {
         this.arme = arme;
     }
 
-    public int getPv() {
-        return pv;
-    }
-
-    public int getPvMax() {
-        return pvMax;
-    }
 
     public void subitDegat(int degats) {
-        System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + pv);
+        System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + getPv());
         System.out.println("Dégâts reçus : " + degats);
-        pv -= degats;
-        System.out.println("PV après dégâts : " + pv);
-        if (pv <= 0) {
+        setPv(getPv() - degats);
+        System.out.println("PV après dégâts : " + getPv());
+        if (!this.estVivant()) {
             System.out.println("Ennemi " + getId() + " vaincu !");
-            // L'ennemi est vaincu, peut-être le retirer de l'environnement
-            getEnvironnement().getActeurs().remove(this);
-            ListObsActeurs.updateBarreDeVie(this, pane);
-            new Ennemie(getEnvironnement(), pane);
         }
     }
 

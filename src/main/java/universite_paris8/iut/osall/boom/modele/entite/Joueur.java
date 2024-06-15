@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Equipement equipement;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,14, 14, 5, 99999);
+        super(environnement, 780, 485,14, 14, 5);
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
         inventaire.add(this.arme);
