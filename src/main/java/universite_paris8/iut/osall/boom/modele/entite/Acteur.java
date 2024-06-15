@@ -14,15 +14,18 @@ public abstract class Acteur {
     private int vitesse;
     private static int compteur = 0;
     private IntegerProperty x, y;
-    private int pv, largeur, hauteur;
+    private int largeur, hauteur;
+    private int pvMax;
+    private IntegerProperty pv;
 
-    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pv) {
+    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse) {
         this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
-        this.pv = pv;
+        this.pvMax = 100; // Exemple de points de vie max
+        this.pv = new SimpleIntegerProperty(pvMax);
         this.id = "#" + compteur;
         compteur++;
         this.environnement.getActeurs().add(this);
@@ -67,15 +70,20 @@ public abstract class Acteur {
         return environnement;
     }
 
-    public void meurt(){
-        this.pv = 0;
+    public boolean estVivant(){
+        return pv.getValue() > 0;
     }
 
-    public boolean estVivant(){
-        return this.getPv() > 0;
+
+    public int getPvMax() {
+        return pvMax;
     }
 
     public int getPv() {
+        return pv.get();
+    }
+
+    public IntegerProperty pvProperty() {
         return pv;
     }
 
@@ -88,7 +96,19 @@ public abstract class Acteur {
     }
 
     public void setPv(int pv) {
-        this.pv = pv;
+        this.pv.set(pv);
+    }
+
+    public void enleverPv(int degat) {
+        if (this.pv.getValue() - degat >= 0){
+            this.pv.setValue(this.pv.getValue() - degat);
+        }
+    }
+
+    public void rajouterPv(int pv){
+        if (this.getPv() + pv <= 100){
+            this.pv.setValue(this.pv.getValue() + pv);
+        }
     }
 
     public void setVitesse(int vitesse) {
@@ -115,4 +135,6 @@ public abstract class Acteur {
                 ", y=" + y +
                 '}';
     }
+
+    public abstract void seDeplace();
 }

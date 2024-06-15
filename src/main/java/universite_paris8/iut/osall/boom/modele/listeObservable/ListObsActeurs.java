@@ -4,6 +4,8 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
@@ -24,21 +26,57 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             System.out.println("les ajouts : " + change.getAddedSubList());
             for (Acteur a : change.getAddedSubList()) {
                 creerSpriteEnnemie(pane, (Ennemie) a);
+                //Ajout des listener à chaque ennemi après qu'ils soient créer
+                a.pvProperty().addListener(
+                        (obs, old, nouv) -> ListObsActeurs.updateBarreDeVie(a, pane)
+                );
             }
             for (Acteur a : change.getRemoved()) {
                 pane.getChildren().remove(pane.lookup("#" + a.getId()));
+                // Assurez-vous de retirer également la barre de vie correspondante
+                pane.getChildren().remove(pane.lookup("#vieBarre_" + a.getId()));
             }
         }
     }
 
     public void creerSpriteEnnemie(Pane pane, Ennemie ennemie) {
         ImageView imageView = new ImageView();
-
         imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/squelette.png"));
-
         imageView.setId(ennemie.getId());
-        pane.getChildren().add(imageView);
+
+        Rectangle vieBarre = new Rectangle(16, 2, Color.GREEN);
+        vieBarre.setId("vieBarre_" + ennemie.getId());
+        pane.getChildren().addAll(imageView, vieBarre); // Assurez-vous que imageView et vieBarre sont ajoutés au Pane
+
+        // Liaisons et positions
         imageView.translateXProperty().bind(ennemie.getXproperty());
         imageView.translateYProperty().bind(ennemie.getYproperty());
+        vieBarre.translateXProperty().bind(ennemie.getXproperty());
+        vieBarre.translateYProperty().bind(ennemie.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
+    }
+
+    public static void updateBarreDeVie(Acteur acteur, Pane pane) {
+        int largeurBarre = 16;
+        double pourcentageVieRestante = (double) acteur.getPv() / acteur.getPvMax();
+        Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + acteur.getId());
+        System.out.println("Pourcentage de vie " + pourcentageVieRestante);
+
+        if (vieBarre != null) {
+
+            // Déterminer la couleur en fonction du pourcentage de vie restante
+            if (pourcentageVieRestante > 0.75) {
+                vieBarre.setFill(Color.GREEN);
+            } else if (pourcentageVieRestante > 0.25) {
+                vieBarre.setFill(Color.YELLOW);
+            } else {
+                vieBarre.setFill(Color.RED);
+            }
+
+            vieBarre.setWidth(largeurBarre * pourcentageVieRestante); // Ajuster la largeur en fonction du pourcentage de vie
+        }
+    }
+
+    public Pane getPane() {
+        return pane;
     }
 }

@@ -1,22 +1,24 @@
 package universite_paris8.iut.osall.boom.modele.entite;
-
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
-
 public class Ennemie extends Acteur {
-
     private int nombreDeDegat;
     private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
     private static final int DISTANCE_DETECTION = 999;
+    private Arme arme;
 
-    public Ennemie(Environnement environnement) {
-        super(environnement, 0, 0, 16, 16, 3, 1);
+    public Ennemie(Environnement environnement, Pane pane) {
+        super(environnement, 0, 0, 16, 16, 3);
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
+        this.arme = new EpeEnBois(environnement);
         random();
+         // Commence avec les points de vie max
     }
-
     private void random() {
         Random rand = new Random();
         int x, y;
@@ -27,26 +29,20 @@ public class Ennemie extends Acteur {
         this.setX(x);
         this.setY(y);
     }
-
     public void seDeplace() {
         Environnement environnement = getEnvironnement();
         Joueur joueur = environnement.getJoueur();
-
         // Calculer la distance entre l'ennemi et le joueur
         double distance = Math.sqrt(Math.pow(getX() - joueur.getX(), 2) + Math.pow(getY() - joueur.getY(), 2));
-
         // Vérifier si le joueur est dans la zone de détection
         if (distance <= DISTANCE_DETECTION) {
             // Calculer la direction du déplacement vers le joueur
             int deltaX = joueur.getX() - getX();
             int deltaY = joueur.getY() - getY();
-
             int stepX = (deltaX == 0) ? 0 : (deltaX > 0 ? 1 : -1);
             int stepY = (deltaY == 0) ? 0 : (deltaY > 0 ? 1 : -1);
-
             int newX = getX() + stepX * getVitesse();
             int newY = getY() + stepY * getVitesse();
-
             if (peutSeDeplacerVers(newX, newY)) {
                 setX(newX);
                 setY(newY);
@@ -65,16 +61,45 @@ public class Ennemie extends Acteur {
                     }
                 }
             }
+            if (arme != null && distance <= arme.getRange()) {
+                attaque(joueur);
+            }
         }
     }
-
     private boolean peutSeDeplacerVers(int newX, int newY) {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
 
-        // Vérifier si les nouvelles positions sont valides (i.e., pas d'obstacle)
-        int indice1 = map.indice(newX, newY);
-        int indice2 = map.indice(newX + getLargeur() - 1, newY + getHauteur() - 1);
-        return map.peutSeDeplacer(indice1, indice2);
+
+        // Vérifier chaque pixel de l'ennemi
+        for (int i = 0; i < getLargeur(); i++) {
+            for (int j = 0; j < getHauteur(); j++) {
+                int indice = map.indice(newX + i, newY + j);
+                if (map.estObstacle(indice)) {
+                    return false; // Il y a un obstacle à cette position
+                }
+            }
+        }
+
+        return true; // Aucun obstacle trouvé, mouvement possible
     }
+
+    private void attaque(Joueur joueur) {
+        joueur.enleverPv(arme.getDegat());
+    }
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
+
+    public void subitDegat(int degats) {
+        System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + getPv());
+        System.out.println("Dégâts reçus : " + degats);
+        enleverPv(degats);
+        System.out.println("PV après dégâts : " + getPv());
+        if (!this.estVivant()) {
+            System.out.println("Ennemi " + getId() + " vaincu !");
+        }
+    }
+
 }
