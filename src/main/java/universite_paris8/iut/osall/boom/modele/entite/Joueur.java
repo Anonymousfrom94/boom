@@ -56,7 +56,7 @@ public class Joueur extends Acteur {
             setY(getY() + dy);
 //            setDirection("");
         }
-        System.out.println("X : " + getX() + " Y : " + getY());
+//        System.out.println("X : " + getX() + " Y : " + getY());
     }
 
     public void setDirection(String direction) {

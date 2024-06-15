@@ -21,7 +21,7 @@ public class Ennemie extends Acteur {
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
         this.arme = new EpeEnBois(environnement);
         random();
-        this.pvMax = 10; // Exemple de points de vie max
+        this.pvMax = 100; // Exemple de points de vie max
         this.pv = pvMax; // Commence avec les points de vie max
         this.pane = pane;
     }
@@ -106,15 +106,17 @@ public class Ennemie extends Acteur {
     }
 
     public void subitDegat(int degats) {
+        System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + pv);
+        System.out.println("Dégâts reçus : " + degats);
         pv -= degats;
+        System.out.println("PV après dégâts : " + pv);
         if (pv <= 0) {
+            System.out.println("Ennemi " + getId() + " vaincu !");
             // L'ennemi est vaincu, peut-être le retirer de l'environnement
             getEnvironnement().getActeurs().remove(this);
             ListObsActeurs.updateBarreDeVie(this, pane);
             new Ennemie(getEnvironnement(), pane);
         }
-        // Mettre à jour la barre de vie ou d'autres éléments visuels si nécessaire
-        // (cette partie est spécifique à votre implémentation)
     }
 
 }

@@ -80,21 +80,17 @@ public class Environnement {
         // Déplacement des acteurs (ennemis)
         for (int i = acteurs.size() - 1; i >= 0; i--) {
             Acteur acteur = acteurs.get(i);
-            if (acteur instanceof Ennemie) {
-                ((Ennemie) acteur).seDeplace();
-            }
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
-                new Ennemie(this, pane);
-                if (acteur instanceof Ennemie){
+                if (acteur instanceof Ennemie) {
                     compteurKill++;
                 }
                 // Génération d'un nouvel ennemi après la mort
-
+                new Ennemie(this, pane);
+                System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
         }
-        System.out.println("Nombre d'ennemis tués : " + compteurKill);
     }
 
     public void ajouterActeur(Acteur acteur) {

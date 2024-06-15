@@ -29,6 +29,8 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             }
             for (Acteur a : change.getRemoved()) {
                 pane.getChildren().remove(pane.lookup("#" + a.getId()));
+                // Assurez-vous de retirer également la barre de vie correspondante
+                pane.getChildren().remove(pane.lookup("#vieBarre_" + a.getId()));
             }
         }
     }
@@ -38,7 +40,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/squelette.png"));
         imageView.setId(ennemie.getId());
 
-        Rectangle vieBarre = new Rectangle(16, 2, Color.RED);
+        Rectangle vieBarre = new Rectangle(16, 2, Color.GREEN);
         vieBarre.setId("vieBarre_" + ennemie.getId());
         pane.getChildren().addAll(imageView, vieBarre); // Assurez-vous que imageView et vieBarre sont ajoutés au Pane
 
@@ -54,7 +56,16 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         Rectangle vieBarre = (Rectangle) pane.lookup("#vieBarre_" + ennemie.getId());
 
         if (vieBarre != null) {
-            vieBarre.setWidth(16 * pourcentageVieRestante); // Largeur maximale est 16 pixels
+            // Déterminer la couleur en fonction du pourcentage de vie restante
+            if (pourcentageVieRestante > 0.75) {
+                vieBarre.setFill(Color.GREEN);
+            } else if (pourcentageVieRestante > 0.25) {
+                vieBarre.setFill(Color.YELLOW);
+            } else {
+                vieBarre.setFill(Color.RED);
+            }
+
+            vieBarre.setWidth(16 * pourcentageVieRestante); // Ajuster la largeur en fonction du pourcentage de vie
         }
     }
 
