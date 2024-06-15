@@ -123,4 +123,6 @@ public abstract class Acteur {
                 ", y=" + y +
                 '}';
     }
+
+    public abstract void seDeplace();
 }

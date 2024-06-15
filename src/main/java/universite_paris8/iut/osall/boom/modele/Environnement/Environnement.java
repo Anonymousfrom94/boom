@@ -90,6 +90,7 @@ public class Environnement {
                 new Ennemie(this, pane);
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
+            acteur.seDeplace();
         }
     }
 
