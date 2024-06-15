@@ -110,6 +110,7 @@ public class Ennemie extends Acteur {
         if (pv <= 0) {
             // L'ennemi est vaincu, peut-être le retirer de l'environnement
             getEnvironnement().getActeurs().remove(this);
+            ListObsActeurs.updateBarreDeVie(this, pane);
             new Ennemie(getEnvironnement(), pane);
         }
         // Mettre à jour la barre de vie ou d'autres éléments visuels si nécessaire
