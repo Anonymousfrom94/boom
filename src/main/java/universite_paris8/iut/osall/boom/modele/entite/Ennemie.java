@@ -85,7 +85,7 @@ public class Ennemie extends Acteur {
     }
 
     private void attaque(Joueur joueur) {
-        joueur.setPv(joueur.getPv() - arme.getDegat());
+        joueur.enleverPv(arme.getDegat());
     }
     public void setArme(Arme arme) {
         this.arme = arme;
@@ -95,7 +95,7 @@ public class Ennemie extends Acteur {
     public void subitDegat(int degats) {
         System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + getPv());
         System.out.println("Dégâts reçus : " + degats);
-        setPv(getPv() - degats);
+        enleverPv(degats);
         System.out.println("PV après dégâts : " + getPv());
         if (!this.estVivant()) {
             System.out.println("Ennemi " + getId() + " vaincu !");

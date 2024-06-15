@@ -96,7 +96,19 @@ public abstract class Acteur {
     }
 
     public void setPv(int pv) {
-        this.pv.setValue(pv);
+        this.pv.set(pv);
+    }
+
+    public void enleverPv(int degat) {
+        if (this.pv.getValue() - degat >= 0){
+            this.pv.setValue(this.pv.getValue() - degat);
+        }
+    }
+
+    public void rajouterPv(int pv){
+        if (this.getPv() + pv <= 100){
+            this.pv.setValue(this.pv.getValue() + pv);
+        }
     }
 
     public void setVitesse(int vitesse) {
