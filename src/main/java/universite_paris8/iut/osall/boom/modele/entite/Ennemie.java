@@ -8,9 +8,11 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import java.util.Random;
 public class Ennemie extends Acteur {
     private int nombreDeDegat;
-    private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
-    private static final int DISTANCE_DETECTION = 999;
+    private int nombreDePixelDeplacer = 1;
+    private static final int rangeEnnemmi = 999;
     private Arme arme;
+    private long derniereAttaque;
+    private static final long intervalleAttack = 1000;
 
     public Ennemie(Environnement environnement, Pane pane) {
         super(environnement, 0, 0, 16, 16, 3);
@@ -35,7 +37,7 @@ public class Ennemie extends Acteur {
         // Calculer la distance entre l'ennemi et le joueur
         double distance = Math.sqrt(Math.pow(getX() - joueur.getX(), 2) + Math.pow(getY() - joueur.getY(), 2));
         // Vérifier si le joueur est dans la zone de détection
-        if (distance <= DISTANCE_DETECTION) {
+        if (distance <= rangeEnnemmi) {
             // Calculer la direction du déplacement vers le joueur
             int deltaX = joueur.getX() - getX();
             int deltaY = joueur.getY() - getY();
@@ -61,11 +63,19 @@ public class Ennemie extends Acteur {
                     }
                 }
             }
-            if (arme != null && distance <= arme.getRange()) {
+            if (arme != null && distance <= arme.getRange() && peutAttaquer()) {
                 attaque(joueur);
             }
+
         }
     }
+
+    private boolean peutAttaquer() {
+        long tempsActuel = System.currentTimeMillis();
+        return (tempsActuel - derniereAttaque) >= intervalleAttack;
+    }
+
+
     private boolean peutSeDeplacerVers(int newX, int newY) {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
@@ -86,6 +96,7 @@ public class Ennemie extends Acteur {
 
     private void attaque(Joueur joueur) {
         joueur.enleverPv(arme.getDegat());
+        derniereAttaque = System.currentTimeMillis();
     }
     public void setArme(Arme arme) {
         this.arme = arme;
