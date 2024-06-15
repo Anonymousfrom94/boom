@@ -10,7 +10,7 @@ public class EpeEnBois extends Arme{
     }
 
     public void utilise(Ennemie e) {
-        e.setPv(e.getPv() - this.getDegat());
+        e.subitDegat(getDegat());
     }
 
     @Override

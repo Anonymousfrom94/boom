@@ -2,6 +2,7 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.BFS;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
@@ -73,7 +74,7 @@ public class Environnement {
         return joueur;
     }
 
-    public void unTour() {
+    public void unTour(Pane pane) {
         joueur.ramasse();
 
         // Déplacement des acteurs (ennemis)
@@ -85,9 +86,12 @@ public class Environnement {
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
-                compteurKill++;
+                new Ennemie(this, pane);
+                if (acteur instanceof Ennemie){
+                    compteurKill++;
+                }
                 // Génération d'un nouvel ennemi après la mort
-                new Ennemie(this);
+
             }
         }
         System.out.println("Nombre d'ennemis tués : " + compteurKill);
@@ -145,22 +149,5 @@ public class Environnement {
         ajouterObstacle(530);
         ajouterObstacle(454);
         ajouterObstacle(379);
-
-//        ajouterObstacle(976);
-//        ajouterObstacle(977);
-//        ajouterObstacle(978);
-//        ajouterObstacle(1051);
-//        ajouterObstacle(1053);
-//        ajouterObstacle(1126);
-//        ajouterObstacle(1127);
-//        ajouterObstacle(1128);
-//        ajouterObstacle(465);
-//        ajouterObstacle(396);
-//        ajouterObstacle(546);
-//        ajouterObstacle(471);
-
-        // Exemple d'ajout d'acteurs (ennemis)
-        ajouterActeur(new Ennemie(this));
-        ajouterActeur(new Ennemie(this));
     }
 }

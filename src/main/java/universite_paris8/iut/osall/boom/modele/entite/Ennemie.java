@@ -1,19 +1,29 @@
 package universite_paris8.iut.osall.boom.modele.entite;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
+import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsActeurs;
+
 import java.util.Random;
 public class Ennemie extends Acteur {
     private int nombreDeDegat;
     private int nombreDePixelDeplacer = 1; // Distance totale à parcourir en pixels
     private static final int DISTANCE_DETECTION = 999;
     private Arme arme;
-    public Ennemie(Environnement environnement) {
+    private int pv;
+    private int pvMax;
+    private Pane pane;
+
+    public Ennemie(Environnement environnement, Pane pane) {
         super(environnement, 0, 0, 16, 16, 3, 1);
         this.nombreDeDegat = 1; // Par exemple, à ajuster selon vos besoins
         this.arme = new EpeEnBois(environnement);
         random();
+        this.pvMax = 10; // Exemple de points de vie max
+        this.pv = pvMax; // Commence avec les points de vie max
+        this.pane = pane;
     }
     private void random() {
         Random rand = new Random();
@@ -86,4 +96,24 @@ public class Ennemie extends Acteur {
     public void setArme(Arme arme) {
         this.arme = arme;
     }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public int getPvMax() {
+        return pvMax;
+    }
+
+    public void subitDegat(int degats) {
+        pv -= degats;
+        if (pv <= 0) {
+            // L'ennemi est vaincu, peut-être le retirer de l'environnement
+            getEnvironnement().getActeurs().remove(this);
+            new Ennemie(getEnvironnement(), pane);
+        }
+        // Mettre à jour la barre de vie ou d'autres éléments visuels si nécessaire
+        // (cette partie est spécifique à votre implémentation)
+    }
+
 }

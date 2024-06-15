@@ -103,7 +103,7 @@ public class Controller implements Initializable {
                     temps++;
                     if (temps == 10){
                         for (int i = 0; i < 3; i++){
-                            new Ennemie(environnement);
+                            new Ennemie(environnement, pane);
                             environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
                         environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
@@ -111,7 +111,7 @@ public class Controller implements Initializable {
                         environnement.getInventaireEnvironnement().add(new CeintureTP(environnement));
                         environnement.getInventaireEnvironnement().add(new CouronneTemporel(environnement));
                     }
-                    environnement.unTour();
+                    environnement.unTour(pane);
 
 
                 })

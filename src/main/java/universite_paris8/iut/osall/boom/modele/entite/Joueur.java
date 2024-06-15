@@ -15,7 +15,7 @@ public class Joueur extends Acteur {
     private Equipement equipement;
 
     public Joueur(Environnement environnement) {
-        super(environnement, 780, 485,14, 14, 5, 100);
+        super(environnement, 780, 485,14, 14, 5, 99999);
         this.inventaire = FXCollections.observableArrayList();
         this.arme = new EpeEnBois(environnement);
         inventaire.add(this.arme);
@@ -104,9 +104,9 @@ public class Joueur extends Acteur {
         return null;
     }
 
-    public void attaque(){
+    public void attaque() {
         Acteur e = estAttaquable();
-        if (e != null){
+        if (e != null) {
             this.getArme().utilise((Ennemie) e);
         }
     }
