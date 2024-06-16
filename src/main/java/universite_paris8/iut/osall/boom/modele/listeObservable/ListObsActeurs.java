@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
+import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 public class ListObsActeurs implements ListChangeListener<Acteur> {
 
@@ -50,7 +52,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         imageView.translateXProperty().bind(ennemie.getXproperty());
         imageView.translateYProperty().bind(ennemie.getYproperty());
         vieBarre.translateXProperty().bind(ennemie.getXproperty());
-        vieBarre.translateYProperty().bind(ennemie.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
+        vieBarre.translateYProperty().bind(ennemie.getYproperty().subtract(10));
     }
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {
@@ -61,7 +63,6 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
 
         if (vieBarre != null) {
 
-            // Déterminer la couleur en fonction du pourcentage de vie restante
             if (pourcentageVieRestante > 0.75) {
                 vieBarre.setFill(Color.GREEN);
             } else if (pourcentageVieRestante > 0.25) {

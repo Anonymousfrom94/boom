@@ -16,7 +16,7 @@ public class Ennemie extends Acteur {
 
     public Ennemie(Environnement environnement) {
         super(environnement, 0, 0, 16, 16, 3);
-        this.arme = new BatonElectrique(environnement);
+        choisirArme();
         random();
     }
     private void random() {
@@ -111,6 +111,18 @@ public class Ennemie extends Acteur {
         return true; // Aucun obstacle trouvé, mouvement possible
     }
 
+    private void choisirArme() {
+        Random rand = new Random();
+        // Génère un nombre entre 0 et 99 (pourcentage)
+        int randomNum = rand.nextInt(100);
+
+        if (randomNum < 35) {
+            this.arme = new BatonElectrique(getEnvironnement());
+        } else {
+            this.arme = new EpeEnBois(getEnvironnement());
+        }
+    }
+
     private void attaque(Joueur joueur) {
         joueur.enleverPv(arme.getDegat());
         derniereAttaque = System.currentTimeMillis();
@@ -119,6 +131,9 @@ public class Ennemie extends Acteur {
         this.arme = arme;
     }
 
+    public Arme getArme() {
+        return arme;
+    }
 
     public void subitDegat(int degats) {
         enleverPv(degats);
