@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.Equipement;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -27,7 +28,7 @@ public class Joueur extends Acteur {
     }
 
     public void seDeplace() {
-        if (getEnvironnement().getMap().peutSeDeplacer(this)) {
+        if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
             int dx = 0;
             int dy = 0;
             int vitesse = getVitesse();
@@ -54,10 +55,10 @@ public class Joueur extends Acteur {
             }
             setX(getX() + dx);
             setY(getY() + dy);
-//            setDirection("");
         }
         System.out.println("X : " + getX() + " Y : " + getY());
     }
+
 
     public void setDirection(String direction) {
         this.direction.set(direction);
@@ -133,5 +134,10 @@ public class Joueur extends Acteur {
         }
 
     }
+
+    public boolean aBottesDeLevitation() {
+        return this.equipement instanceof BotteLevitation;
+    }
+
 
 }

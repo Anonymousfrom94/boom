@@ -19,7 +19,7 @@ public class Map {
         return ligne * environnement.getInfoTuile()[1] + colonne;
     }
 
-    public boolean peutSeDeplacer(Acteur acteur) {
+    public boolean peutSeDeplacer(Acteur acteur, boolean aBottesDeLevitation) {
         int indice1, indice2;
         int obstacle;
 
@@ -28,28 +28,28 @@ public class Map {
             if (acteur.getDirection().contains("haut")) {
                 indice1 = indice(acteur.getX(), acteur.getY() - acteur.getVitesse());
                 indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() - acteur.getVitesse());
-                if (!obstacle(indice1, indice2, obstacle)) {
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
                     return false;
                 }
             }
             if (acteur.getDirection().contains("bas")) {
                 indice1 = indice(acteur.getX(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
                 indice2 = indice(acteur.getX() + acteur.getLargeur(), acteur.getY() + acteur.getHauteur() + acteur.getVitesse());
-                if (!obstacle(indice1, indice2, obstacle)) {
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
                     return false;
                 }
             }
             if (acteur.getDirection().contains("gauche")) {
                 indice1 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY());
                 indice2 = indice(acteur.getX() - acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
-                if (!obstacle(indice1, indice2, obstacle)) {
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
                     return false;
                 }
             }
             if (acteur.getDirection().contains("droite")) {
                 indice1 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY());
                 indice2 = indice(acteur.getX() + acteur.getLargeur() + acteur.getVitesse(), acteur.getY() + acteur.getHauteur());
-                if (!obstacle(indice1, indice2, obstacle)) {
+                if (!obstacle(indice1, indice2, obstacle, aBottesDeLevitation)) {
                     return false;
                 }
             }
@@ -87,20 +87,13 @@ public class Map {
         return environnement;
     }
 
-    public boolean peutSeDeplacer(int indice1, int indice2) {
-        for (int obstacle : environnement.getObstacles()) {
-            if (!obstacle(indice1, indice2, obstacle)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    private boolean obstacle(int indice1, int indice2, int obstacle) {
+
+    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
         int[] tableau = getTableau();
 
         if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
-            if (tableau[indice1] == obstacle || tableau[indice2] == obstacle) {
+            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
                 return false;
             }
             return true;

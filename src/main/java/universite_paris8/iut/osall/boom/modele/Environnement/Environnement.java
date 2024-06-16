@@ -89,9 +89,12 @@ public class Environnement {
                 new Ennemie(this, pane);
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            acteur.seDeplace();
+            if (acteur instanceof Ennemie){
+                acteur.seDeplace();
+            }
         }
     }
+
 
     public void ajouterActeur(Acteur acteur) {
         acteurs.add(acteur);
@@ -130,7 +133,7 @@ public class Environnement {
         this.joueur = new Joueur(this);
 
         // Ajout des obstacles
-//        ajouterObstacle(316);
+        ajouterObstacle(316);
         ajouterObstacle(319);
         ajouterObstacle(676);
         ajouterObstacle(677);
