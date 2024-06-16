@@ -7,7 +7,7 @@ import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 
 public class BatonElectrique extends Arme{
     public BatonElectrique(Environnement environnement) {
-        super(environnement, "Baton Electrique",8, 32);
+        super(environnement, "Baton Electrique",8, 64);
     }
 
     @Override

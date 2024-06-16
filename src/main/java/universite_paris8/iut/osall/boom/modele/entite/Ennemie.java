@@ -3,6 +3,7 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
+import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
@@ -11,11 +12,11 @@ public class Ennemie extends Acteur {
     private static final int rangeEnnemmi = 200;
     private Arme arme;
     private long derniereAttaque;
-    private static final long intervalleAttack = 1000;
+    private static final long intervalleAttack = 1500;
 
-    public Ennemie(Environnement environnement, Pane pane) {
+    public Ennemie(Environnement environnement) {
         super(environnement, 0, 0, 16, 16, 3);
-        this.arme = new EpeEnBois(environnement);
+        this.arme = new BatonElectrique(environnement);
         random();
     }
     private void random() {
@@ -37,47 +38,48 @@ public class Ennemie extends Acteur {
         double distance = Math.sqrt(distanceEnX * distanceEnX + distanceEnY * distanceEnY);
 
         if (distance <= rangeEnnemmi) {
-            int dx;
-            if (distanceEnX == 0) {
-                dx = 0;
-            } else if (distanceEnX > 0) {
-                dx = 1;
+            if (arme instanceof BatonElectrique && distance <= arme.getRange() && peutAttaquer()) {
+                joueur.setPv(joueur.getPv() - arme.getDegat());
+                derniereAttaque = System.currentTimeMillis();
             } else {
-                dx = -1;
-            }
+                int dx = 0;
+                if (distanceEnX > 0) {
+                    dx = 1;  //la droite
+                } else if (distanceEnX < 0) {
+                    dx = -1; //la gauche
+                }
 
-            int dy;
-            if (distanceEnY == 0) {
-                dy = 0;
-            } else if (distanceEnY > 0) {
-                dy = 1;
-            } else {
-                dy = -1;
-            }
+                int dy = 0;
+                if (distanceEnY > 0) {
+                    dy = 1;  //le bas
+                } else if (distanceEnY < 0) {
+                    dy = -1; //vers le haut
+                }
 
-            int newX = getX() + dx * getVitesse();
-            int newY = getY() + dy * getVitesse();
+                int newX = getX() + dx * getVitesse();
+                int newY = getY() + dy * getVitesse();
 
-            if (peutSeDeplacerVers(newX, newY)) {
-                setX(newX);
-                setY(newY);
-            } else {
-                if (distanceEnX != 0) {
-                    newX = getX() + dx * getVitesse();
-                    if (peutSeDeplacerVers(newX, getY())) {
-                        setX(newX);
+                if (peutSeDeplacerVers(newX, newY)) {
+                    setX(newX);
+                    setY(newY);
+                } else {
+                    if (distanceEnX != 0) {
+                        newX = getX() + dx * getVitesse();
+                        if (peutSeDeplacerVers(newX, getY())) {
+                            setX(newX);
+                        }
+                    }
+                    if (distanceEnY != 0) {
+                        newY = getY() + dy * getVitesse();
+                        if (peutSeDeplacerVers(getX(), newY)) {
+                            setY(newY);
+                        }
                     }
                 }
-                if (distanceEnY != 0) {
-                    newY = getY() + dy * getVitesse();
-                    if (peutSeDeplacerVers(getX(), newY)) {
-                        setY(newY);
-                    }
-                }
-            }
 
-            if (arme != null && distance <= arme.getRange() && peutAttaquer()) {
-                attaque(joueur);
+                if (arme != null && distance <= arme.getRange() && peutAttaquer()) {
+                    attaque(joueur);
+                }
             }
         }
     }
@@ -105,7 +107,6 @@ public class Ennemie extends Acteur {
                 }
             }
         }
-
 
         return true; // Aucun obstacle trouvé, mouvement possible
     }

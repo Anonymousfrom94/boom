@@ -54,7 +54,7 @@ public class Environnement {
                     compteurKill++;
                 }
                 // Génération d'un nouvel ennemi après la mort
-                new Ennemie(this, pane);
+                new Ennemie(this);
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
             if (acteur instanceof Ennemie){
