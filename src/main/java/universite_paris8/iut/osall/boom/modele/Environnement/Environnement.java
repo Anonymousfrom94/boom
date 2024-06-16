@@ -91,11 +91,11 @@ public class Environnement {
 
         // Spawn des 12 PotionHeal
         for (int i = 0; i < 3; i++){
-            int ecart = i*32;
+            int ecart = i*128;
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur()));
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1100 + ecart, 50 + ecart));
             this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 50 + ecart, 1100 + ecart));
-            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1400 + ecart, 1100 - ecart));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1300 + ecart, 1100 - ecart));
         }
 
         // Spawn des équipements (Bottes, ceinture, Couronne)

@@ -21,7 +21,7 @@ public class Sniper extends Arme{
     @Override
     public void utilise(Ennemie e) {
         e.enleverPv(this.getDegat());
-        this.joueur.enleverPv(10);
+        joueur.setPv(joueur.getPv()-10);
     }
 
     @Override
