@@ -3,6 +3,7 @@ package universite_paris8.iut.osall.boom.modele.entite;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
@@ -67,7 +68,7 @@ class JoueurTest {
     @Test
     void testEstAttaquable() {
         // ennemie a coté
-        Ennemie ennemie = new Ennemie(environnement);
+        Ennemi ennemie = new Ennemi(environnement,14,14,3,1);
         ennemie.setX(joueur.getX() + 10);
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);
@@ -86,7 +87,7 @@ class JoueurTest {
     @Test
     void testAttaque() {
         //attaque
-        Ennemie ennemie = new Ennemie(environnement);
+        Ennemi ennemie = new Ennemi(environnement,14,14,3,1);
         ennemie.setX(joueur.getX() + 10);
         ennemie.setY(joueur.getY() + 10);
         environnement.getActeurs().add(ennemie);

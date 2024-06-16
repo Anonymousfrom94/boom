@@ -65,7 +65,7 @@ public class Environnement {
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            if (acteur instanceof Squelette){
+            if (acteur instanceof Ennemi){
                 acteur.seDeplace();
             }
         }
