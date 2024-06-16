@@ -95,7 +95,7 @@ public class Controller implements Initializable {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.009 ),
+                Duration.seconds(0.025 ),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
@@ -104,9 +104,9 @@ public class Controller implements Initializable {
 //                    vueJoueur.changementImg(joueur);
                     temps++;
                     if (temps == 10){
-                        for (int i = 0; i < 3; i++){
+                        for (int i = 0; i < 50; i++){
                             new Ennemie(environnement, pane);
-                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
+//                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
                         environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));

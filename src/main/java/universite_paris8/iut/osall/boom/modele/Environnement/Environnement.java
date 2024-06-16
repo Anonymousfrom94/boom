@@ -20,6 +20,7 @@ public class Environnement {
     private int largeurTuile;
     private int hauteurTuile;
     private ArrayList<Integer> obstacles;
+    private ArrayList<Integer> blocNoSpawn;
     private int compteurKill;
     private int[] infoTuile;
 
@@ -31,6 +32,7 @@ public class Environnement {
         this.acteurs = FXCollections.observableArrayList();
         this.inventaireEnvironnement = FXCollections.observableArrayList();
         this.obstacles = new ArrayList<>();
+        this.blocNoSpawn = new ArrayList<>();
         this.compteurKill = 0;
         this.infoTuile = new int[3];
         this.infoTuile[0] = 16;  // Taille d'une tuile
@@ -99,8 +101,16 @@ public class Environnement {
         obstacles.add(obstacle);
     }
 
+    public void ajouterNoSpawn(int obstacle) {
+        blocNoSpawn.add(obstacle);
+    }
+
     public boolean estObstacle(int obstacle) {
         return obstacles.contains(obstacle);
+    }
+
+    public boolean estNoSpawn(int obstacle) {
+        return blocNoSpawn.contains(obstacle);
     }
 
     public int[] getInfoTuile() {
@@ -111,11 +121,16 @@ public class Environnement {
         return obstacles;
     }
 
+    public ArrayList<Integer> getBlocNoSpawn() {
+        return blocNoSpawn;
+    }
+
     public void init() {
         this.map = new Map(this);
         this.joueur = new Joueur(this);
 
         // Ajout des obstacles
+//        ajouterObstacle(316);
         ajouterObstacle(319);
         ajouterObstacle(676);
         ajouterObstacle(677);
@@ -135,5 +150,12 @@ public class Environnement {
         ajouterObstacle(530);
         ajouterObstacle(454);
         ajouterObstacle(379);
+
+        ajouterNoSpawn(316);
+        ajouterNoSpawn(376);
+        ajouterNoSpawn(527);
+        ajouterNoSpawn(1052);
+        ajouterNoSpawn(377);
+        ajouterNoSpawn(378);
     }
 }
