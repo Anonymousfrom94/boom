@@ -3,6 +3,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
@@ -56,7 +57,7 @@ public class Joueur extends Acteur {
 
     private Acteur estAttaquable(){
         for(Acteur e : this.getEnvironnement().getActeurs()){
-            if(e instanceof Ennemie){
+            if(e instanceof Ennemi){
                 if (
                         (this.getX() - getArme().getRange() <= e.getX() && this.getX() + 16 + getArme().getRange() >= e.getX()) &&
                                 (this.getY() - getArme().getRange() <= e.getY() && this.getY() + 16 + getArme().getRange() >= e.getY())
@@ -74,7 +75,7 @@ public class Joueur extends Acteur {
     public void attaque() {
         Acteur e = estAttaquable();
         if (e != null) {
-            this.getArme().utilise((Ennemie) e);
+            this.getArme().utilise((Ennemi) e);
         }
     }
 

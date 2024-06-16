@@ -1,20 +1,21 @@
-package universite_paris8.iut.osall.boom.modele.entite;
-import javafx.scene.layout.Pane;
+package universite_paris8.iut.osall.boom.modele.entite.ennemi;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.Environnement.Map;
+import universite_paris8.iut.osall.boom.modele.entite.Acteur;
+import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arme;
 import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 
 import java.util.Random;
-public class Ennemie extends Acteur {
+public class Ennemi extends Acteur {
 
     private static final int rangeEnnemmi = 200;
     private Arme arme;
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
-    public Ennemie(Environnement environnement) {
-        super(environnement, 0, 0, 16, 16, 3, 100);
+    public Ennemi(Environnement environnement, int largeur, int hauteur, int vitesse, int pvMax) {
+        super(environnement, 0, 0, largeur, hauteur, vitesse, pvMax);
         this.arme = new EpeEnBois(environnement);
         random();
     }

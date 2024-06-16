@@ -7,7 +7,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Squelette;
 
 public class ListObsActeurs implements ListChangeListener<Acteur> {
 
@@ -25,7 +27,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             System.out.println("est-ce des suppressions ? " + change.wasRemoved());
             System.out.println("les ajouts : " + change.getAddedSubList());
             for (Acteur a : change.getAddedSubList()) {
-                creerSpriteEnnemie(pane, (Ennemie) a);
+                creerSpriteEnnemie(pane, (Ennemi) a);
                 //Ajout des listener à chaque ennemi après qu'ils soient créer
                 a.pvProperty().addListener(
                         (obs, old, nouv) -> ListObsActeurs.updateBarreDeVie(a, pane)
@@ -38,19 +40,25 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
         }
     }
 
-    public void creerSpriteEnnemie(Pane pane, Ennemie ennemie) {
+    public void creerSpriteEnnemie(Pane pane, Ennemi ennemi) {
+
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/squelette.png"));
-        imageView.setId(ennemie.getId());
+        if (ennemi instanceof Squelette){
+            imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/squelette.png"));
+        }
+        if (ennemi instanceof Boss){
+            //importe l'image ici
+        }
+        imageView.setId(ennemi.getId());
 
         Rectangle vieBarre = new Rectangle(16, 2, Color.GREEN);
-        vieBarre.setId("vieBarre_" + ennemie.getId());
+        vieBarre.setId("vieBarre_" + ennemi.getId());
         pane.getChildren().addAll(imageView, vieBarre);
 
-        imageView.translateXProperty().bind(ennemie.getXproperty());
-        imageView.translateYProperty().bind(ennemie.getYproperty());
-        vieBarre.translateXProperty().bind(ennemie.getXproperty());
-        vieBarre.translateYProperty().bind(ennemie.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
+        imageView.translateXProperty().bind(ennemi.getXproperty());
+        imageView.translateYProperty().bind(ennemi.getYproperty());
+        vieBarre.translateXProperty().bind(ennemi.getXproperty());
+        vieBarre.translateYProperty().bind(ennemi.getYproperty().subtract(10)); // Placez la barre de vie au-dessus de l'image
     }
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {

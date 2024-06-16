@@ -9,6 +9,10 @@ public class CeintureTP extends Equipement{
         super(environnement, "Ceinture de Téléportation", 650, 670);
     }
 
+    public CeintureTP(Environnement environnement, int x, int y) {
+        super(environnement, "Ceinture de Téléportation", x, y);
+    }
+
     public void utilise(){
         seTeleporte();
     }

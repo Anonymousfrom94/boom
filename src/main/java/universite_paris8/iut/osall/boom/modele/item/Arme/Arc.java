@@ -1,7 +1,7 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
 import universite_paris8.iut.osall.boom.modele.item.Arme.projectile.Fleche;
 
@@ -16,7 +16,7 @@ public class Arc extends Arme {
         this.fleches = new ArrayList<>();
     }
 
-    public void utilise(Ennemie e){
+    public void utilise(Ennemi e){
         for (Fleche fleche : fleches){
             fleche.tire(e);
         }

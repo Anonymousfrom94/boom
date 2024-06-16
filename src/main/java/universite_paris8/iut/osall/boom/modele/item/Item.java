@@ -42,8 +42,8 @@ public class Item {
         int x = 0;
         int y = 0;
         do {
-            x = (int) (Math.random() * 470);
-            y = (int) (Math.random() * 470);
+            x = (int) (Math.random() * 300);
+            y = (int) (Math.random() * 300);
         }
         while(this.environnement.getMap().getTableau()[indice(x, y)] == 1);
         this.getXProperty().setValue(x);

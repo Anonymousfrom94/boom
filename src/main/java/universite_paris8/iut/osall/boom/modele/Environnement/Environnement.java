@@ -2,10 +2,11 @@ package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Squelette;
 import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Dague;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Sniper;
@@ -58,15 +59,18 @@ public class Environnement {
             if (!acteur.estVivant()) {
                 System.out.println("Mort de : " + acteur);
                 acteurs.remove(i);
-                if (acteur instanceof Ennemie) {
+                if (acteur instanceof Ennemi) {
                     compteurKill++;
                 }
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            if (acteur instanceof Ennemie){
+            if (acteur instanceof Ennemi){
                 acteur.seDeplace();
             }
+        }
+        if (compteurKill == 50){
+            new Boss(this);
         }
         finDeGame(temps);
     }
@@ -81,7 +85,8 @@ public class Environnement {
 
     public void spawnItemEtEnnemie(){
         for (int i = 0; i < 50; i++){
-            new Ennemie(this);
+            new Squelette(this);
+            // Rajouter les ennemis en fonction
         }
         // Spawn des 4 totem de résurrection
         this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur()));
@@ -100,8 +105,8 @@ public class Environnement {
 
         // Spawn des équipements (Bottes, ceinture, Couronne)
         this.getInventaireEnvironnement().add(new BotteLevitation(this));
-        this.getInventaireEnvironnement().add(new CeintureTP(this));
-        this.getInventaireEnvironnement().add(new CouronneTemporel(this));
+        this.getInventaireEnvironnement().add(new CeintureTP(this, 110, 100));
+        this.getInventaireEnvironnement().add(new CouronneTemporel(this, 1450, 150));
 
         // Spawn des Armes (une arme par zone)
         this.getInventaireEnvironnement().add(new Dague(this));

@@ -1,7 +1,6 @@
 package universite_paris8.iut.osall.boom.modele.Environnement;
 
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 
 public class Map {
 

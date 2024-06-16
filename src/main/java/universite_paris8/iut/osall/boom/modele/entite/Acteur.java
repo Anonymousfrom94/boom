@@ -43,7 +43,7 @@ public abstract class Acteur {
     }
 
     public void rajouterPv(int pv){
-        if (this.getPv() + pv <= 100){
+        if (this.getPv() + pv <= this.pvMax){
             this.pv.setValue(this.pv.getValue() + pv);
         }
     }

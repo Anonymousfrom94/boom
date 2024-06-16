@@ -30,13 +30,10 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
     private Label etatCouronne;
     private Label etatCeinture;
     private Label etatBottes;
-    private Label etatArc;
-    private Label etatCollier;
-    private Label etatGant;
 
     public ListObsItemJoueur(Pane equipementJoueur, Pane inventaireJoueur, Label nbrePotionHeal, Label nbreTotem
             , Label etatBaton, Label etatSniper, Label etatEpee, Label etatDague, Label etatCouronne, Label etatCeinture,
-                             Label etatBottes, Label etatArc, Label etatCollier, Label etatGant) {
+                             Label etatBottes) {
         this.equipementJoueur = equipementJoueur;
         this.inventaireJoueur = inventaireJoueur;
         this.nbrePotionHeal = nbrePotionHeal;
@@ -50,9 +47,6 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
         this.etatCouronne = etatCouronne;
         this.etatCeinture = etatCeinture;
         this.etatBottes = etatBottes;
-        this.etatArc = etatArc;
-        this.etatCollier = etatCollier;
-        this.etatGant = etatGant;
     }
 
     @Override

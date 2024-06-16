@@ -57,8 +57,8 @@ public class VueJoueur {
         imageView.translateXProperty().bind(joueur.getXproperty());
         imageView.translateYProperty().bind(joueur.getYproperty());
 
-        vieBarre.setTranslateX(16);
-        vieBarre.setTranslateY(775);
+        vieBarre.setTranslateX(46);
+        vieBarre.setTranslateY(26);
     }
 
     public static void updateBarreDeVie(Acteur acteur, Pane pane) {

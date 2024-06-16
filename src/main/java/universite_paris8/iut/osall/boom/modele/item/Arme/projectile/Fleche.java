@@ -3,7 +3,7 @@ package universite_paris8.iut.osall.boom.modele.item.Arme.projectile;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.item.Arme.Arc;
 
 public class Fleche {
@@ -29,7 +29,7 @@ public class Fleche {
         }
     }
 
-    public void tire(Ennemie e) {
+    public void tire(Ennemi e) {
         System.out.println("à coder fleche pas fait");
     }
 }

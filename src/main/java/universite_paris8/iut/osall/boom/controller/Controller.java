@@ -14,7 +14,6 @@ import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
-import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.item.Arme.*;
 import universite_paris8.iut.osall.boom.modele.item.Equipement.*;
 import universite_paris8.iut.osall.boom.modele.listeObservable.ListObsActeurs;
@@ -27,8 +26,6 @@ import universite_paris8.iut.osall.boom.vue.VueJoueur;
 import universite_paris8.iut.osall.boom.vue.VueMap;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -40,12 +37,9 @@ public class Controller implements Initializable {
     @FXML private Label nbrePotionHeal;
     @FXML private Label nbreTotem;
     @FXML private Label etatCouronne;
-    @FXML private Label etatCollier;
     @FXML private Label etatCeinture;
     @FXML private Label etatBottes;
-    @FXML private Label etatGant;
     @FXML private Label etatEpee;
-    @FXML private Label etatArc;
     @FXML private Label etatDague;
     @FXML private Label etatSniper;
     @FXML private Label etatBaton;
@@ -128,7 +122,7 @@ public class Controller implements Initializable {
         environnement.getInventaireEnvironnement().addListener(listenItemInventaire);
 
         ListChangeListener<Item> listenItemJoueur = new ListObsItemJoueur(equipementJoueur, inventaireJoueur, nbrePotionHeal, nbreTotem
-                , etatBaton, etatSniper, etatEpee, etatDague, etatCouronne, etatCeinture, etatBottes, etatArc, etatCollier, etatGant);
+                , etatBaton, etatSniper, etatEpee, etatDague, etatCouronne, etatCeinture, etatBottes);
         environnement.getJoueur().getInventaire().addListener(listenItemJoueur);
     }
 
@@ -136,9 +130,6 @@ public class Controller implements Initializable {
         Arme arme = environnement.getJoueur().getArme();
         if (arme instanceof BatonElectrique){
             etatBaton.setText("Unlock");
-        }
-        if (arme instanceof Arc){
-            etatArc.setText("Unlock");
         }
         if (arme instanceof Dague){
             etatDague.setText("Unlock");
@@ -159,20 +150,9 @@ public class Controller implements Initializable {
         if (equipement instanceof CeintureTP){
             etatCeinture.setText("Unlock");
         }
-        if (equipement instanceof CollierFantomatique){
-            etatCollier.setText("Unlock");
-        }
         if (equipement instanceof CouronneTemporel){
             etatCouronne.setText("Unlock");
         }
-        if (equipement instanceof GantDestructeur){
-            etatGant.setText("Unlock");
-        }
-    }
-
-    @FXML
-    void clickOnArc(ActionEvent event) {
-        System.out.println("les fleches sont à finir");
     }
 
     @FXML
