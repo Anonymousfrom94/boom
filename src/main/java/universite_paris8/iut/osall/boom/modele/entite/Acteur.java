@@ -18,13 +18,13 @@ public abstract class Acteur {
     private int pvMax;
     private IntegerProperty pv;
 
-    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse) {
+    public Acteur(Environnement environnement, int x, int y, int largeur, int hauteur, int vitesse, int pvMax) {
         this.environnement = environnement;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.direction = new SimpleStringProperty("");
         this.vitesse = vitesse;
-        this.pvMax = 100;
+        this.pvMax = pvMax;
         this.pv = new SimpleIntegerProperty(pvMax);
         this.id = "#" + compteur;
         compteur++;
@@ -36,6 +36,9 @@ public abstract class Acteur {
     public void enleverPv(int degat) {
         if (this.pv.getValue() - degat >= 0){
             this.pv.setValue(this.pv.getValue() - degat);
+        }
+        else {
+            this.pv.setValue(0);
         }
     }
 

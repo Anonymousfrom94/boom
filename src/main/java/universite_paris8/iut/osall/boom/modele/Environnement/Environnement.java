@@ -61,8 +61,7 @@ public class Environnement {
                 if (acteur instanceof Ennemie) {
                     compteurKill++;
                 }
-                // Génération d'un nouvel ennemi après la mort
-//                new Ennemie(this);
+
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
             if (acteur instanceof Ennemie){
@@ -112,7 +111,7 @@ public class Environnement {
 
     // test fin de game
     public void finDeGame(int temps){
-        if (this.getActeurs().size() == 1 && temps > 10){
+        if (this.getActeurs().size() == 1 && temps > 10 || !joueur.estVivant()){
             System.exit(0);
         }
     }
