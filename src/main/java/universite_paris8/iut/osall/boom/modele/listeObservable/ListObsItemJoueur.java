@@ -102,9 +102,6 @@ public class ListObsItemJoueur implements ListChangeListener<Item> {
                         compteurTotem--;
                     }
                 }
-//                if (i instanceof Consommable){
-//                    inventaireJoueur.getChildren().remove(inventaireJoueur.lookup("#"+i.getId()));
-//                }
             }
         }
         nbrePotionHeal.setText(""+compteurPotionHeal);

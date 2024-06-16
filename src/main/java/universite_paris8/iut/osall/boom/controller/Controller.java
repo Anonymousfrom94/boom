@@ -35,34 +35,20 @@ public class Controller implements Initializable {
 
     @FXML private Pane pane;
     @FXML private TilePane tilePane;
-    @FXML
-    private Pane equipementJoueur;
-    @FXML
-    private Pane inventaireJoueur;
-    @FXML
-    private Label nbrePotionHeal;
-    @FXML
-    private Label nbreTotem;
-    @FXML
-    private Label etatCouronne;
-    @FXML
-    private Label etatCollier;
-    @FXML
-    private Label etatCeinture;
-    @FXML
-    private Label etatBottes;
-    @FXML
-    private Label etatGant;
-    @FXML
-    private Label etatEpee;
-    @FXML
-    private Label etatArc;
-    @FXML
-    private Label etatDague;
-    @FXML
-    private Label etatSniper;
-    @FXML
-    private Label etatBaton;
+    @FXML private Pane equipementJoueur;
+    @FXML private Pane inventaireJoueur;
+    @FXML private Label nbrePotionHeal;
+    @FXML private Label nbreTotem;
+    @FXML private Label etatCouronne;
+    @FXML private Label etatCollier;
+    @FXML private Label etatCeinture;
+    @FXML private Label etatBottes;
+    @FXML private Label etatGant;
+    @FXML private Label etatEpee;
+    @FXML private Label etatArc;
+    @FXML private Label etatDague;
+    @FXML private Label etatSniper;
+    @FXML private Label etatBaton;
 
     private Environnement environnement;
     private VueMap vueMap;
@@ -100,22 +86,18 @@ public class Controller implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     environnement.getJoueur().seDeplace();
-                    //Test
-//                    vueJoueur.changementImg(joueur);
                     temps++;
                     if (temps == 10){
                         for (int i = 0; i < 50; i++){
                             new Ennemie(environnement, pane);
-//                            environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         }
+                        environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
                         environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));
                         environnement.getInventaireEnvironnement().add(new CeintureTP(environnement));
                         environnement.getInventaireEnvironnement().add(new CouronneTemporel(environnement));
                     }
                     environnement.unTour(pane);
-
-
                 })
         );
         gameLoop.getKeyFrames().add(kf);
@@ -277,7 +259,7 @@ public class Controller implements Initializable {
         for (Item i : environnement.getJoueur().getInventaire()) {
             if (i instanceof PotionHeal) {
                 ((PotionHeal) i).utilise();
-                break;  // Sortir de la boucle après avoir utilisé la première potion
+                break;
             }
         }
         System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
@@ -299,23 +281,14 @@ public class Controller implements Initializable {
 
     @FXML
     void clickOnTotem(ActionEvent event) {
-        // Créer une liste temporaire pour stocker les totems de résurrection
-        List<TotemResurrection> totemsToUse = new ArrayList<>();
-
-        // Parcourir l'inventaire pour trouver les totems de résurrection et les ajouter à la liste temporaire
         for (Item i : environnement.getJoueur().getInventaire()) {
             if (i instanceof TotemResurrection) {
-                totemsToUse.add((TotemResurrection) i);
+                ((TotemResurrection) i).utilise();
+                break;
             }
         }
-
-        // Utiliser les totems après avoir parcouru l'inventaire
-        for (TotemResurrection totem : totemsToUse) {
-            totem.utilise();
-        }
-
-        // Afficher les points de vie du joueur après l'utilisation des totems
         System.out.println(" \n\npv du joueur : " + environnement.getJoueur().getPv());
     }
+
 
 }

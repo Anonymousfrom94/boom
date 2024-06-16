@@ -41,6 +41,54 @@ public class Environnement {
         init();
     }
 
+    public void unTour(Pane pane) {
+        joueur.ramasse();
+
+        // Déplacement des acteurs (ennemis)
+        for (int i = acteurs.size() - 1; i >= 0; i--) {
+            Acteur acteur = acteurs.get(i);
+            if (!acteur.estVivant()) {
+                System.out.println("Mort de : " + acteur);
+                acteurs.remove(i);
+                if (acteur instanceof Ennemie) {
+                    compteurKill++;
+                }
+                // Génération d'un nouvel ennemi après la mort
+                new Ennemie(this, pane);
+                System.out.println("Nombre d'ennemis tués : " + compteurKill);
+            }
+            if (acteur instanceof Ennemie){
+                acteur.seDeplace();
+            }
+        }
+    }
+
+    public void init() {
+        this.map = new Map(this);
+        this.joueur = new Joueur(this);
+
+        allAddObs();
+        allAddNoSpawn();
+    }
+
+/* *********************************************************************************************************************
+                                             ADD
+********************************************************************************************************************* */
+    public void ajouterActeur(Acteur acteur) {
+        acteurs.add(acteur);
+    }
+
+    public void ajouterObstacle(int obstacle) {
+        obstacles.add(obstacle);
+    }
+
+    public void ajouterNoSpawn(int obstacle) {
+        blocNoSpawn.add(obstacle);
+    }
+
+/* *********************************************************************************************************************
+                                           GETTER & SETTER & BOOLEAN
+********************************************************************************************************************* */
     public ObservableList<Acteur> getActeurs() {
         return acteurs;
     }
@@ -73,49 +121,6 @@ public class Environnement {
         return joueur;
     }
 
-    public void unTour(Pane pane) {
-        joueur.ramasse();
-
-        // Déplacement des acteurs (ennemis)
-        for (int i = acteurs.size() - 1; i >= 0; i--) {
-            Acteur acteur = acteurs.get(i);
-            if (!acteur.estVivant()) {
-                System.out.println("Mort de : " + acteur);
-                acteurs.remove(i);
-                if (acteur instanceof Ennemie) {
-                    compteurKill++;
-                }
-                // Génération d'un nouvel ennemi après la mort
-                new Ennemie(this, pane);
-                System.out.println("Nombre d'ennemis tués : " + compteurKill);
-            }
-            if (acteur instanceof Ennemie){
-                acteur.seDeplace();
-            }
-        }
-    }
-
-
-    public void ajouterActeur(Acteur acteur) {
-        acteurs.add(acteur);
-    }
-
-    public void ajouterObstacle(int obstacle) {
-        obstacles.add(obstacle);
-    }
-
-    public void ajouterNoSpawn(int obstacle) {
-        blocNoSpawn.add(obstacle);
-    }
-
-    public boolean estObstacle(int obstacle) {
-        return obstacles.contains(obstacle);
-    }
-
-    public boolean estNoSpawn(int obstacle) {
-        return blocNoSpawn.contains(obstacle);
-    }
-
     public int[] getInfoTuile() {
         return this.infoTuile;
     }
@@ -128,11 +133,18 @@ public class Environnement {
         return blocNoSpawn;
     }
 
-    public void init() {
-        this.map = new Map(this);
-        this.joueur = new Joueur(this);
+    public boolean estObstacle(int obstacle) {
+        return obstacles.contains(obstacle);
+    }
 
-        // Ajout des obstacles
+    public boolean estNoSpawn(int obstacle) {
+        return blocNoSpawn.contains(obstacle);
+    }
+
+/* *********************************************************************************************************************
+
+********************************************************************************************************************* */
+    public void allAddObs(){
         ajouterObstacle(316);
         ajouterObstacle(319);
         ajouterObstacle(676);
@@ -153,7 +165,9 @@ public class Environnement {
         ajouterObstacle(530);
         ajouterObstacle(454);
         ajouterObstacle(379);
+    }
 
+    public void allAddNoSpawn(){
         ajouterNoSpawn(316);
         ajouterNoSpawn(376);
         ajouterNoSpawn(527);

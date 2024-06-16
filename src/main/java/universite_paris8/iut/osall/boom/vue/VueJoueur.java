@@ -37,7 +37,7 @@ public class VueJoueur {
         //Barre de vie du joueur
         Rectangle vieBarre = new Rectangle(256, 10, Color.GREEN);
         vieBarre.setId("vieBarre_" + joueur.getId());
-        equipementJoueur.getChildren().add(vieBarre); // Assurez-vous que imageView et vieBarre sont ajoutés au Pane
+        equipementJoueur.getChildren().add(vieBarre);
 
         this.z1 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_1.png");
         this.z2 = new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgPerso/joueur_haut_2.png");

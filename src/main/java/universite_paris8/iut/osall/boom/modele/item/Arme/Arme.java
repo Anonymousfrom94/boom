@@ -22,6 +22,13 @@ public abstract class Arme extends Item {
         this.range = range;
     }
 
+    public abstract void utilise(Ennemie e);
+
+    public abstract void equip(Joueur joueur);
+
+/* *********************************************************************************************************************
+                                          GETTER & SETTER & BOOLEAN
+********************************************************************************************************************* */
     public int getDegat() {
         return degat;
     }
@@ -34,8 +41,7 @@ public abstract class Arme extends Item {
         return range;
     }
 
-    public abstract void utilise(Ennemie e);
+/* *********************************************************************************************************************
 
-    public abstract void equip(Joueur joueur);
-
+********************************************************************************************************************* */
 }

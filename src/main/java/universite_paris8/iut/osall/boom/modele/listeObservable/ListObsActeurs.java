@@ -33,7 +33,6 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             }
             for (Acteur a : change.getRemoved()) {
                 pane.getChildren().remove(pane.lookup("#" + a.getId()));
-                // Assurez-vous de retirer également la barre de vie correspondante
                 pane.getChildren().remove(pane.lookup("#vieBarre_" + a.getId()));
             }
         }
@@ -46,9 +45,8 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
 
         Rectangle vieBarre = new Rectangle(16, 2, Color.GREEN);
         vieBarre.setId("vieBarre_" + ennemie.getId());
-        pane.getChildren().addAll(imageView, vieBarre); // Assurez-vous que imageView et vieBarre sont ajoutés au Pane
+        pane.getChildren().addAll(imageView, vieBarre);
 
-        // Liaisons et positions
         imageView.translateXProperty().bind(ennemie.getXproperty());
         imageView.translateYProperty().bind(ennemie.getYproperty());
         vieBarre.translateXProperty().bind(ennemie.getXproperty());

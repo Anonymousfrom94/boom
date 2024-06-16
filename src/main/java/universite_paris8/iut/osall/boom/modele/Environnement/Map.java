@@ -57,6 +57,21 @@ public class Map {
         return true;
     }
 
+    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
+        int[] tableau = getTableau();
+
+        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
+            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+/* *********************************************************************************************************************
+                                             GETTER & SETTER & BOOLEAN
+********************************************************************************************************************* */
     public boolean estObstacle(int val) {
         for (int obstacle : environnement.getObstacles()) {
             if (tableau[val] == obstacle) {
@@ -87,17 +102,7 @@ public class Map {
         return environnement;
     }
 
+/* *********************************************************************************************************************
 
-
-    private boolean obstacle(int indice1, int indice2, int obstacle, boolean aBottesDeLevitation) {
-        int[] tableau = getTableau();
-
-        if (indice1 >= 0 && indice1 < tableau.length && indice2 >= 0 && indice2 < tableau.length) {
-            if ((tableau[indice1] == obstacle || tableau[indice2] == obstacle) && (obstacle != 316 || !aBottesDeLevitation)) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
+********************************************************************************************************************* */
 }

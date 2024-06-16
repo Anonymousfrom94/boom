@@ -23,10 +23,6 @@ public class Joueur extends Acteur {
         this.equipement = null;
     }
 
-    public ObservableList<Item> getInventaire() {
-        return inventaire;
-    }
-
     public void seDeplace() {
         if (getEnvironnement().getMap().peutSeDeplacer(this, aBottesDeLevitation())) {
             int dx = 0;
@@ -56,36 +52,6 @@ public class Joueur extends Acteur {
             setX(getX() + dx);
             setY(getY() + dy);
         }
-        System.out.println("X : " + getX() + " Y : " + getY());
-    }
-
-
-    public void setDirection(String direction) {
-        this.direction.set(direction);
-    }
-
-    public String getDirection() {
-        return this.direction.get();
-    }
-
-    public StringProperty getPropertyDirection(){
-        return this.direction;
-    }
-
-    public void setArme(Arme arme) {
-        this.arme = arme;
-    }
-
-    public Arme getArme(){
-        return this.arme;
-    }
-
-    public void setEquipement(Equipement equipement) {
-        this.equipement = equipement;
-    }
-
-    public Equipement getEquipement() {
-        return equipement;
     }
 
     private Acteur estAttaquable(){
@@ -139,5 +105,40 @@ public class Joueur extends Acteur {
         return this.equipement instanceof BotteLevitation;
     }
 
+/* *********************************************************************************************************************
+                                                GETTER & SETTER
+********************************************************************************************************************* */
+    public ObservableList<Item> getInventaire() {
+        return inventaire;
+    }
+
+    public String getDirection() {
+        return this.direction.get();
+    }
+    public void setDirection(String direction) {
+        this.direction.set(direction);
+    }
+
+    public StringProperty getPropertyDirection(){
+        return this.direction;
+    }
+
+    public Arme getArme(){
+        return this.arme;
+    }
+    public void setArme(Arme arme) {
+        this.arme = arme;
+    }
+
+    public Equipement getEquipement() {
+        return equipement;
+    }
+    public void setEquipement(Equipement equipement) {
+        this.equipement = equipement;
+    }
+
+/* *********************************************************************************************************************
+
+********************************************************************************************************************* */
 
 }

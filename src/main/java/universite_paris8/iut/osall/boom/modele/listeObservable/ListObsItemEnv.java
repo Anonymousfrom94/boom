@@ -28,10 +28,6 @@ public class ListObsItemEnv implements ListChangeListener<Item> {
     public void onChanged(Change<? extends Item> change) {
         System.out.println("changement");
         while (change.next()){
-            System.out.println("est-ce des ajouts ? " + change.wasAdded());
-            System.out.println("est-ce des suppressions ? " + change.wasRemoved());
-            System.out.println("les ajouts : " + change.getAddedSubList());
-            System.out.println("Les suppressions : " + change.getRemoved());
             for (Item i : change.getAddedSubList()) {
                 creerSpriteItem(pane, i);
             }

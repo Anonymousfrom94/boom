@@ -10,6 +10,7 @@ public class PotionHeal extends Consommable{
         super(joueur.getEnvironnement(), "Potion de Soin", 0, 0);
         this.joueur = joueur;
     }
+
     public void utilise(){
         seSoigne();
     }

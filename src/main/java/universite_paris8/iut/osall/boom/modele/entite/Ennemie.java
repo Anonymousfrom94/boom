@@ -8,7 +8,7 @@ import universite_paris8.iut.osall.boom.modele.item.Arme.EpeEnBois;
 import java.util.Random;
 public class Ennemie extends Acteur {
 
-    private static final int rangeEnnemmi = 999;
+    private static final int rangeEnnemmi = 200;
     private Arme arme;
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
@@ -31,39 +31,54 @@ public class Ennemie extends Acteur {
     public void seDeplace() {
         Environnement environnement = getEnvironnement();
         Joueur joueur = environnement.getJoueur();
-        // Calculer la distance entre l'ennemi et le joueur
-        double distance = Math.sqrt(Math.pow(getX() - joueur.getX(), 2) + Math.pow(getY() - joueur.getY(), 2));
-        // Vérifier si le joueur est dans la zone de détection
+
+        int distanceEnX = joueur.getX() - getX();
+        int distanceEnY = joueur.getY() - getY();
+        double distance = Math.sqrt(distanceEnX * distanceEnX + distanceEnY * distanceEnY);
+
         if (distance <= rangeEnnemmi) {
-            // Calculer la direction du déplacement vers le joueur
-            int deltaX = joueur.getX() - getX();
-            int deltaY = joueur.getY() - getY();
-            int stepX = (deltaX == 0) ? 0 : (deltaX > 0 ? 1 : -1);
-            int stepY = (deltaY == 0) ? 0 : (deltaY > 0 ? 1 : -1);
-            int newX = getX() + stepX * getVitesse();
-            int newY = getY() + stepY * getVitesse();
+            int dx;
+            if (distanceEnX == 0) {
+                dx = 0;
+            } else if (distanceEnX > 0) {
+                dx = 1;
+            } else {
+                dx = -1;
+            }
+
+            int dy;
+            if (distanceEnY == 0) {
+                dy = 0;
+            } else if (distanceEnY > 0) {
+                dy = 1;
+            } else {
+                dy = -1;
+            }
+
+            int newX = getX() + dx * getVitesse();
+            int newY = getY() + dy * getVitesse();
+
             if (peutSeDeplacerVers(newX, newY)) {
                 setX(newX);
                 setY(newY);
             } else {
-                // Essayer de contourner l'obstacle si la voie directe est bloquée
-                if (deltaX != 0) {
-                    newX = getX() + stepX * getVitesse();
+                if (distanceEnX != 0) {
+                    newX = getX() + dx * getVitesse();
                     if (peutSeDeplacerVers(newX, getY())) {
                         setX(newX);
                     }
                 }
-                if (deltaY != 0) {
-                    newY = getY() + stepY * getVitesse();
+                if (distanceEnY != 0) {
+                    newY = getY() + dy * getVitesse();
                     if (peutSeDeplacerVers(getX(), newY)) {
                         setY(newY);
                     }
                 }
             }
+
             if (arme != null && distance <= arme.getRange() && peutAttaquer()) {
                 attaque(joueur);
             }
-
         }
     }
 
@@ -72,13 +87,10 @@ public class Ennemie extends Acteur {
         return (tempsActuel - derniereAttaque) >= intervalleAttack;
     }
 
-
     private boolean peutSeDeplacerVers(int newX, int newY) {
         Environnement environnement = getEnvironnement();
         Map map = environnement.getMap();
 
-
-        // Vérifier chaque pixel de l'ennemi
         for (int i = 0; i < getLargeur(); i++) {
             for (int j = 0; j < getHauteur(); j++) {
                 int x = newX + i;
@@ -86,10 +98,10 @@ public class Ennemie extends Acteur {
                 if (x >= 0 && x < environnement.getWidth() && y >= 0 && y < environnement.getHeight()) {
                     int indice = map.indice(x, y);
                     if (map.estObstacle(indice)) {
-                        return false; // Il y a un obstacle à cette position
+                        return false;
                     }
                 } else {
-                    return false; // Les coordonnées sont hors limites de la carte
+                    return false;
                 }
             }
         }
@@ -108,10 +120,7 @@ public class Ennemie extends Acteur {
 
 
     public void subitDegat(int degats) {
-        System.out.println("Début de subitDegat pour ennemi " + getId() + " : PV avant dégâts : " + getPv());
-        System.out.println("Dégâts reçus : " + degats);
         enleverPv(degats);
-        System.out.println("PV après dégâts : " + getPv());
         if (!this.estVivant()) {
             System.out.println("Ennemi " + getId() + " vaincu !");
         }
