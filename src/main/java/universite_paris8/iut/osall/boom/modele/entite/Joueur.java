@@ -55,7 +55,7 @@ public class Joueur extends Acteur {
         }
     }
 
-    private Acteur estAttaquable(){
+    public Acteur estAttaquable(){
         for(Acteur e : this.getEnvironnement().getActeurs()){
             if(e instanceof Ennemi){
                 if (
