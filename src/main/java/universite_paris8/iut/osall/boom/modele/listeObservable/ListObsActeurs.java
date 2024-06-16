@@ -47,7 +47,7 @@ public class ListObsActeurs implements ListChangeListener<Acteur> {
             imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/squelette.png"));
         }
         if (ennemi instanceof Boss){
-            //importe l'image ici
+            imageView.setImage(new Image("file:src/main/resources/universite_paris8/iut/osall/boom/imgEnnemies/boss.png"));
         }
         imageView.setId(ennemi.getId());
 

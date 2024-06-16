@@ -1,8 +1,10 @@
 package universite_paris8.iut.osall.boom.modele.item.Arme;
 
 import universite_paris8.iut.osall.boom.modele.Environnement.Environnement;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Boss;
 import universite_paris8.iut.osall.boom.modele.entite.ennemi.Ennemi;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.entite.ennemi.Squelette;
 
 public class Sniper extends Arme{
 
@@ -20,8 +22,10 @@ public class Sniper extends Arme{
 
     @Override
     public void utilise(Ennemi e) {
-        e.enleverPv(this.getDegat());
-        joueur.setPv(joueur.getPv()-10);
+        if (e instanceof Squelette){
+            e.enleverPv(this.getDegat());
+            joueur.setPv(joueur.getPv()-10);
+        }
     }
 
     @Override

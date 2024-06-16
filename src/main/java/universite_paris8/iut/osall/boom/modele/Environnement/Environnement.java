@@ -65,11 +65,11 @@ public class Environnement {
 
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
-            if (acteur instanceof Ennemi){
+            if (acteur instanceof Squelette){
                 acteur.seDeplace();
             }
         }
-        if (compteurKill == 50){
+        if (acteurs.size() == 1 && compteurKill == 50){
             new Boss(this);
         }
         finDeGame(temps);
@@ -216,6 +216,19 @@ public class Environnement {
         ajouterObstacle(530);
         ajouterObstacle(454);
         ajouterObstacle(379);
+        ajouterObstacle(976);
+        ajouterObstacle(977);
+        ajouterObstacle(978);
+        ajouterObstacle(1051);
+        ajouterObstacle(1053);
+        ajouterObstacle(1126);
+        ajouterObstacle(1127);
+        ajouterObstacle(1128);
+        ajouterObstacle(465);
+        ajouterObstacle(396);
+        ajouterObstacle(546);
+        ajouterObstacle(471);
+
     }
 
     public void allAddNoSpawn(){
