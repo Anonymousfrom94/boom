@@ -86,18 +86,11 @@ public class Controller implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     environnement.getJoueur().seDeplace();
-                    temps++;
                     if (temps == 10){
-                        for (int i = 0; i < 50; i++){
-                            new Ennemie(environnement, pane);
-                        }
-                        environnement.getInventaireEnvironnement().add(new PotionHeal(environnement.getJoueur()));
-                        environnement.getInventaireEnvironnement().add(new TotemResurrection(environnement.getJoueur()));
-                        environnement.getInventaireEnvironnement().add(new BotteLevitation(environnement));
-                        environnement.getInventaireEnvironnement().add(new CeintureTP(environnement));
-                        environnement.getInventaireEnvironnement().add(new CouronneTemporel(environnement));
+                        environnement.spawnItemEtEnnemie();
                     }
-                    environnement.unTour(pane);
+                    environnement.unTour(temps);
+                    temps++;
                 })
         );
         gameLoop.getKeyFrames().add(kf);

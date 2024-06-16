@@ -10,6 +10,10 @@ public class BatonElectrique extends Arme{
         super(environnement, "Baton Electrique",8, 32);
     }
 
+    public BatonElectrique(Environnement environnement, int x, int y) {
+        super(environnement, "Baton Electrique", x, y, 8, 32);
+    }
+
     @Override
     public void utilise(Ennemie e) {
         attackDeZone(e);

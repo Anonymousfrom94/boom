@@ -13,7 +13,7 @@ public class Ennemie extends Acteur {
     private long derniereAttaque;
     private static final long intervalleAttack = 1000;
 
-    public Ennemie(Environnement environnement, Pane pane) {
+    public Ennemie(Environnement environnement) {
         super(environnement, 0, 0, 16, 16, 3);
         this.arme = new EpeEnBois(environnement);
         random();

@@ -6,6 +6,14 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.osall.boom.modele.entite.Acteur;
 import universite_paris8.iut.osall.boom.modele.entite.Ennemie;
 import universite_paris8.iut.osall.boom.modele.entite.Joueur;
+import universite_paris8.iut.osall.boom.modele.item.Arme.BatonElectrique;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Dague;
+import universite_paris8.iut.osall.boom.modele.item.Arme.Sniper;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.PotionHeal;
+import universite_paris8.iut.osall.boom.modele.item.Consommable.TotemResurrection;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.BotteLevitation;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CeintureTP;
+import universite_paris8.iut.osall.boom.modele.item.Equipement.CouronneTemporel;
 import universite_paris8.iut.osall.boom.modele.item.Item;
 
 import java.util.ArrayList;
@@ -41,7 +49,7 @@ public class Environnement {
         init();
     }
 
-    public void unTour(Pane pane) {
+    public void unTour(int temps) {
         joueur.ramasse();
 
         // Déplacement des acteurs (ennemis)
@@ -54,13 +62,14 @@ public class Environnement {
                     compteurKill++;
                 }
                 // Génération d'un nouvel ennemi après la mort
-                new Ennemie(this, pane);
+//                new Ennemie(this);
                 System.out.println("Nombre d'ennemis tués : " + compteurKill);
             }
             if (acteur instanceof Ennemie){
                 acteur.seDeplace();
             }
         }
+        finDeGame(temps);
     }
 
     public void init() {
@@ -70,6 +79,44 @@ public class Environnement {
         allAddObs();
         allAddNoSpawn();
     }
+
+    public void spawnItemEtEnnemie(){
+        for (int i = 0; i < 50; i++){
+            new Ennemie(this);
+        }
+        // Spawn des 4 totem de résurrection
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur()));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1300, 50));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 82, 1300));
+        this.getInventaireEnvironnement().add(new TotemResurrection(this.getJoueur(), 1400, 1300));
+
+        // Spawn des 12 PotionHeal
+        for (int i = 0; i < 3; i++){
+            int ecart = i*32;
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur()));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1100 + ecart, 50 + ecart));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 50 + ecart, 1100 + ecart));
+            this.getInventaireEnvironnement().add(new PotionHeal(this.getJoueur(), 1400 + ecart, 1100 - ecart));
+        }
+
+        // Spawn des équipements (Bottes, ceinture, Couronne)
+        this.getInventaireEnvironnement().add(new BotteLevitation(this));
+        this.getInventaireEnvironnement().add(new CeintureTP(this));
+        this.getInventaireEnvironnement().add(new CouronneTemporel(this));
+
+        // Spawn des Armes (une arme par zone)
+        this.getInventaireEnvironnement().add(new Dague(this));
+        this.getInventaireEnvironnement().add(new Sniper(this, 1200, 200));
+        this.getInventaireEnvironnement().add(new BatonElectrique(this, 800, 1500));
+    }
+
+    // test fin de game
+    public void finDeGame(int temps){
+        if (this.getActeurs().size() == 1 && temps > 10){
+            System.exit(0);
+        }
+    }
+
 
 /* *********************************************************************************************************************
                                              ADD

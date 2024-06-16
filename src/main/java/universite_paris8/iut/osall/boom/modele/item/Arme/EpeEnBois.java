@@ -9,6 +9,10 @@ public class EpeEnBois extends Arme{
         super(environnement,"Epée en Bois", 10, 15);
     }
 
+    public EpeEnBois(Environnement environnement, int x, int y) {
+        super(environnement,"Epée en Bois", x, y, 10, 15);
+    }
+
     public void utilise(Ennemie e) {
         e.subitDegat(getDegat());
     }
